@@ -4,8 +4,7 @@ import './index.scss'
 export const App = (): JSX.Element => {
   
   return (
-    <div className="app">
-      yiudfhcwe78897
+     <div className="app">
       <Counter />
     </div>
   );

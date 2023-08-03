@@ -9,7 +9,7 @@ export const Counter = (): JSX.Element => {
   return (
     <div className={classes.green}>
       <h1>{count}</h1>
-      <button onClick={increment}>increment</button>
+      <button onClick={increment}>{'increment'}</button>
     </div>
   );
 }

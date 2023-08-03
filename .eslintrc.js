@@ -10,7 +10,8 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:import/recommended",
     "plugin:react/jsx-runtime",
-    "prettier"
+    "prettier",
+    "plugin:i18next/recommended"
   ],
   "parser": '@typescript-eslint/parser',
     "parserOptions": {
@@ -35,12 +36,10 @@ module.exports = {
     }
   ],
   "plugins": [
-    "react"
+    "react",
+    "i18next"
   ],
   "rules": {
-    'react/jsx-indent': [2, 2],
-    'react/jsx-indent-props': [2, 2],
-    "indent": [2, 2],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -55,6 +54,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     "@typescript-eslint/prefer-nullish-coalescing": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "react/no-deprecated": "off"
+    "react/no-deprecated": "off",
+    "i18next/no-literal-string": ["error", {markupOnly: true}]
   }
 }
