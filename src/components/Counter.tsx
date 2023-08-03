@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import classes from './Counter.module.scss';
 
-export const Counter = () => {
+export const Counter = (): JSX.Element => {
   const [count, setCount] = useState(0);
-  const increment = () => {
+  const increment = (): void => {
     setCount(count + 1)
   }
   return (
