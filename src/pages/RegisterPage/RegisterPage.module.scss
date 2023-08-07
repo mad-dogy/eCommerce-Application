@@ -1,0 +1,27 @@
+.register {
+  background: #273036;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__inner {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 40px;
+  background: #f9f9f9;
+}
+
+.register__title {
+  font-size: 35px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  text-align: center;
+}
