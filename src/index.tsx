@@ -1,10 +1,15 @@
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { App } from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-render(
+const rootElement = document.createElement('div');
+rootElement.id = 'root';
+const root = createRoot(rootElement);
+
+root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById('root')
 )
+
+document.body.append(rootElement);

@@ -1,12 +1,13 @@
-.textInput {
-  max-width: 350px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px 15px;
-  border-radius: 10px;
+.input {
+  border-radius: 20px;
   border: 2px solid #E0DEE0;
   background: #F9F9F9;
   font-size: 18px;
   letter-spacing: .06rem;
   color: #110C07;
+}
+
+.input_mini {
+  max-width: 170px;
+  width: 100%;
 }
