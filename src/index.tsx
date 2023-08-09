@@ -1,6 +1,6 @@
-import { createRoot } from "react-dom/client";
-import { App } from "./App";
-import { BrowserRouter } from "react-router-dom";
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { App } from './App';
 
 const rootElement = document.createElement('div');
 rootElement.id = 'root';
@@ -10,6 +10,6 @@ root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-)
+);
 
 document.body.append(rootElement);
