@@ -11,7 +11,7 @@ export const TextInput: FC<TextInputProps> = (props: TextInputProps) => {
   const {...otherProps} = props;
 
   return (
-    <TextField 
+    <TextField
       {...otherProps}
       InputProps={{
         className: styles.input

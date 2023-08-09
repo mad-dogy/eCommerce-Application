@@ -11,11 +11,11 @@
     max-width: 500px;
     width: 100%;
     padding: 20px 30px;
-    border-radius: 20px;
+    border-radius: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 20px;
+    row-gap: 10px;
     background: #f9f9f9;
   }
 
@@ -30,17 +30,52 @@
   &__form {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 16px;
     justify-content: center;
     align-items: center;
-
-    &__personal-info {
-      max-width: 350px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
   }
+}
+
+.form__personal-info {
+  max-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__address-info {
+  max-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  justify-content: center;
+  align-items: center;
+  
+  &__child {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.form__password-info {
+  max-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+}
+
+.input_default {
+  max-width: 350px;
+  width: 100%;
+}
+.input_mini {
+  max-width: 170px;
+  width: 100%;
 }
