@@ -27,5 +27,9 @@ export const LoginPage = (): JSX.Element => (
         <Button variant="contained">LOG IN</Button>
       </form>
     </div>
+
+    <div className={styles['login__to-register']}>
+      Do not have an account? Click here
+    </div>
   </div>
 );
