@@ -1,8 +1,8 @@
-import { RegisterPage } from './pages/RegisterPage/RegisterPage';
+import { LoginPage } from './pages/LoginPage/LoginPage';
 import './index.scss';
 
 export const App = (): JSX.Element => (
   <div className="app">
-    <RegisterPage />
+    <LoginPage />
   </div>
 );
