@@ -2,8 +2,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
 import { type DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import 'dayjs/locale/en';
 import { type FC } from 'react';
+import 'dayjs/locale/en';
 
 interface DatePickerProps extends MuiDatePickerProps<Date>{
   size?: string

@@ -3,6 +3,7 @@ import { Button } from '../../components/UI/Button/Button';
 import { DatePicker } from '../../components/UI/inputs/DatePicker/DatePicker';
 import { PasswordInput } from '../../components/UI/inputs/PasswordInput/PasswordInput';
 import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
+
 import styles from './RegisterPage.module.scss';
 
 export const RegisterPage = (): JSX.Element => (
