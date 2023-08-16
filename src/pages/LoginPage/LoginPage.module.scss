@@ -1,4 +1,4 @@
-.register {
+.login {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 10px;
+    row-gap: 20px;
     background: #f9f9f9;
   }
 
@@ -30,12 +30,12 @@
   &__form {
     display: flex;
     flex-direction: column;
-    row-gap: 16px;
+    row-gap: 20px;
     justify-content: center;
     align-items: center;
   }
 
-  &__to-login {
+  &__to-register {
     position: absolute;
     bottom: 8px;
     font-size: 14px;
@@ -43,44 +43,9 @@
     color: #f9f9f9;
     border-bottom: 1px solid #f9f9f9;
   }
-  &__to-login:hover {
+  &__to-register:hover {
     cursor: pointer;
   }
-}
-
-.form__personal-info {
-  max-width: 350px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.form__address-info {
-  max-width: 350px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 6px;
-  justify-content: center;
-  align-items: center;
-  
-  &__child {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-.form__password-info {
-  max-width: 350px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 6px;
 }
 
 .input_default {

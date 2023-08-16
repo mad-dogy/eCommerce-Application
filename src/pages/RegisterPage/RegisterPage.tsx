@@ -84,5 +84,9 @@ export const RegisterPage = (): JSX.Element => (
         <Button variant="contained">SIGN IN</Button>
       </form>
     </div>
+
+    <div className={styles['register__to-login']}>
+      Alredy have account? Click here
+    </div>
   </div>
 );
