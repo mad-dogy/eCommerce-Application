@@ -59,6 +59,7 @@ module.exports = {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/no-deprecated": "off",
     "i18next/no-literal-string": ["warn", {markupOnly: true}],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }

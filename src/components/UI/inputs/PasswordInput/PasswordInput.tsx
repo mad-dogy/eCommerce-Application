@@ -2,6 +2,7 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useState, type FC } from 'react';
 import { type TextFieldProps } from '@mui/material/TextField/TextField';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Button } from '../../Button/Button';
 import styles from '../inputs.module.scss';
 
 interface PasswordInputProps extends TextFieldProps<'standard'> {
@@ -24,7 +25,7 @@ export const PasswordInput: FC<PasswordInputProps> = (props: PasswordInputProps)
       InputProps={{
         className: styles.input,
         endAdornment: (
-          <button type="button">
+          <Button className={styles.password__btn} type="button">
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
@@ -34,7 +35,7 @@ export const PasswordInput: FC<PasswordInputProps> = (props: PasswordInputProps)
                 {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
-          </button>
+          </Button>
         ),
       }}
       {...otherProps}

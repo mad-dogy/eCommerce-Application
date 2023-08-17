@@ -12,6 +12,7 @@ export const useInput = (initialValue: string) => {
   const onBlur = (): void => {
     setDirty(true);
   };
+
   return {
     value,
     onChange,

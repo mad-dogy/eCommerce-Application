@@ -11,6 +11,10 @@ export const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const { variant, ...otherProps } = props;
 
   return (
-    <MuiButton variant={variant} className={styles.button} {...otherProps} />
+    <MuiButton
+      variant={variant}
+      className={styles.button}
+      {...otherProps}
+    />
   );
 };

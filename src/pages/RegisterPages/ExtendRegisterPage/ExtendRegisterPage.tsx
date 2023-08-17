@@ -1,42 +1,40 @@
-import { Logo } from '../../components/Logo/Logo';
-import { Button } from '../../components/UI/Button/Button';
-import { DatePicker } from '../../components/UI/inputs/DatePicker/DatePicker';
-import { PasswordInput } from '../../components/UI/inputs/PasswordInput/PasswordInput';
-import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
+import { Logo } from '../../../components/Logo/Logo';
+import { Button } from '../../../components/UI/Button/Button';
+import { DatePicker } from '../../../components/UI/inputs/DatePicker/DatePicker';
+import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 
-import styles from './RegisterPage.module.scss';
+import styles from '../RegisterPage.module.scss';
 
-export const RegisterPage = (): JSX.Element => (
+export const ExtendRegisterPage = (): JSX.Element => (
   <div className={styles.register}>
     <div className={styles.register__inner}>
       <Logo />
+      <h3 className={styles['register__step-title']}>Extend registration</h3>
 
       <form className={styles.register__form}>
-        <TextInput
-          placeholder="Enter your email"
-          label="Email"
-          size="small"
-          className={styles.input_default}
-        />
-
         <div className={styles['form__personal-info']}>
+          <label className={styles.label}>Personal info:</label>
           <TextInput
             placeholder="Enter first name"
             label="First name"
             size="small"
-            className={styles.input_mini}
+            className={styles.input_default}
           />
           <TextInput
             placeholder="Enter last name"
             label="Last name"
             size="small"
-            className={styles.input_mini}
+            className={styles.input_default}
           />
+
+          <DatePicker label="Date of birth" />
         </div>
 
-        <DatePicker label="Date of birth" />
+        
 
         <div className={styles['form__address-info']}>
+          <label className={styles.label}>Address info:</label>
+
           <div className={styles['form__address-info__child']}>
             <TextInput
               placeholder="Enter country"
@@ -67,22 +65,7 @@ export const RegisterPage = (): JSX.Element => (
           </div>
         </div>
 
-        <div className={styles['form__password-info']}>
-          <PasswordInput
-            placeholder="Enter password"
-            label="Password"
-            size="small"
-            className={styles.input_default}
-          />
-          <PasswordInput
-            placeholder="Confirm password"
-            label="Confirm password"
-            size="small"
-            className={styles.input_default}
-          />
-        </div>
-
-        <Button variant="contained">SIGN IN</Button>
+        <Button variant="contained">Confirm</Button>
       </form>
     </div>
 
