@@ -1,9 +1,11 @@
-import './index.scss';
 import { BaseRegisterPage } from './pages/RegisterPages/BaseRegisterPage/BaseRegisterPage';
-import { ExtendRegisterPage } from './pages/RegisterPages/ExtendRegisterPage/ExtendRegisterPage';
+/*
+  import { ExtendRegisterPage } from './pages/RegisterPages/ExtendRegisterPage/ExtendRegisterPage';
+*/
+import './index.scss';
 
 export const App = (): JSX.Element => (
   <div className="app">
-    <ExtendRegisterPage />
+    <BaseRegisterPage />
   </div>
 );

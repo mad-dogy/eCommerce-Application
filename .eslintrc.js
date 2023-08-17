@@ -60,6 +60,7 @@ module.exports = {
     "react/no-deprecated": "off",
     "i18next/no-literal-string": ["warn", {markupOnly: true}],
     "react/jsx-props-no-spreading": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "arrow-parens": "off"
   }
 }
