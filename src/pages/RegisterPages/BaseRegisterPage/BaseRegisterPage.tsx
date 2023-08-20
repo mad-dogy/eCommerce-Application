@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import { useForm, Controller } from 'react-hook-form';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
@@ -5,13 +7,20 @@ import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/Passw
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 
 import styles from '../RegisterPage.module.scss';
-import { useInput } from '../../../hooks/useInput';
-import { emailValidations } from '../../../helpers/validation/emailValidation';
 
 export const BaseRegisterPage = (): JSX.Element => {
-  const email = useInput('', emailValidations, 'email');
-  /*   const password = useInput('', emailValidations);
-  const confirmPassword = useInput('', emailValidations); */
+  const {
+    control,
+    register,
+    formState: {
+      errors,
+    },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data: unknown): void => {
+    alert(JSON.stringify(data));
+  };
 
   return (
     <div className={styles.register}>
@@ -19,16 +28,24 @@ export const BaseRegisterPage = (): JSX.Element => {
         <Logo />
         <h3 className={styles['register__step-title']}>Base registration</h3>
 
-        <form className={styles.register__form}>
-          {(email.isDirty && email.validationErrors[0]) && <div style={{ color: 'red' }}>not email</div>}
-          <TextInput
-            onChange={event => { email.onChange(event); }}
-            onBlur={() => { email.onBlur(); }}
-            value={email.value}
-            placeholder="Enter your email"
-            label="Email"
-            size="small"
-            className={styles.input_default}
+        <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            name="email"
+            control={control}
+            {...register('email', {
+              required: 'Field is required',
+            })}
+            render={({ field }) => (
+              <TextInput
+                {...field as any}
+                placeholder="Enter your email"
+                label="Email"
+                size="small"
+                className={styles.input_default}
+                error={Boolean(errors?.email?.message)}
+                helperText={String(errors?.email?.message ?? '')}
+              />
+            )}
           />
 
           <div className={styles['form__password-info']}>
@@ -46,8 +63,8 @@ export const BaseRegisterPage = (): JSX.Element => {
             />
           </div>
           <div className={styles.register__btns}>
-            <Button variant="contained" disabled={!email.isInputValid}>SIGN IN</Button>
-            <Button variant="contained" disabled={!email.isInputValid}>
+            <Button variant="contained" type="submit">SIGN IN</Button>
+            <Button variant="contained" onClick={() => { console.log(errors); }}>
               <ArrowForwardIcon />
             </Button>
           </div>

@@ -5,7 +5,7 @@ import styles from '../inputs.module.scss';
 
 interface TextInputProps extends TextFieldProps<'standard'> {
   placeholder: string,
-  label: string
+  label: string,
 }
 
 export const TextInput: FC<TextInputProps> = (props: TextInputProps) => {
