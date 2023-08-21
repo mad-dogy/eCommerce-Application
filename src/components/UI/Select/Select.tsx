@@ -1,11 +1,11 @@
 import {
-  FormControl, InputLabel, MenuItem, Select as MuiSelect,
+  FormControl, FormHelperText, InputLabel, MenuItem, Select as MuiSelect,
 } from '@mui/material';
 import { type FC } from 'react';
 import { type SelectProps as MuiSelectProps } from '@mui/material/Select/Select';
 import styles from './Select.module.scss';
 
-interface SelectItem {
+export interface SelectItem {
   value: string;
   name: string;
 }
@@ -18,22 +18,24 @@ interface SelectProps extends MuiSelectProps {
 }
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
-  const { selectItems, label, error, ...otherProps } = props;
+  const {
+    selectItems, label, error, helperText, ...otherProps
+  } = props;
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth error={error}>
       <InputLabel id="demo-simple-select-label" className={styles['input-label']}>{label}</InputLabel>
       <MuiSelect
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         label={label}
         className={styles.select}
-        error={error}
         {...otherProps}
       >
         {selectItems.map(item => <MenuItem value={item.value}>{item.name}</MenuItem>)}
 
       </MuiSelect>
+      <FormHelperText>{helperText}</FormHelperText>
     </FormControl>
   );
 };

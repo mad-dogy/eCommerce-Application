@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { type SelectItem } from '../../../components/UI/Select/Select';
 
 export const validationSchema = yup.object().shape({
   firstName: yup.string().required('Field is required'),
@@ -41,3 +42,10 @@ export const validationSchema = yup.object().shape({
   city: yup.string().required('Field is required'),
   street: yup.string().required('Field is required'),
 });
+
+export const availableCountries: SelectItem[] = [
+  { value: 'US', name: 'United States (US)' },
+  { value: 'DE', name: 'Germany (DE)' },
+  { value: 'ES', name: 'Spain (ES)' },
+  { value: 'AU', name: 'Australia (AU)' },
+];

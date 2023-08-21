@@ -6,7 +6,7 @@ import { TextFieldsOutlined } from '@mui/icons-material';
 import { Button } from '../../../components/UI/Button/Button';
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import styles from '../RegisterPage.module.scss';
-import { validationSchema } from './constants';
+import { availableCountries, validationSchema } from './constants';
 import { Select } from '../../../components/UI/Select/Select';
 
 export const ExtendRegisterPage = (): JSX.Element => {
@@ -27,7 +27,8 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
         <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles['form__personal-info']}>
-            <label className={styles.label}>Personal info:</label>
+            <h3 className={styles.label}>Personal info:</h3>
+
             <Controller
               control={control}
               {...register('firstName')}
@@ -39,7 +40,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
                   size="small"
                   className={styles.input_default}
                   error={Boolean(errors?.firstName?.message)}
-                  helperText={String(errors?.firstName?.message ?? '')}
+                  helperText={errors?.firstName?.message ?? ''}
                 />
               )}
             />
@@ -55,7 +56,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
                   size="small"
                   className={styles.input_default}
                   error={Boolean(errors?.lastName?.message)}
-                  helperText={String(errors?.lastName?.message ?? '')}
+                  helperText={errors?.lastName?.message ?? ''}
                 />
               )}
             />
@@ -81,28 +82,31 @@ export const ExtendRegisterPage = (): JSX.Element => {
                   )}
                 />
               </LocalizationProvider>
+
               <p className={styles['error-message']}>
-                {errors?.dateOfBirth?.message ? String(errors?.dateOfBirth?.message) : ''}
+                {errors?.dateOfBirth?.message ?? ''}
               </p>
             </div>
           </div>
 
           <div className={styles['form__address-info']}>
-            <label className={styles.label}>Address info:</label>
+            <h3 className={styles.label}>Address info:</h3>
 
             <div className={styles['form__address-info__child']}>
-              <Select
+              <Controller
+                control={control}
                 {...register('country')}
-                label="Country"
-                selectItems={[
-                  { value: 'US', name: 'United States (US)' },
-                  { value: 'DE', name: 'Germany (DE)' },
-                  { value: 'ES', name: 'Spain (ES)' },
-                  { value: 'AU', name: 'Australia (AU)' },
-                ]}
-                error={Boolean(errors?.country?.message)}
-                helperText={String(errors?.country?.message ?? '')}
+                render={({ field }) => (
+                  <Select
+                    {...field as any}
+                    label="Country"
+                    selectItems={availableCountries}
+                    error={Boolean(errors?.country?.message)}
+                    helperText={errors?.country?.message ?? ''}
+                  />
+                )}
               />
+
               <Controller
                 control={control}
                 {...register('city')}
@@ -114,13 +118,13 @@ export const ExtendRegisterPage = (): JSX.Element => {
                     size="small"
                     className={styles.input_mini}
                     error={Boolean(errors?.city?.message)}
-                    helperText={String(errors?.city?.message ?? '')}
+                    helperText={errors?.city?.message ?? ''}
                   />
                 )}
               />
             </div>
-            <div className={styles['form__address-info__child']}>
 
+            <div className={styles['form__address-info__child']}>
               <Controller
                 control={control}
                 {...register('street')}
@@ -132,10 +136,11 @@ export const ExtendRegisterPage = (): JSX.Element => {
                     size="small"
                     className={styles.input_mini}
                     error={Boolean(errors?.street?.message)}
-                    helperText={String(errors?.street?.message ?? '')}
+                    helperText={errors?.street?.message ?? ''}
                   />
                 )}
               />
+
               <TextInput
                 placeholder="Enter postal code"
                 label="Postal code"

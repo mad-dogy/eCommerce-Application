@@ -81,6 +81,7 @@ export const BaseRegisterPage = (): JSX.Element => {
 
           <div className={styles.register__btns}>
             <Button variant="contained" type="submit">SIGN IN</Button>
+
             <Button variant="contained">
               <ArrowForwardIcon />
             </Button>
