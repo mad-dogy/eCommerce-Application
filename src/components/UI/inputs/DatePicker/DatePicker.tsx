@@ -6,11 +6,15 @@ import { type FC } from 'react';
 import 'dayjs/locale/en';
 
 interface DatePickerProps extends MuiDatePickerProps<Date>{
-  size?: string
+  label: string,
+  error?: boolean,
+  helperText?: string
 }
 
 export const DatePicker: FC<DatePickerProps> = (props: DatePickerProps) => {
-  const { label, ...otherProps } = props;
+  const {
+    label, ...otherProps
+  } = props;
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
       <MuiDatePicker

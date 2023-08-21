@@ -69,24 +69,35 @@
   position: relative;
   max-width: 350px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   justify-content: center;
   align-items: center;
 }
+.form__personal-info p {
+  margin-top: 0;
+  position: absolute;
+  bottom: -17px;
+}
 
 .form__address-info {
   position: relative;
   max-width: 350px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 22px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   justify-content: center;
   align-items: center;
+
+  & p {
+    margin-top: 0;
+    position: absolute;
+    bottom: -17px;
+  }
   
   &__child {
     width: 100%;
@@ -109,8 +120,10 @@
   position: absolute;
   top: -26px;
   left: 4px;
-  font-size: 18px;
-  font-family: 'Cormorant Garamond', serif;
+  color: #273036;
+  font-size: 16px;
+  font-weight: 200;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
 .input_default {
@@ -120,4 +133,15 @@
 .input_mini {
   max-width: 170px;
   width: 100%;
+}
+
+.datePicker-wrapper {
+  text-align: center;
+}
+
+.error-message {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  color: #d32f2f;
+  font-size: 12px;
+  margin-top: 5px;
 }
