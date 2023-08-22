@@ -11,9 +11,10 @@ import { Select } from '../../../components/UI/Select/Select';
 
 export const ExtendRegisterPage = (): JSX.Element => {
   const {
-    control, register, formState: { errors }, handleSubmit,
+    control, register, formState: { errors, isValid }, handleSubmit,
   } = useForm({
     resolver: yupResolver(validationSchema),
+    mode: 'all',
   });
 
   const onSubmit = (data: unknown): void => {
@@ -150,7 +151,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
             </div>
           </div>
 
-          <Button variant="contained" type="submit">Confirm</Button>
+          <Button variant="contained" type="submit" disabled={!isValid}>Confirm</Button>
         </form>
       </div>
     </div>

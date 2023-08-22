@@ -1,5 +1,6 @@
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
@@ -10,13 +11,17 @@ import { validationSchema } from './constants';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {
-    control, register, formState: { errors }, handleSubmit,
+    control, register, formState: { errors, isValid }, handleSubmit,
   } = useForm({
     resolver: yupResolver(validationSchema),
+    mode: 'all',
   });
+
+  const [isRegisted, setRegisted] = useState(false);
 
   const onSubmit = (data: unknown): void => {
     alert(JSON.stringify(data));
+    setRegisted(true);
   };
 
   return (
@@ -79,13 +84,7 @@ export const BaseRegisterPage = (): JSX.Element => {
             />
           </div>
 
-          <div className={styles.register__btns}>
-            <Button variant="contained" type="submit">SIGN IN</Button>
-
-            <Button variant="contained">
-              <ArrowForwardIcon />
-            </Button>
-          </div>
+          <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
         </form>
       </div>
 
