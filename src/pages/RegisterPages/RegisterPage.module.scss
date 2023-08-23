@@ -1,12 +1,4 @@
 .register {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(../../assets/lines.png), linear-gradient(120.15deg, #273036 1.11%, #273036 100.53%);
-  background-repeat: no-repeat;
-  background-size: cover;
-
   &__inner {
     max-width: 500px;
     width: 100%;
@@ -15,6 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     row-gap: 10px;
     background: #f9f9f9;
   }

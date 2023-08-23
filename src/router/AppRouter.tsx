@@ -1,6 +1,10 @@
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
 import AppRoot from './AppRoot';
+import { LoginPage } from '../pages/LoginPage/LoginPage';
+import { BaseRegisterPage } from '../pages/RegisterPages/BaseRegisterPage/BaseRegisterPage';
+import { ExtendRegisterPage } from '../pages/RegisterPages/ExtendRegisterPage/ExtendRegisterPage';
+import AuthRoot from '../pages/AuthRoot/AuthRoot';
 
 const router = createHashRouter([
   {
@@ -12,49 +16,47 @@ const router = createHashRouter([
         element: <AuthRoot />,
         children: [
           {
-            path: ROUTES.Login,
+            path: ROUTES.LoginPage,
             element: <LoginPage />,
-            errorElement: <ErrorPage />
+            /* errorElement: <ErrorPage />, */
           },
           {
-            path: ROUTES.Signup,
-            element: <RegisterPage />,
-            errorElement: <ErrorPage />
+            path: ROUTES.BaseRegisterPage,
+            element: <BaseRegisterPage />,
+            /* errorElement: <ErrorPage />, */
           },
           {
-            path: ROUTES.ForgotPassword,
-            element: <ForgotPasswordPage />,
-            errorElement: <ErrorPage />
-          }
-        ]
+            path: ROUTES.ExtendRegisterPage,
+            element: <ExtendRegisterPage />,
+            /* errorElement: <ErrorPage />, */
+          },
+        ],
       },
       {
-        path: ROUTES.NotFound,
-        element: <NotFoundPage />,
+        /* path: ROUTES.NotFound,
+        element: <NotFoundPage />, */
         /*         loader: async () => {
           const p = () => new Promise((res) => {
             setTimeout(() => res('aaa'), 2000);
           })
           const result = await p();
-    
+
           if(!p) {
             redirect('/404')
           }
-    
+
           return {data: result}
         }, */
-        errorElement: <ErrorPage />
+        /* errorElement: <ErrorPage />, */
       },
-      {
+      /* {
         path: ROUTES.Any,
         element: <NotFoundPage />
-      }
-    ]
-  }
+      } */
+    ],
+  },
 ]);
 
-const AppRouter = () => {
-  return <RouterProvider router={router} />;
-};
+const AppRouter = () => <RouterProvider router={router} />;
 
 export default AppRouter;

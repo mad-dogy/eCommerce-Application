@@ -31,14 +31,10 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     use: ['@svgr/webpack'],
   };
 
-  /* const fileLoader = {
-    test: /\.(png|jpe?g|gif)$/i,
-    use: [
-      {
-        loader: 'file-loader',
-      },
-    ],
-  } */
+  const pngLoader = {
+    test: /\.(png|jpg|gif)$/i,
+    type: 'asset/resource',
+  };
 
   const babelLoader = {
     test: /\.(js|jsx|tsx)$/,
@@ -52,11 +48,12 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         plugins: [isDev && require.resolve('react-refresh/babel')].filter(Boolean),
       }
     }
-  }
+  };
+
 
   return [
+    pngLoader,
     svgLoader,
-    /* fileLoader, */
     typescriptLoader,
     scssLoader,
   ];

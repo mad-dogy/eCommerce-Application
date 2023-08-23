@@ -1,7 +1,6 @@
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
 import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/PasswordInput';
@@ -25,68 +24,66 @@ export const BaseRegisterPage = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.register}>
-      <div className={styles.register__inner}>
-        <Logo />
-        <h3 className={styles['register__step-title']}>Registration</h3>
+    <div className={styles.register__inner}>
+      <Logo />
+      <h3 className={styles['register__step-title']}>Registration</h3>
 
-        <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="email"
+          control={control}
+          {...register('email')}
+          render={({ field }) => (
+            <TextInput
+              {...field as any}
+              placeholder="Enter your email"
+              label="Email"
+              size="small"
+              className={styles.input_default}
+              error={Boolean(errors?.email?.message)}
+              helperText={String(errors?.email?.message ?? '')}
+            />
+          )}
+        />
+
+        <div className={styles['form__password-info']}>
           <Controller
-            name="email"
+            name="password"
             control={control}
-            {...register('email')}
+            {...register('password')}
             render={({ field }) => (
-              <TextInput
+              <PasswordInput
                 {...field as any}
-                placeholder="Enter your email"
-                label="Email"
+                placeholder="Enter password"
+                label="Password"
                 size="small"
                 className={styles.input_default}
-                error={Boolean(errors?.email?.message)}
-                helperText={String(errors?.email?.message ?? '')}
+                error={Boolean(errors?.password?.message)}
+                helperText={String(errors?.password?.message ?? '')}
               />
             )}
           />
 
-          <div className={styles['form__password-info']}>
-            <Controller
-              name="password"
-              control={control}
-              {...register('password')}
-              render={({ field }) => (
-                <PasswordInput
-                  {...field as any}
-                  placeholder="Enter password"
-                  label="Password"
-                  size="small"
-                  className={styles.input_default}
-                  error={Boolean(errors?.password?.message)}
-                  helperText={String(errors?.password?.message ?? '')}
-                />
-              )}
-            />
+          <Controller
+            name="confirmPassword"
+            control={control}
+            {...register('confirmPassword')}
+            render={({ field }) => (
+              <PasswordInput
+                {...field as any}
+                placeholder="Confirm password"
+                label="Confirm password"
+                size="small"
+                className={styles.input_default}
+                error={Boolean(errors?.confirmPassword?.message)}
+                helperText={String(errors?.confirmPassword?.message ?? '')}
+              />
+            )}
+          />
+        </div>
 
-            <Controller
-              name="confirmPassword"
-              control={control}
-              {...register('confirmPassword')}
-              render={({ field }) => (
-                <PasswordInput
-                  {...field as any}
-                  placeholder="Confirm password"
-                  label="Confirm password"
-                  size="small"
-                  className={styles.input_default}
-                  error={Boolean(errors?.confirmPassword?.message)}
-                  helperText={String(errors?.confirmPassword?.message ?? '')}
-                />
-              )}
-            />
-          </div>
-
-          <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
-        </form>
-      </div>
+        <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
+      </form>
 
       <div className={styles['register__to-login']}>
         Alredy have account? Click here

@@ -1,16 +1,8 @@
 .login {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(../../assets/lines.png), linear-gradient(120.15deg, #273036 1.11%, #273036 100.53%);
-  background-repeat: no-repeat;
-  background-size: cover;
-
   &__inner {
     max-width: 500px;
     width: 100%;
-    padding: 20px 30px;
+    padding: 30px 30px 10px;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
@@ -36,12 +28,10 @@
   }
 
   &__to-register {
-    position: absolute;
-    bottom: 8px;
     font-size: 14px;
-    font-family: 'Cinzel', serif;
-    color: #f9f9f9;
-    border-bottom: 1px solid #f9f9f9;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    color: #273641;
+    border-bottom: 1px solid #273641;
   }
   &__to-register:hover {
     cursor: pointer;

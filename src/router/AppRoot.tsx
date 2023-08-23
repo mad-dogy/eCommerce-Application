@@ -1,19 +1,10 @@
-import { memo, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Footer from '@components/Footer/Footer';
-import { useTypesSelector } from '@hooks/useTypedSelector';
-import { setApp } from '@slices/appSlice';
-
-import styles from './AppRoot.module.scss';
-
-const AppRoot = memo(() => {
-  return (
-    <div className={styles.appInner}>
-      <Outlet />
-    </div>
-  );
-});
+const AppRoot = memo(() => (
+  <div className="app">
+    <Outlet />
+  </div>
+));
 
 export default AppRoot;
