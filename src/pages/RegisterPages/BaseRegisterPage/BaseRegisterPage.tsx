@@ -1,4 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { Logo } from '../../../components/Logo/Logo';
@@ -6,7 +7,7 @@ import { Button } from '../../../components/UI/Button/Button';
 import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/PasswordInput';
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import styles from '../RegisterPage.module.scss';
-import { validationSchema } from './constants';
+import { validationSchema } from './validationSchema';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {
@@ -16,11 +17,13 @@ export const BaseRegisterPage = (): JSX.Element => {
     mode: 'all',
   });
 
+  const navigate = useNavigate();
   const [isRegisted, setRegisted] = useState(false);
 
   const onSubmit = (data: unknown): void => {
     alert(JSON.stringify(data));
     setRegisted(true);
+    navigate('/auth/extend-register');
   };
 
   return (
@@ -85,9 +88,10 @@ export const BaseRegisterPage = (): JSX.Element => {
         <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
       </form>
 
-      <div className={styles['register__to-login']}>
-        Alredy have account? Click here
-      </div>
+      <Link to="/auth/login" className={styles['register__to-login']}>
+        Alredy have account?
+        <span> Log in</span>
+      </Link>
     </div>
   );
 };
