@@ -6,9 +6,9 @@ import { TextFieldsOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Button/Button';
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
-import styles from '../RegisterPage.module.scss';
 import { availableCountries, validationSchema } from './validationSchema';
 import { Select } from '../../../components/UI/Select/Select';
+import styles from '../RegisterPage.module.scss';
 
 let isObligatory = false;
 

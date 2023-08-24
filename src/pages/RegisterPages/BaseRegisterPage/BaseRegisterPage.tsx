@@ -6,8 +6,8 @@ import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
 import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/PasswordInput';
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
-import styles from '../RegisterPage.module.scss';
 import { validationSchema } from './validationSchema';
+import styles from '../RegisterPage.module.scss';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {
