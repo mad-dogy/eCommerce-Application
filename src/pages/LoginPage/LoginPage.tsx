@@ -7,6 +7,7 @@ import { PasswordInput } from '../../components/UI/inputs/PasswordInput/Password
 import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
 import styles from './LoginPage.module.scss';
 import { validationSchema } from './validationSchema';
+import { ROUTES } from '../../constants/routes';
 
 export const LoginPage = (): JSX.Element => {
   const {
@@ -20,7 +21,7 @@ export const LoginPage = (): JSX.Element => {
 
   const onLogin = (data: unknown): void => {
     alert(JSON.stringify(data));
-    navigate('/');
+    navigate(`${ROUTES.Base}`);
   };
 
   return (
@@ -66,7 +67,7 @@ export const LoginPage = (): JSX.Element => {
         <Button variant="contained" disabled={!isValid}>LOG IN</Button>
 
       </form>
-      <Link to="/auth/register" className={styles['login__to-register']}>
+      <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
         Do not have an account?
         <span> Sign up</span>
       </Link>

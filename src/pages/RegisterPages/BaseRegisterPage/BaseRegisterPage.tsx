@@ -8,6 +8,7 @@ import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/Passw
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { validationSchema } from './validationSchema';
 import styles from '../RegisterPage.module.scss';
+import { ROUTES } from '../../../constants/routes';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {
@@ -23,7 +24,7 @@ export const BaseRegisterPage = (): JSX.Element => {
   const onSubmit = (data: unknown): void => {
     alert(JSON.stringify(data));
     setRegisted(true);
-    navigate('/auth/extend-register');
+    navigate(`${ROUTES.ExtendRegisterPage}`);
   };
 
   return (
@@ -88,7 +89,7 @@ export const BaseRegisterPage = (): JSX.Element => {
         <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
       </form>
 
-      <Link to="/auth/login" className={styles['register__to-login']}>
+      <Link to={ROUTES.LoginPage} className={styles['register__to-login']}>
         Alredy have account?
         <span> Log in</span>
       </Link>

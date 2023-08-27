@@ -5,6 +5,7 @@ import { LoginPage } from '../pages/LoginPage/LoginPage';
 import { BaseRegisterPage } from '../pages/RegisterPages/BaseRegisterPage/BaseRegisterPage';
 import { ExtendRegisterPage } from '../pages/RegisterPages/ExtendRegisterPage/ExtendRegisterPage';
 import AuthRoot from '../pages/AuthRoot/AuthRoot';
+import { MainPage } from '../pages/MainPage/MainPage';
 
 const router = createHashRouter([
   {
@@ -33,8 +34,8 @@ const router = createHashRouter([
         ],
       },
       {
-        /* path: ROUTES.NotFound,
-        element: <NotFoundPage />, */
+        path: ROUTES.Base,
+        element: <MainPage />,
         /*         loader: async () => {
           const p = () => new Promise((res) => {
             setTimeout(() => res('aaa'), 2000);
@@ -48,6 +49,10 @@ const router = createHashRouter([
           return {data: result}
         }, */
         /* errorElement: <ErrorPage />, */
+      },
+      {
+        path: ROUTES.Cart,
+        element: <MainPage />,
       },
       /* {
         path: ROUTES.Any,
