@@ -1,7 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
 import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/PasswordInput';
@@ -9,6 +9,7 @@ import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { validationSchema } from './validationSchema';
 import styles from '../RegisterPage.module.scss';
 import { ROUTES } from '../../../constants/routes';
+import { AuthContext } from '../../../context';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {
@@ -19,11 +20,12 @@ export const BaseRegisterPage = (): JSX.Element => {
   });
 
   const navigate = useNavigate();
-  const [isRegisted, setRegisted] = useState(false);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   const onSubmit = (data: unknown): void => {
     alert(JSON.stringify(data));
-    setRegisted(true);
+    setIsAuth(true);
+    localStorage.setItem('auth', String(isAuth));
     navigate(`${ROUTES.ExtendRegisterPage}`);
   };
 

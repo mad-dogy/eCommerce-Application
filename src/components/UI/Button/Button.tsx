@@ -8,11 +8,10 @@ interface ButtonProps extends MuiButtonProps {
 }
 
 export const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const { variant, ...otherProps } = props;
+  const { ...otherProps } = props;
 
   return (
     <MuiButton
-      variant={variant}
       className={styles.button}
       {...otherProps}
     />

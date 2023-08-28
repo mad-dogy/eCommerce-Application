@@ -11,7 +11,7 @@ interface PasswordInputProps extends TextFieldProps<'standard'> {
 }
 
 export const PasswordInput: FC<PasswordInputProps> = (props: PasswordInputProps) => {
-  const { placeholder, label, ...otherProps } = props;
+  const { ...otherProps } = props;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleClickShowPassword = (): void => { setIsPasswordVisible(!isPasswordVisible); };
@@ -20,10 +20,9 @@ export const PasswordInput: FC<PasswordInputProps> = (props: PasswordInputProps)
   return (
     <TextField
       type={isPasswordVisible ? 'text' : 'password'}
-      placeholder={placeholder}
-      label={label}
       InputProps={{
         className: styles.input,
+
         endAdornment: (
           <Button className={styles.password__btn} type="button">
             <InputAdornment position="end">

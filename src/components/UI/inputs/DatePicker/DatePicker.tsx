@@ -13,12 +13,11 @@ interface DatePickerProps extends MuiDatePickerProps<Date>{
 
 export const DatePicker: FC<DatePickerProps> = (props: DatePickerProps) => {
   const {
-    label, ...otherProps
+    ...otherProps
   } = props;
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
       <MuiDatePicker
-        label={label}
         slotProps={{ textField: { size: 'small' } }}
         {...otherProps}
       />

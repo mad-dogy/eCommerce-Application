@@ -9,12 +9,10 @@ interface TextInputProps extends TextFieldProps<'standard'> {
 }
 
 export const TextInput: FC<TextInputProps> = (props: TextInputProps) => {
-  const { placeholder, label, ...otherProps } = props;
+  const { ...otherProps } = props;
 
   return (
     <TextField
-      placeholder={placeholder}
-      label={label}
       InputProps={{
         className: styles.input,
       }}

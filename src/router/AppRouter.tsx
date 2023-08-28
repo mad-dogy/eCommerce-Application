@@ -4,8 +4,9 @@ import AppRoot from './AppRoot';
 import { LoginPage } from '../pages/LoginPage/LoginPage';
 import { BaseRegisterPage } from '../pages/RegisterPages/BaseRegisterPage/BaseRegisterPage';
 import { ExtendRegisterPage } from '../pages/RegisterPages/ExtendRegisterPage/ExtendRegisterPage';
-import AuthRoot from '../pages/AuthRoot/AuthRoot';
+import AuthRoot from './AuthRoot/AuthRoot';
 import { MainPage } from '../pages/MainPage/MainPage';
+import { MainRoot } from './MainRoot/MainRoot';
 
 const router = createHashRouter([
   {
@@ -35,25 +36,19 @@ const router = createHashRouter([
       },
       {
         path: ROUTES.Base,
-        element: <MainPage />,
-        /*         loader: async () => {
-          const p = () => new Promise((res) => {
-            setTimeout(() => res('aaa'), 2000);
-          })
-          const result = await p();
-
-          if(!p) {
-            redirect('/404')
-          }
-
-          return {data: result}
-        }, */
-        /* errorElement: <ErrorPage />, */
+        element: <MainRoot />,
+        children: [
+          {
+            path: ROUTES.Base,
+            element: <MainPage />,
+          },
+          {
+            path: ROUTES.Cart,
+            element: <MainPage />,
+          },
+        ],
       },
-      {
-        path: ROUTES.Cart,
-        element: <MainPage />,
-      },
+
       /* {
         path: ROUTES.Any,
         element: <NotFoundPage />

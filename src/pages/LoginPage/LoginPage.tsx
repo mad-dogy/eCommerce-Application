@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
+import { useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../components/UI/Button/Button';
@@ -8,6 +9,7 @@ import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
 import styles from './LoginPage.module.scss';
 import { validationSchema } from './validationSchema';
 import { ROUTES } from '../../constants/routes';
+import { AuthContext } from '../../context';
 
 export const LoginPage = (): JSX.Element => {
   const {
@@ -18,9 +20,12 @@ export const LoginPage = (): JSX.Element => {
   });
 
   const navigate = useNavigate();
+  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   const onLogin = (data: unknown): void => {
     alert(JSON.stringify(data));
+    setIsAuth(true);
+    localStorage.setItem('auth', String(isAuth));
     navigate(`${ROUTES.Base}`);
   };
 
@@ -64,7 +69,7 @@ export const LoginPage = (): JSX.Element => {
           )}
         />
 
-        <Button variant="contained" disabled={!isValid}>LOG IN</Button>
+        <Button variant="contained" disabled={!isValid} type="submit">LOG IN</Button>
 
       </form>
       <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>

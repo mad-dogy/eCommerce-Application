@@ -10,7 +10,7 @@ import { availableCountries, validationSchema } from './validationSchema';
 import { Select } from '../../../components/UI/Select/Select';
 import styles from '../RegisterPage.module.scss';
 
-let isObligatory = false;
+const isObligatory = false;
 
 export const ExtendRegisterPage = (): JSX.Element => {
   const {
@@ -163,7 +163,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
             onClick={() => { navigate('/'); }}
             disabled={isObligatory}
           >
-            Skip now
+            Skip for now
           </Button>
           <Button variant="contained" type="submit" disabled={!isValid}>Confirm</Button>
         </div>

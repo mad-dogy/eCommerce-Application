@@ -1,19 +1,42 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 import { ROUTES } from '../../constants/routes';
 import styles from './Header.module.scss';
 
-export const Header = (): JSX.Element => (
-  <header className={styles.header}>
-    <Logo />
-
-    <nav className={styles.header__nav}>
-      <Link to={ROUTES.BaseRegisterPage} className={styles.nav__btn}>Sign up</Link>
-      <Link to={ROUTES.LoginPage} className={styles.nav__btn}>Log in</Link>
-      <Link to={ROUTES.Cart}>
-        <ShoppingCartIcon className={styles.nav__icon} />
+interface HeaderProps {
+  isAuth: boolean,
+}
+export const Header = (props: HeaderProps): JSX.Element => {
+  const { isAuth } = props;
+  return (
+    <header className={styles.header}>
+      <Link to={ROUTES.Base}>
+        <Logo />
       </Link>
-    </nav>
-  </header>
-);
+
+      {isAuth
+        ? (
+          <nav className={styles.header__nav}>
+            <Link to={ROUTES.Cart}>
+              <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
+            </Link>
+            <Link to={ROUTES.Cart}>
+              <PersonIcon className={styles.nav__icon} fontSize="medium" />
+            </Link>
+          </nav>
+        )
+        : (
+          <nav className={styles.header__nav}>
+            <Link to={ROUTES.Cart}>
+              <ShoppingCartIcon className={styles.nav__icon} fontSize="medium" />
+            </Link>
+            <Link to={ROUTES.BaseRegisterPage} className={styles.nav__btn}>Sign up</Link>
+            <Link to={ROUTES.LoginPage} className={styles.nav__btn}>Log in</Link>
+          </nav>
+        )}
+
+    </header>
+  );
+};
