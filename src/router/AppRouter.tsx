@@ -7,6 +7,7 @@ import { ExtendRegisterPage } from '../pages/RegisterPages/ExtendRegisterPage/Ex
 import AuthRoot from './AuthRoot/AuthRoot';
 import { MainPage } from '../pages/MainPage/MainPage';
 import { MainRoot } from './MainRoot/MainRoot';
+import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 
 const router = createHashRouter([
   {
@@ -46,13 +47,12 @@ const router = createHashRouter([
             path: ROUTES.Cart,
             element: <MainPage />,
           },
+          {
+            path: ROUTES.Any,
+            element: <NotFoundPage />,
+          },
         ],
       },
-
-      /* {
-        path: ROUTES.Any,
-        element: <NotFoundPage />
-      } */
     ],
   },
 ]);

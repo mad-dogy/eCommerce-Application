@@ -9,18 +9,23 @@
   align-items: center;
   background: #f9f9f9;
 
+  & a {
+    text-decoration: none;
+    color: #000;
+  }
+
   &__nav {
     max-width: 250px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 30px;
   }
 }
 
 .nav__btn {
-  padding: 6px;
+  padding: 8px 10px;
   border: 2px solid #273036;
   border-radius: 10px;
   font-size: 14px;

@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../components/UI/Button/Button';
 import { PasswordInput } from '../../components/UI/inputs/PasswordInput/PasswordInput';
@@ -25,7 +26,7 @@ export const LoginPage = (): JSX.Element => {
   const onLogin = (data: unknown): void => {
     alert(JSON.stringify(data));
     setIsAuth(true);
-    localStorage.setItem('auth', String(isAuth));
+    localStorage.setItem('auth', String(true));
     navigate(`${ROUTES.Base}`);
   };
 
@@ -69,7 +70,15 @@ export const LoginPage = (): JSX.Element => {
           )}
         />
 
-        <Button variant="contained" disabled={!isValid} type="submit">LOG IN</Button>
+        <div className={styles.login__btns}>
+          <Button>
+            <Link to={ROUTES.Base}>
+              <span>Go to shop</span>
+              <ArrowForwardIosIcon fontSize="small" />
+            </Link>
+          </Button>
+          <Button variant="contained" disabled={!isValid} type="submit">LOG IN</Button>
+        </div>
 
       </form>
       <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>

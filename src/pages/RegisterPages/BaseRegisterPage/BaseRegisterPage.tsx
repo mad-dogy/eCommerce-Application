@@ -1,6 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useContext } from 'react';
 import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
@@ -25,7 +26,7 @@ export const BaseRegisterPage = (): JSX.Element => {
   const onSubmit = (data: unknown): void => {
     alert(JSON.stringify(data));
     setIsAuth(true);
-    localStorage.setItem('auth', String(isAuth));
+    localStorage.setItem('auth', String(true));
     navigate(`${ROUTES.ExtendRegisterPage}`);
   };
 
@@ -88,7 +89,16 @@ export const BaseRegisterPage = (): JSX.Element => {
           />
         </div>
 
-        <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
+        <div className={styles.register__btns}>
+          <Button>
+            <Link to={ROUTES.Base}>
+              <span>Go to shop</span>
+              <ArrowForwardIosIcon fontSize="small" />
+            </Link>
+          </Button>
+          <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
+        </div>
+
       </form>
 
       <Link to={ROUTES.LoginPage} className={styles['register__to-login']}>

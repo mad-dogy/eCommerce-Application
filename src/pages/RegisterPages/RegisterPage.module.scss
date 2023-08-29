@@ -34,7 +34,17 @@
     column-gap: 30px;
 
     & * {
-      min-height: 28px;
+      min-height: 25px;
+      
+      & * {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5px;
+      }
     }
   }
 

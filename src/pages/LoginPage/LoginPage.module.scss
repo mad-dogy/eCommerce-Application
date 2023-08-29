@@ -26,6 +26,27 @@
     align-items: center;
   }
 
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 30px;
+
+    & * {
+      min-height: 25px;
+      
+      & * {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5px;
+      }
+    }
+  }
+
   &__to-register {
     font-size: 14px;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
