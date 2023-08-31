@@ -1,8 +1,10 @@
+import { error } from 'console';
 import { Link, useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { type MyCustomerSignin } from '@commercetools/platform-sdk';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../components/UI/Button/Button';
 import { PasswordInput } from '../../components/UI/inputs/PasswordInput/PasswordInput';
@@ -11,6 +13,7 @@ import styles from './LoginPage.module.scss';
 import { validationSchema } from './validationSchema';
 import { ROUTES } from '../../constants/routes';
 import { AuthContext } from '../../context';
+import { signIn } from '../../api/ClientMe';
 
 export const LoginPage = (): JSX.Element => {
   const {
@@ -23,11 +26,15 @@ export const LoginPage = (): JSX.Element => {
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useContext(AuthContext);
 
-  const onLogin = (data: unknown): void => {
-    alert(JSON.stringify(data));
-    setIsAuth(true);
-    localStorage.setItem('auth', String(true));
-    navigate(`${ROUTES.Base}`);
+  const onLogin = async (data: MyCustomerSignin): Promise<void> => {
+    try {
+      await signIn(data);
+      setIsAuth(true);
+      localStorage.setItem('auth', String(true));
+      navigate(`${ROUTES.Base}`);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
