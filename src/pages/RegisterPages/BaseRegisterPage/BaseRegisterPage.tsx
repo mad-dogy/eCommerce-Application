@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useContext } from 'react';
+import { type CustomerDraft } from '@commercetools/platform-sdk';
 import { Logo } from '../../../components/Logo/Logo';
 import { Button } from '../../../components/UI/Button/Button';
 import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/PasswordInput';
@@ -11,6 +12,7 @@ import { validationSchema } from './validationSchema';
 import styles from '../RegisterPage.module.scss';
 import { ROUTES } from '../../../constants/routes';
 import { AuthContext } from '../../../context';
+import { signUp } from '../../../api/Customers';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {
@@ -23,11 +25,15 @@ export const BaseRegisterPage = (): JSX.Element => {
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useContext(AuthContext);
 
-  const onSubmit = (data: unknown): void => {
-    alert(JSON.stringify(data));
-    setIsAuth(true);
-    localStorage.setItem('auth', String(true));
-    navigate(`${ROUTES.ExtendRegisterPage}`);
+  const onSubmit = async (data: CustomerDraft): Promise<void> => {
+    try {
+      await signUp(data);
+      setIsAuth(true);
+      localStorage.setItem('auth', String(true));
+      navigate(`${ROUTES.ExtendRegisterPage}`);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (

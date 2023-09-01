@@ -8,6 +8,7 @@ import AuthRoot from './AuthRoot/AuthRoot';
 import { MainPage } from '../pages/MainPage/MainPage';
 import { MainRoot } from './MainRoot/MainRoot';
 import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
+import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 
 const router = createHashRouter([
   {
@@ -21,17 +22,17 @@ const router = createHashRouter([
           {
             path: ROUTES.LoginPage,
             element: <LoginPage />,
-            /* errorElement: <ErrorPage />, */
+            errorElement: <ErrorPage />,
           },
           {
             path: ROUTES.BaseRegisterPage,
             element: <BaseRegisterPage />,
-            /* errorElement: <ErrorPage />, */
+            errorElement: <ErrorPage />,
           },
           {
             path: ROUTES.ExtendRegisterPage,
             element: <ExtendRegisterPage />,
-            /* errorElement: <ErrorPage />, */
+            errorElement: <ErrorPage />,
           },
         ],
       },
@@ -42,14 +43,17 @@ const router = createHashRouter([
           {
             path: ROUTES.Base,
             element: <MainPage />,
+            errorElement: <ErrorPage />,
           },
           {
             path: ROUTES.Cart,
             element: <MainPage />,
+            errorElement: <ErrorPage />,
           },
           {
             path: ROUTES.Any,
             element: <NotFoundPage />,
+            errorElement: <ErrorPage />,
           },
         ],
       },

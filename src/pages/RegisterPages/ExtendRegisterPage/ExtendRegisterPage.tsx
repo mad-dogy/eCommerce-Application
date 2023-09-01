@@ -22,9 +22,8 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: unknown): void => {
+  const onSubmit = (data: CustomerExtendInfo): void => {
     alert(JSON.stringify(data));
-    navigate('/');
   };
 
   return (
