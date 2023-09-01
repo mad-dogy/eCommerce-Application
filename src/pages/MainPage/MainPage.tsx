@@ -2,8 +2,6 @@ import styles from './MainPage.module.scss';
 
 export const MainPage = (): JSX.Element => (
   <div className={styles.main}>
-    <div id="4" />
-
+    Main page
   </div>
-
 );

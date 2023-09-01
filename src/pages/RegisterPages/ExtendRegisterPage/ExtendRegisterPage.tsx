@@ -76,10 +76,10 @@ export const ExtendRegisterPage = (): JSX.Element => {
                   <DatePicker
                     {...field as any}
                     label="Date of birth"
+                    className={styles.data}
                     renderInput={(params: any) => (
                       <TextFieldsOutlined
                         {...params}
-                        size="small"
                         error={Boolean(errors?.dateOfBirth?.message)}
                       />
                     )}
@@ -95,7 +95,68 @@ export const ExtendRegisterPage = (): JSX.Element => {
         </div>
 
         <div className={styles['form__address-info']}>
-          <h3 className={styles.label}>Address info:</h3>
+          <h3 className={styles.label}>Shipping address:</h3>
+
+          <div className={styles['form__address-info__child']}>
+            <Controller
+              control={control}
+              {...register('country')}
+              render={({ field }) => (
+                <Select
+                  {...field as any}
+                  label="Country"
+                  selectItems={availableCountries}
+                  error={Boolean(errors?.country?.message)}
+                  helperText={errors?.country?.message ?? ''}
+                />
+              )}
+            />
+
+            <Controller
+              control={control}
+              {...register('city')}
+              render={({ field }) => (
+                <TextInput
+                  {...field as any}
+                  placeholder="Enter city"
+                  label="City"
+                  size="small"
+                  className={styles.input_mini}
+                  error={Boolean(errors?.city?.message)}
+                  helperText={errors?.city?.message ?? ''}
+                />
+              )}
+            />
+          </div>
+
+          <div className={styles['form__address-info__child']}>
+            <Controller
+              control={control}
+              {...register('street')}
+              render={({ field }) => (
+                <TextInput
+                  {...field as any}
+                  placeholder="Enter street"
+                  label="Street"
+                  size="small"
+                  className={styles.input_mini}
+                  error={Boolean(errors?.street?.message)}
+                  helperText={errors?.street?.message ?? ''}
+                />
+              )}
+            />
+
+            <TextInput
+              placeholder="Enter postal code"
+              label="Postal code"
+              size="small"
+              className={styles.input_mini}
+            />
+          </div>
+        </div>
+
+        <div className={styles['form__address-info']}>
+          <h3 className={styles.label}>Billing address:</h3>
 
           <div className={styles['form__address-info__child']}>
             <Controller
