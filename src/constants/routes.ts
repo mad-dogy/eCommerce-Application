@@ -4,6 +4,7 @@ export enum ROUTES {
   BaseRegisterPage = '/auth/register',
   ExtendRegisterPage = '/auth/extend-register',
   Cart = '/cart',
+  Profile = '/profile',
   Base = '/',
   Any = '*',
 

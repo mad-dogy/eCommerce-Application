@@ -24,7 +24,7 @@ export const Header = (props: HeaderProps): JSX.Element => {
             <Link to={ROUTES.Cart}>
               <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
             </Link>
-            <Link to={ROUTES.Cart}>
+            <Link to={ROUTES.Profile}>
               <PersonIcon className={styles.nav__icon} fontSize="large" />
             </Link>
             <Link

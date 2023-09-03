@@ -10,6 +10,7 @@ import { MainRoot } from './MainRoot/MainRoot';
 import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { CartPage } from '../pages/CartPage/CartPage';
+import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
 
 const router = createHashRouter([
   {
@@ -49,6 +50,11 @@ const router = createHashRouter([
           {
             path: ROUTES.Cart,
             element: <CartPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: ROUTES.Profile,
+            element: <ProfilePage />,
             errorElement: <ErrorPage />,
           },
           {

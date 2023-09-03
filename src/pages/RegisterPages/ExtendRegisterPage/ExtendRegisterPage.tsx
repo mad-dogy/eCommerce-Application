@@ -28,206 +28,226 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
   return (
     <div className={styles.register__inner}>
-      <h3 className={styles['register__step-title']}>Extend registration</h3>
+      <div className={styles.content}>
+        <h3 className={styles['register__step-title']}>Extend registration</h3>
 
-      <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles['form__personal-info']}>
-          <h3 className={styles.label}>Personal info:</h3>
+        <form className={styles.register__form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles['form__personal-info']}>
+            <h3 className={styles.label}>Personal info:</h3>
 
-          <Controller
-            control={control}
-            {...register('firstName')}
-            render={({ field }) => (
-              <TextInput
-                {...field as any}
-                placeholder="Enter first name"
-                label="First name"
-                size="small"
-                className={styles.input_default}
-                error={Boolean(errors?.firstName?.message)}
-                helperText={errors?.firstName?.message ?? ''}
-              />
-            )}
-          />
+            <Controller
+              control={control}
+              {...register('firstName')}
+              render={({ field }) => (
+                <TextInput
+                  {...field as any}
+                  placeholder="Enter first name"
+                  label="First name"
+                  size="small"
+                  className={styles.input_default}
+                  error={Boolean(errors?.firstName?.message)}
+                  helperText={errors?.firstName?.message ?? ''}
+                />
+              )}
+            />
 
-          <Controller
-            control={control}
-            {...register('lastName')}
-            render={({ field }) => (
-              <TextInput
-                {...field as any}
-                placeholder="Enter last name"
-                label="Last name"
-                size="small"
-                className={styles.input_default}
-                error={Boolean(errors?.lastName?.message)}
-                helperText={errors?.lastName?.message ?? ''}
-              />
-            )}
-          />
+            <Controller
+              control={control}
+              {...register('lastName')}
+              render={({ field }) => (
+                <TextInput
+                  {...field as any}
+                  placeholder="Enter last name"
+                  label="Last name"
+                  size="small"
+                  className={styles.input_default}
+                  error={Boolean(errors?.lastName?.message)}
+                  helperText={errors?.lastName?.message ?? ''}
+                />
+              )}
+            />
 
-          <div className={styles['datePicker-wrapper']}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div className={styles['datePicker-wrapper']}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Controller
+                  name="dateOfBirth"
+                  {...register('dateOfBirth')}
+                  control={control}
+                  render={({ field }) => (
+                    <DatePicker
+                      {...field as any}
+                      label="Date of birth"
+                      className={styles.data}
+                      renderInput={(params: any) => (
+                        <TextFieldsOutlined
+                          {...params}
+                          error={Boolean(errors?.dateOfBirth?.message)}
+                        />
+                      )}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+
+              <p className={styles['error-message']}>
+                {errors?.dateOfBirth?.message ?? ''}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles['form__address-info']}>
+            <h3 className={styles.label}>Shipping address:</h3>
+
+            <div className={styles['form__address-info__child']}>
               <Controller
-                name="dateOfBirth"
-                {...register('dateOfBirth')}
                 control={control}
+                {...register('shippingCountry')}
                 render={({ field }) => (
-                  <DatePicker
+                  <Select
                     {...field as any}
-                    label="Date of birth"
-                    className={styles.data}
-                    renderInput={(params: any) => (
-                      <TextFieldsOutlined
-                        {...params}
-                        error={Boolean(errors?.dateOfBirth?.message)}
-                      />
-                    )}
+                    label="Country"
+                    selectItems={availableCountries}
+                    error={Boolean(errors?.shippingCountry?.message)}
+                    helperText={errors?.shippingCountry?.message ?? ''}
                   />
                 )}
               />
-            </LocalizationProvider>
 
-            <p className={styles['error-message']}>
-              {errors?.dateOfBirth?.message ?? ''}
-            </p>
-          </div>
-        </div>
+              <Controller
+                control={control}
+                {...register('shippingCity')}
+                render={({ field }) => (
+                  <TextInput
+                    {...field as any}
+                    placeholder="Enter city"
+                    label="City"
+                    size="small"
+                    className={styles.input_mini}
+                    error={Boolean(errors?.shippingCity?.message)}
+                    helperText={errors?.shippingCity?.message ?? ''}
+                  />
+                )}
+              />
+            </div>
 
-        <div className={styles['form__address-info']}>
-          <h3 className={styles.label}>Shipping address:</h3>
+            <div className={styles['form__address-info__child']}>
+              <Controller
+                control={control}
+                {...register('shippingStreet')}
+                render={({ field }) => (
+                  <TextInput
+                    {...field as any}
+                    placeholder="Enter street"
+                    label="Street"
+                    size="small"
+                    className={styles.input_mini}
+                    error={Boolean(errors?.shippingStreet?.message)}
+                    helperText={errors?.shippingStreet?.message ?? ''}
+                  />
+                )}
+              />
 
-          <div className={styles['form__address-info__child']}>
-            <Controller
-              control={control}
-              {...register('country')}
-              render={({ field }) => (
-                <Select
-                  {...field as any}
-                  label="Country"
-                  selectItems={availableCountries}
-                  error={Boolean(errors?.country?.message)}
-                  helperText={errors?.country?.message ?? ''}
-                />
-              )}
-            />
-
-            <Controller
-              control={control}
-              {...register('city')}
-              render={({ field }) => (
-                <TextInput
-                  {...field as any}
-                  placeholder="Enter city"
-                  label="City"
-                  size="small"
-                  className={styles.input_mini}
-                  error={Boolean(errors?.city?.message)}
-                  helperText={errors?.city?.message ?? ''}
-                />
-              )}
-            />
-          </div>
-
-          <div className={styles['form__address-info__child']}>
-            <Controller
-              control={control}
-              {...register('street')}
-              render={({ field }) => (
-                <TextInput
-                  {...field as any}
-                  placeholder="Enter street"
-                  label="Street"
-                  size="small"
-                  className={styles.input_mini}
-                  error={Boolean(errors?.street?.message)}
-                  helperText={errors?.street?.message ?? ''}
-                />
-              )}
-            />
-
-            <TextInput
-              placeholder="Enter postal code"
-              label="Postal code"
-              size="small"
-              className={styles.input_mini}
-            />
-          </div>
-        </div>
-
-        <div className={styles['form__address-info']}>
-          <h3 className={styles.label}>Billing address:</h3>
-
-          <div className={styles['form__address-info__child']}>
-            <Controller
-              control={control}
-              {...register('country')}
-              render={({ field }) => (
-                <Select
-                  {...field as any}
-                  label="Country"
-                  selectItems={availableCountries}
-                  error={Boolean(errors?.country?.message)}
-                  helperText={errors?.country?.message ?? ''}
-                />
-              )}
-            />
-
-            <Controller
-              control={control}
-              {...register('city')}
-              render={({ field }) => (
-                <TextInput
-                  {...field as any}
-                  placeholder="Enter city"
-                  label="City"
-                  size="small"
-                  className={styles.input_mini}
-                  error={Boolean(errors?.city?.message)}
-                  helperText={errors?.city?.message ?? ''}
-                />
-              )}
-            />
+              <Controller
+                control={control}
+                {...register('shippingPostalCode')}
+                render={({ field }) => (
+                  <TextInput
+                    {...field as any}
+                    placeholder="Enter postal code"
+                    label="Postal code"
+                    size="small"
+                    className={styles.input_mini}
+                    error={Boolean(errors?.shippingStreet?.message)}
+                    helperText={errors?.shippingStreet?.message ?? ''}
+                  />
+                )}
+              />
+            </div>
           </div>
 
-          <div className={styles['form__address-info__child']}>
-            <Controller
-              control={control}
-              {...register('street')}
-              render={({ field }) => (
-                <TextInput
-                  {...field as any}
-                  placeholder="Enter street"
-                  label="Street"
-                  size="small"
-                  className={styles.input_mini}
-                  error={Boolean(errors?.street?.message)}
-                  helperText={errors?.street?.message ?? ''}
-                />
-              )}
-            />
+          <div className={styles['form__address-info']}>
+            <h3 className={styles.label}>Billing address:</h3>
 
-            <TextInput
-              placeholder="Enter postal code"
-              label="Postal code"
-              size="small"
-              className={styles.input_mini}
-            />
+            <div className={styles['form__address-info__child']}>
+              <Controller
+                control={control}
+                {...register('billingCountry')}
+                render={({ field }) => (
+                  <Select
+                    {...field as any}
+                    label="Country"
+                    selectItems={availableCountries}
+                    error={Boolean(errors?.billingCountry?.message)}
+                    helperText={errors?.billingCountry?.message ?? ''}
+                  />
+                )}
+              />
+
+              <Controller
+                control={control}
+                {...register('billingCity')}
+                render={({ field }) => (
+                  <TextInput
+                    {...field as any}
+                    placeholder="Enter city"
+                    label="City"
+                    size="small"
+                    className={styles.input_mini}
+                    error={Boolean(errors?.billingCity?.message)}
+                    helperText={errors?.billingCity?.message ?? ''}
+                  />
+                )}
+              />
+            </div>
+
+            <div className={styles['form__address-info__child']}>
+              <Controller
+                control={control}
+                {...register('billingStreet')}
+                render={({ field }) => (
+                  <TextInput
+                    {...field as any}
+                    placeholder="Enter street"
+                    label="Street"
+                    size="small"
+                    className={styles.input_mini}
+                    error={Boolean(errors?.billingStreet?.message)}
+                    helperText={errors?.billingStreet?.message ?? ''}
+                  />
+                )}
+              />
+
+              <Controller
+                control={control}
+                {...register('billingPostalCode')}
+                render={({ field }) => (
+                  <TextInput
+                    {...field as any}
+                    placeholder="Enter postal code"
+                    label="Postal code"
+                    size="small"
+                    className={styles.input_mini}
+                    error={Boolean(errors?.billingPostalCode?.message)}
+                    helperText={errors?.billingPostalCode?.message ?? ''}
+                  />
+                )}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className={styles.register__btns}>
-          <Button
-            variant="contained"
-            type="button"
-            onClick={() => { navigate('/'); }}
-            disabled={isObligatory}
-          >
-            Skip for now
-          </Button>
-          <Button variant="contained" type="submit" disabled={!isValid}>Confirm</Button>
-        </div>
-      </form>
+          <div className={styles.register__btns}>
+            <Button
+              variant="contained"
+              type="button"
+              onClick={() => { navigate('/'); }}
+              disabled={isObligatory}
+            >
+              Skip for now
+            </Button>
+            <Button variant="contained" type="submit" disabled={!isValid}>Confirm</Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

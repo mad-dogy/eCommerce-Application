@@ -38,9 +38,15 @@ export const validationSchema = yup.object().shape({
 
       return age <= 100;
     }),
-  country: yup.string().required('Field is required'),
-  city: yup.string().required('Field is required'),
-  street: yup.string().required('Field is required'),
+  shippingCountry: yup.string().required('Field is required'),
+  shippingCity: yup.string().required('Field is required'),
+  shippingStreet: yup.string().required('Field is required'),
+  shippingPostalCode: yup.string().required('Field is required'),
+
+  billingCountry: yup.string().required('Field is required'),
+  billingCity: yup.string().required('Field is required'),
+  billingStreet: yup.string().required('Field is required'),
+  billingPostalCode: yup.string().required('Field is required'),
 });
 
 export const availableCountries: SelectItem[] = [
