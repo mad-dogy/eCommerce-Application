@@ -71,3 +71,21 @@
   max-width: 170px;
   width: 100%;
 }
+
+@media (max-width: 500px) {
+  .login {
+    &__inner {
+      max-width: 390px;
+      padding: 15px;
+      row-gap: 90px;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
+  }
+}

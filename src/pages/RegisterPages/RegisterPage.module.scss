@@ -87,9 +87,9 @@
   margin-top: 22px;
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  row-gap: 15px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   & p {
     margin-top: 0;
@@ -132,6 +132,11 @@
 .input_mini {
   max-width: 170px;
   width: 100%;
+}
+
+.checkbox {
+  font-size: 14px;
+  color: #444;
 }
 
 .datePicker-wrapper {
@@ -182,35 +187,15 @@
       justify-content: space-between;
       align-items: center;
       column-gap: 30px;
-  
-      & * {
-        min-height: 25px;
-        
-        & * {
-          color: #fff;
-          text-decoration: none;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          column-gap: 5px;
-        }
-      }
     }
-  
-    &__to-login {
-      font-size: 14px;
-      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-      color: #273641;
-  
-      & span {
-        color: #6A1F11;
-        font-weight: bold;
-      }
-    }
-    &__to-login:hover {
-      cursor: pointer;
-    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
   }
   
   .form__personal-info {
@@ -283,7 +268,7 @@
     max-width: 170px;
     width: 100%;
   }
-  
+
   .datePicker-wrapper {
     text-align: center;
   }

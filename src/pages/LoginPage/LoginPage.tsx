@@ -1,4 +1,3 @@
-import { error } from 'console';
 import { Link, useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { useContext } from 'react';
@@ -40,58 +39,61 @@ export const LoginPage = (): JSX.Element => {
   return (
     <div className={styles.login__inner}>
       <Logo />
-      <h3 className={styles.login__title}>Login</h3>
+      <div className={styles.content}>
+        <h3 className={styles.login__title}>Login</h3>
 
-      <form className={styles.login__form} onSubmit={handleSubmit(onLogin)}>
-        <Controller
-          name="email"
-          control={control}
-          {...register('email')}
-          render={({ field }) => (
-            <TextInput
-              {...field as any}
-              placeholder="Enter your email"
-              label="Email"
-              size="small"
-              className={styles.input_default}
-              error={Boolean(errors?.email?.message)}
-              helperText={String(errors?.email?.message ?? '')}
-            />
-          )}
-        />
+        <form className={styles.login__form} onSubmit={handleSubmit(onLogin)}>
+          <Controller
+            name="email"
+            control={control}
+            {...register('email')}
+            render={({ field }) => (
+              <TextInput
+                {...field as any}
+                placeholder="Enter your email"
+                label="Email"
+                size="small"
+                className={styles.input_default}
+                error={Boolean(errors?.email?.message)}
+                helperText={String(errors?.email?.message ?? '')}
+              />
+            )}
+          />
 
-        <Controller
-          name="password"
-          control={control}
-          {...register('password')}
-          render={({ field }) => (
-            <PasswordInput
-              {...field as any}
-              placeholder="Enter password"
-              label="Password"
-              size="small"
-              className={styles.input_default}
-              error={Boolean(errors?.password?.message)}
-              helperText={String(errors?.password?.message ?? '')}
-            />
-          )}
-        />
+          <Controller
+            name="password"
+            control={control}
+            {...register('password')}
+            render={({ field }) => (
+              <PasswordInput
+                {...field as any}
+                placeholder="Enter password"
+                label="Password"
+                size="small"
+                className={styles.input_default}
+                error={Boolean(errors?.password?.message)}
+                helperText={String(errors?.password?.message ?? '')}
+              />
+            )}
+          />
 
-        <div className={styles.login__btns}>
-          <Button>
-            <Link to={ROUTES.Base}>
-              <span>Go to shop</span>
-              <ArrowForwardIosIcon fontSize="small" />
-            </Link>
-          </Button>
-          <Button variant="contained" disabled={!isValid} type="submit">LOG IN</Button>
-        </div>
+          <div className={styles.login__btns}>
+            <Button>
+              <Link to={ROUTES.Base}>
+                <span>Go to shop</span>
+                <ArrowForwardIosIcon fontSize="small" />
+              </Link>
+            </Button>
+            <Button variant="contained" disabled={!isValid} type="submit">LOG IN</Button>
+          </div>
 
-      </form>
-      <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
-        Do not have an account?
-        <span> Sign up</span>
-      </Link>
+        </form>
+        <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
+          Do not have an account?
+          <span> Sign up</span>
+        </Link>
+      </div>
+
     </div>
   );
 };

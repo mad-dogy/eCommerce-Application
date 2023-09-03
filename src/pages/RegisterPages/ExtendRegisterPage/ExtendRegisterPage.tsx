@@ -9,6 +9,7 @@ import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { availableCountries, validationSchema } from './validationSchema';
 import { Select } from '../../../components/UI/Select/Select';
 import styles from '../RegisterPage.module.scss';
+import { Checkbox } from '../../../components/UI/Checkbox/Checkbox';
 
 const isObligatory = false;
 
@@ -163,6 +164,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
                 )}
               />
             </div>
+            <Checkbox label="Set as billing address" className={styles.checkbox} />
           </div>
 
           <div className={styles['form__address-info']}>
@@ -233,6 +235,8 @@ export const ExtendRegisterPage = (): JSX.Element => {
                 )}
               />
             </div>
+            <Checkbox label="Set as shipping address" className={styles.checkbox} />
+
           </div>
 
           <div className={styles.register__btns}>
