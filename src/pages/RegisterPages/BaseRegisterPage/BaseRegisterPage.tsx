@@ -27,9 +27,10 @@ export const BaseRegisterPage = (): JSX.Element => {
 
   const onSubmit = async (data: CustomerDraft): Promise<void> => {
     try {
-      await signUp(data);
+      const customerId = await signUp(data);
       setIsAuth(true);
-      localStorage.setItem('auth', String(true));
+      localStorage.setItem('customerId', customerId);
+
       navigate(`${ROUTES.ExtendRegisterPage}`);
     } catch (error) {
       alert(error);

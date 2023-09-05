@@ -9,7 +9,7 @@ export const MainRoot = memo(() => {
 
   const onLogout = (): void => {
     setIsAuth(false);
-    localStorage.removeItem('auth');
+    localStorage.removeItem('customerId');
   };
 
   return (

@@ -27,9 +27,9 @@ export const LoginPage = (): JSX.Element => {
 
   const onLogin = async (data: MyCustomerSignin): Promise<void> => {
     try {
-      await signIn(data);
+      const customerId = await signIn(data);
       setIsAuth(true);
-      localStorage.setItem('auth', String(true));
+      localStorage.setItem('customerId', String(true));
       navigate(`${ROUTES.Base}`);
     } catch (error) {
       alert(error);

@@ -1,7 +1,8 @@
 import { type MyCustomerSignin } from '@commercetools/platform-sdk';
 import { apiRoot } from './server';
 
-export const signIn = async ({ email, password }: MyCustomerSignin): Promise<void> => {
+export const signIn = async ({ email, password }: MyCustomerSignin): Promise<string> => {
+  let customerId = '';
   await apiRoot
     .me()
     .login()
@@ -10,6 +11,8 @@ export const signIn = async ({ email, password }: MyCustomerSignin): Promise<voi
     })
     .execute()
     .then(({ body }) => {
-      console.log(JSON.stringify(body));
+      customerId = body.customer.id;
     });
+
+  return customerId;
 };

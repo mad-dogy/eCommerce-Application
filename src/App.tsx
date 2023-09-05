@@ -7,7 +7,7 @@ export const App = (): JSX.Element => {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('auth')) {
+    if (localStorage.getItem('customerId')) {
       setIsAuth(true);
     }
   });

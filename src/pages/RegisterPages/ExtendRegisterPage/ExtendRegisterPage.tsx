@@ -10,6 +10,7 @@ import { availableCountries, validationSchema } from './validationSchema';
 import { Select } from '../../../components/UI/Select/Select';
 import styles from '../RegisterPage.module.scss';
 import { Checkbox } from '../../../components/UI/Checkbox/Checkbox';
+import { setCustomerExtendInfo } from '../../../api/Customers';
 
 const isObligatory = false;
 
@@ -21,10 +22,16 @@ export const ExtendRegisterPage = (): JSX.Element => {
     mode: 'all',
   });
 
+  const customerId = localStorage.getItem('customerId');
+
   const navigate = useNavigate();
 
-  const onSubmit = (data: CustomerExtendInfo): void => {
-    alert(JSON.stringify(data));
+  const onSubmit = async (data: CustomerExtendInfo): Promise<void> => {
+    try {
+      await setCustomerExtendInfo(customerId, data);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -164,7 +171,6 @@ export const ExtendRegisterPage = (): JSX.Element => {
                 )}
               />
             </div>
-            <Checkbox label="Set as billing address" className={styles.checkbox} />
           </div>
 
           <div className={styles['form__address-info']}>
@@ -235,7 +241,6 @@ export const ExtendRegisterPage = (): JSX.Element => {
                 )}
               />
             </div>
-            <Checkbox label="Set as shipping address" className={styles.checkbox} />
 
           </div>
 
