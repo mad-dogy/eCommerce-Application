@@ -10,7 +10,7 @@ import { PasswordInput } from '../../../components/UI/inputs/PasswordInput/Passw
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { validationSchema } from './validationSchema';
 import styles from '../RegisterPage.module.scss';
-import { ROUTES } from '../../../constants/routes';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
 import { AuthContext } from '../../../context';
 import { signUp } from '../../../api/Customers';
 
@@ -31,7 +31,7 @@ export const BaseRegisterPage = (): JSX.Element => {
       setIsAuth(true);
       localStorage.setItem('customerId', customerId);
 
-      navigate(`${ROUTES.ExtendRegisterPage}`);
+      navigate(`${PRIVATE_ROUTES.ExtendRegisterPage}`);
     } catch (error) {
       alert(error);
     }
@@ -100,7 +100,7 @@ export const BaseRegisterPage = (): JSX.Element => {
 
           <div className={styles.register__btns}>
             <Button>
-              <Link to={ROUTES.Base}>
+              <Link to={PUBLIC_ROUTES.Base}>
                 <span>Go to shop</span>
                 <ArrowForwardIosIcon fontSize="small" />
               </Link>
@@ -110,7 +110,7 @@ export const BaseRegisterPage = (): JSX.Element => {
 
         </form>
 
-        <Link to={ROUTES.LoginPage} className={styles['register__to-login']}>
+        <Link to={PUBLIC_ROUTES.LoginPage} className={styles['register__to-login']}>
           Alredy have account?
           <span> Log in</span>
         </Link>

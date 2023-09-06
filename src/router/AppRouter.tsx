@@ -1,5 +1,6 @@
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { ROUTES } from '../constants/routes';
+import { useContext } from 'react';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../constants/routes';
 import AppRoot from './AppRoot';
 import { LoginPage } from '../pages/LoginPage/LoginPage';
 import { BaseRegisterPage } from '../pages/RegisterPages/BaseRegisterPage/BaseRegisterPage';
@@ -11,54 +12,45 @@ import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { CartPage } from '../pages/CartPage/CartPage';
 import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
+import { AuthContext } from '../context';
 
-const router = createHashRouter([
+const publicRouter = createHashRouter([
   {
-    path: ROUTES.Base,
+    path: PUBLIC_ROUTES.Base,
     element: <AppRoot />,
     children: [
       {
-        path: ROUTES.Auth,
+        path: PUBLIC_ROUTES.Auth,
         element: <AuthRoot />,
         children: [
           {
-            path: ROUTES.LoginPage,
+            path: PUBLIC_ROUTES.LoginPage,
             element: <LoginPage />,
             errorElement: <ErrorPage />,
           },
           {
-            path: ROUTES.BaseRegisterPage,
+            path: PUBLIC_ROUTES.BaseRegisterPage,
             element: <BaseRegisterPage />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: ROUTES.ExtendRegisterPage,
-            element: <ExtendRegisterPage />,
             errorElement: <ErrorPage />,
           },
         ],
       },
       {
-        path: ROUTES.Base,
+        path: PUBLIC_ROUTES.Base,
         element: <MainRoot />,
         children: [
           {
-            path: ROUTES.Base,
+            path: PUBLIC_ROUTES.Base,
             element: <MainPage />,
             errorElement: <ErrorPage />,
           },
           {
-            path: ROUTES.Cart,
+            path: PUBLIC_ROUTES.Cart,
             element: <CartPage />,
             errorElement: <ErrorPage />,
           },
           {
-            path: ROUTES.Profile,
-            element: <ProfilePage />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: ROUTES.Any,
+            path: PUBLIC_ROUTES.Any,
             element: <NotFoundPage />,
             errorElement: <ErrorPage />,
           },
@@ -68,6 +60,52 @@ const router = createHashRouter([
   },
 ]);
 
-const AppRouter = () => <RouterProvider router={router} />;
+const privateRouter = createHashRouter([
+  {
+    path: PRIVATE_ROUTES.Base,
+    element: <AppRoot />,
+    children: [
+      {
+        path: PRIVATE_ROUTES.Auth,
+        element: <AuthRoot />,
+        children: [
+          {
+            path: PRIVATE_ROUTES.ExtendRegisterPage,
+            element: <ExtendRegisterPage />,
+            errorElement: <ErrorPage />,
+          },
+        ],
+      },
+      {
+        path: PRIVATE_ROUTES.Base,
+        element: <MainRoot />,
+        children: [
+          {
+            path: PRIVATE_ROUTES.Base,
+            element: <MainPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: PRIVATE_ROUTES.Cart,
+            element: <CartPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: PRIVATE_ROUTES.Profile,
+            element: <ProfilePage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: PUBLIC_ROUTES.Any,
+            element: <NotFoundPage />,
+            errorElement: <ErrorPage />,
+          },
+        ],
+      },
+    ],
+  },
+]);
+
+const AppRouter = () => <RouterProvider router={publicRouter} />;
 
 export default AppRouter;

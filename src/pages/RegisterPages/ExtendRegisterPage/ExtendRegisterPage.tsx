@@ -9,8 +9,9 @@ import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { availableCountries, validationSchema } from './validationSchema';
 import { Select } from '../../../components/UI/Select/Select';
 import styles from '../RegisterPage.module.scss';
-import { Checkbox } from '../../../components/UI/Checkbox/Checkbox';
 import { setCustomerExtendInfo } from '../../../api/Customers';
+import { modifyToCorrectDate } from '../../../helpers/modifyToCorrectDate';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
 
 const isObligatory = false;
 
@@ -28,7 +29,10 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
   const onSubmit = async (data: CustomerExtendInfo): Promise<void> => {
     try {
+      // eslint-disable-next-line no-param-reassign
+      data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       await setCustomerExtendInfo(customerId, data);
+      navigate(PRIVATE_ROUTES.Base);
     } catch (error) {
       alert(error);
     }
@@ -248,7 +252,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
             <Button
               variant="contained"
               type="button"
-              onClick={() => { navigate('/'); }}
+              onClick={() => { navigate(PRIVATE_ROUTES.Base); }}
               disabled={isObligatory}
             >
               Skip for now

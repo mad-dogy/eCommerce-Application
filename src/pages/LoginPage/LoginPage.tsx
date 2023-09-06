@@ -10,7 +10,7 @@ import { PasswordInput } from '../../components/UI/inputs/PasswordInput/Password
 import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
 import styles from './LoginPage.module.scss';
 import { validationSchema } from './validationSchema';
-import { ROUTES } from '../../constants/routes';
+import { PUBLIC_ROUTES } from '../../constants/routes';
 import { AuthContext } from '../../context';
 import { signIn } from '../../api/ClientMe';
 
@@ -30,7 +30,7 @@ export const LoginPage = (): JSX.Element => {
       const customerId = await signIn(data);
       setIsAuth(true);
       localStorage.setItem('customerId', String(true));
-      navigate(`${ROUTES.Base}`);
+      navigate(`${PUBLIC_ROUTES.Base}`);
     } catch (error) {
       alert(error);
     }
@@ -79,7 +79,7 @@ export const LoginPage = (): JSX.Element => {
 
           <div className={styles.login__btns}>
             <Button>
-              <Link to={ROUTES.Base}>
+              <Link to={PUBLIC_ROUTES.Base}>
                 <span>Go to shop</span>
                 <ArrowForwardIosIcon fontSize="small" />
               </Link>
@@ -88,7 +88,7 @@ export const LoginPage = (): JSX.Element => {
           </div>
 
         </form>
-        <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
+        <Link to={PUBLIC_ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
           Do not have an account?
           <span> Sign up</span>
         </Link>
