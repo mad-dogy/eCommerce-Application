@@ -33,6 +33,11 @@ const publicRouter = createHashRouter([
             element: <BaseRegisterPage />,
             errorElement: <ErrorPage />,
           },
+          {
+            path: PUBLIC_ROUTES.ExtendRegisterPage,
+            element: <ExtendRegisterPage />,
+            errorElement: <ErrorPage />,
+          },
         ],
       },
       {
