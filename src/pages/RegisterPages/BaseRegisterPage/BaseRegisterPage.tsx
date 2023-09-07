@@ -31,7 +31,7 @@ export const BaseRegisterPage = (): JSX.Element => {
       setIsAuth(true);
       localStorage.setItem('customerId', customerId);
 
-      navigate(`${PUBLIC_ROUTES.ExtendRegisterPage}`);
+      navigate(PRIVATE_ROUTES.ExtendRegisterPage);
     } catch (error) {
       alert(error);
     }

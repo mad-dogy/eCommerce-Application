@@ -74,11 +74,6 @@
   justify-content: center;
   align-items: center;
 }
-.form__personal-info p {
-  margin-top: 0;
-  position: absolute;
-  bottom: -17px;
-}
 
 .form__address-info {
   position: relative;
@@ -172,22 +167,6 @@
       font-family: 'Cormorant Garamond', serif;
       text-align: center;
     }
-  
-    &__form {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      row-gap: 16px;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    &__btns {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      column-gap: 30px;
-    }
   }
 
   .content {
@@ -197,18 +176,7 @@
     justify-content: center;
     row-gap: 15px;
   }
-  
-  .form__personal-info {
-    position: relative;
-    max-width: 350px;
-    width: 100%;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 16px;
-    justify-content: center;
-    align-items: center;
-  }
+
   .form__personal-info p {
     margin-top: 0;
     position: absolute;
@@ -216,76 +184,6 @@
   }
   
   .form__address-info {
-    position: relative;
-    max-width: 350px;
-    width: 100%;
-    margin-top: 22px;
-    display: flex;
-    flex-direction: column;
     row-gap: 16px;
-    justify-content: center;
-    align-items: center;
-  
-    & p {
-      margin-top: 0;
-      position: absolute;
-      bottom: -17px;
-    }
-    
-    &__child {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      column-gap: 10px;
-    }
-  }
-  
-  .form__password-info {
-    max-width: 350px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 12px;
-  }
-  
-  .label {
-    position: absolute;
-    top: -26px;
-    left: 4px;
-    color: #273036;
-    font-size: 16px;
-    font-weight: 200;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-  }
-  
-  .input_default {
-    max-width: 350px;
-    width: 100%;
-  }
-  .input_mini {
-    max-width: 170px;
-    width: 100%;
-  }
-
-  .datePicker-wrapper {
-    text-align: center;
-  }
-  
-  .error-message {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    color: #d32f2f;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .data div {
-    padding: 6px;
-    border-radius: 10px;
-  }
-  .data input {
-    padding: 8px;
-    border-radius: 10px;
-  }
+  }  
 }

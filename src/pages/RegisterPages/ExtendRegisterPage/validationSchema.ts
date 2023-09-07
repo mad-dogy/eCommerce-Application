@@ -1,11 +1,11 @@
 import * as yup from 'yup';
+import { getAvailableCountries } from '../../../helpers/setAvailableCountries';
 import { type SelectItem } from '../../../components/UI/Select/Select';
 
 export const validationSchema = yup.object().shape({
   firstName: yup.string().required('Field is required'),
   lastName: yup.string().required('Field is required'),
   dateOfBirth: yup.date()
-    .nullable('Date of birth can be a type of date')
     .required('Date of birth is required')
     .max(new Date(), 'Date of birth cannot be in the future')
     .test('minAge', 'You must be at least 13 years old', (value) => {
@@ -55,3 +55,14 @@ export const availableCountries: SelectItem[] = [
   { value: 'ES', name: 'Spain (ES)' },
   { value: 'AU', name: 'Australia (AU)' },
 ];
+
+/* export const availableCountries = (): SelectItem[] => {
+  let aaa;
+  const setAv = async (): Promise<void> => {
+    const ac = await getAvailableCountries();
+    aaa = ac;
+    console.log(aaa);
+  };
+  void setAv();
+  return aaa;
+}; */

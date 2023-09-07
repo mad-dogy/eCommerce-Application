@@ -1,5 +1,4 @@
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { useContext } from 'react';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../constants/routes';
 import AppRoot from './AppRoot';
 import { LoginPage } from '../pages/LoginPage/LoginPage';
@@ -12,7 +11,6 @@ import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { CartPage } from '../pages/CartPage/CartPage';
 import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
-import { AuthContext } from '../context';
 
 const publicRouter = createHashRouter([
   {
@@ -31,11 +29,6 @@ const publicRouter = createHashRouter([
           {
             path: PUBLIC_ROUTES.BaseRegisterPage,
             element: <BaseRegisterPage />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: PUBLIC_ROUTES.ExtendRegisterPage,
-            element: <ExtendRegisterPage />,
             errorElement: <ErrorPage />,
           },
         ],
@@ -71,7 +64,7 @@ const privateRouter = createHashRouter([
     element: <AppRoot />,
     children: [
       {
-        path: PRIVATE_ROUTES.Auth,
+        path: PUBLIC_ROUTES.Auth,
         element: <AuthRoot />,
         children: [
           {
@@ -111,6 +104,15 @@ const privateRouter = createHashRouter([
   },
 ]);
 
-const AppRouter = () => <RouterProvider router={publicRouter} />;
+interface AppRouterProps {
+  isAuth: boolean;
+}
+
+const AppRouter = (props: AppRouterProps): JSX.Element => {
+  const { isAuth } = props;
+  return (
+    <RouterProvider router={isAuth ? privateRouter : publicRouter} />
+  );
+};
 
 export default AppRouter;

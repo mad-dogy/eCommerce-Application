@@ -18,7 +18,7 @@ export const App = (): JSX.Element => {
       setIsAuth,
     }}
     >
-      <AppRouter />
+      <AppRouter isAuth={isAuth} />
     </AuthContext.Provider>
   );
 };

@@ -3,7 +3,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TextFieldsOutlined } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Button/Button';
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { availableCountries, validationSchema } from './validationSchema';
@@ -11,9 +10,6 @@ import { Select } from '../../../components/UI/Select/Select';
 import styles from '../RegisterPage.module.scss';
 import { setCustomerExtendInfo } from '../../../api/Customers';
 import { modifyToCorrectDate } from '../../../helpers/modifyToCorrectDate';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
-
-const isObligatory = false;
 
 export const ExtendRegisterPage = (): JSX.Element => {
   const {
@@ -25,14 +21,11 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
   const customerId = localStorage.getItem('customerId');
 
-  const navigate = useNavigate();
-
   const onSubmit = async (data: CustomerExtendInfo): Promise<void> => {
     try {
       // eslint-disable-next-line no-param-reassign
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       await setCustomerExtendInfo(customerId, data);
-      navigate(PRIVATE_ROUTES.Base);
     } catch (error) {
       alert(error);
     }
@@ -248,17 +241,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
           </div>
 
-          <div className={styles.register__btns}>
-            <Button
-              variant="contained"
-              type="button"
-              onClick={() => { navigate(PRIVATE_ROUTES.Base); }}
-              disabled={isObligatory}
-            >
-              Skip for now
-            </Button>
-            <Button variant="contained" type="submit" disabled={!isValid}>Confirm</Button>
-          </div>
+          <Button variant="contained" type="submit" disabled={!isValid}>Confirm</Button>
         </form>
       </div>
     </div>

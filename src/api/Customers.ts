@@ -1,4 +1,4 @@
-import { type CustomerDraft } from '@commercetools/platform-sdk';
+import { type Project, type CustomerDraft } from '@commercetools/platform-sdk';
 import { apiRoot } from './server';
 
 export const signUp = async ({
@@ -51,4 +51,15 @@ export const setCustomerExtendInfo = async (
     .then(({ body }) => {
       console.log(JSON.stringify(body));
     });
+};
+
+export const getProjectDetails = async (): Promise<Project> => {
+  let projectDetails;
+  await apiRoot
+    .get()
+    .execute()
+    .then(({ body }) => {
+      projectDetails = body;
+    });
+  return projectDetails;
 };
