@@ -1,11 +1,45 @@
 .profile {
-  height: 70vh;
+  background: #273036;
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  padding: 20px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 120px;
-  color: #6A1F11;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
+
+  &__inner {
+    max-width: 600px;
+    width: 100%;
+    min-height: 50vh;
+    height: 100%;
+    padding: 15px 25px;
+    background: #f9f9f9;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+
+    & h4 {
+      text-align: center;
+    }
+
+    &__info-block {
+      width: 100%;
+    }
+  }
+
+  & h6 {
+    font-weight: normal;
+    font-size: 18px;
+    text-align: left;
+  }
+}
+
+.personal-info {
+  min-width: 80%;
+  border: 2px solid #273036;
 }
