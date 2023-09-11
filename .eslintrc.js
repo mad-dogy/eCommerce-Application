@@ -12,7 +12,8 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:react/jsx-runtime",
     "prettier",
-    "plugin:i18next/recommended"
+    "plugin:i18next/recommended",
+    "airbnb"
   ],
   "parser": '@typescript-eslint/parser',
     "parserOptions": {
@@ -50,12 +51,17 @@ module.exports = {
     'react/jsx-props-no-spreading': 'warn',
     'react/function-component-definition': 'off',
     'no-shadow': 'off',
+    "no-undef": "off",
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
     "@typescript-eslint/prefer-nullish-coalescing": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/no-deprecated": "off",
-    "i18next/no-literal-string": ["error", {markupOnly: true}]
+    "i18next/no-literal-string": ["warn", {markupOnly: true}],
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "arrow-parens": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   }
 }
