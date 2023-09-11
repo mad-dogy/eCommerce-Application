@@ -1,0 +1,33 @@
+.page {
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 1360px;
+  width: 100%;
+  max-height: 500px;
+  border-radius: 20px;
+  background: #e6e6e6;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.message {
+  max-width: 600px;
+  width: 100%;
+  padding-top: 25px;
+  font-size: 24px;
+  color:#313131;
+}
+.page h5 {
+  padding-top: 25px;
+  padding-bottom: 20px;
+  font-size: 32px;
+  color:#171717;
+}
+
+.img {
+  max-width: 480px;
+  width: 100%;
+}

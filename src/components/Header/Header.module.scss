@@ -1,0 +1,38 @@
+.header {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1400px;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  &__nav {
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+  }
+}
+
+.nav__btn {
+  padding: 8px 10px;
+  border: 2px solid #273036;
+  border-radius: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #000;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.nav__icon {
+  color: #000;
+}

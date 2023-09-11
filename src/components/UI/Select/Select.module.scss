@@ -1,0 +1,21 @@
+.input-label {
+  top: -8px !important;
+}
+.input-label[data-shrink=true] {
+  top: 0 !important;
+}
+
+.select {
+  border-radius: 10px !important;
+  padding: 0 4px;
+  background: #F9F9F9;
+  font-size: 14px;
+  letter-spacing: .06rem;
+  color: #110C07;
+  max-width: 170px;
+  position: relative;
+}
+.select div {
+  padding: 8px;
+  height: 0;
+}

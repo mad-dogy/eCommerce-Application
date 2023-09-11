@@ -1,0 +1,23 @@
+.authRoot {
+  min-height: 100vh;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../assets//lines.png), linear-gradient(120.15deg, #273036 1.11%, #273036 100.53%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 500px) {
+  .authRoot {
+    padding: 20px 0;
+    background: #f9f9f9;
+    align-items: flex-start;
+  }
+}
