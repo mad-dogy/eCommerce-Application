@@ -29,7 +29,7 @@ export const LoginPage = (): JSX.Element => {
     try {
       const customerId = await signIn(data);
       setIsAuth(true);
-      localStorage.setItem('customerId', String(true));
+      localStorage.setItem('customerId', customerId);
       navigate(`${PUBLIC_ROUTES.Base}`);
     } catch (error) {
       alert(error);
