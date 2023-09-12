@@ -10,7 +10,7 @@
   font-weight: bold;
 
   &__inner {
-    max-width: 600px;
+    max-width: 570px;
     width: 100%;
     min-height: 50vh;
     height: 100%;
@@ -25,10 +25,30 @@
 
     & h4 {
       text-align: center;
+      font-size: 22px;
+      font-weight: normal;
     }
+  }
 
-    &__info-block {
-      width: 100%;
+  &__info-block {
+    margin: 0 auto;
+    max-width: 432px;
+    width: 100%;
+
+    & .item {
+      font-size: 16px;
+      font-weight: normal;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      &__name {
+        color: #27303677;
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+      }
     }
   }
 
@@ -40,6 +60,24 @@
 }
 
 .personal-info {
-  min-width: 80%;
+  padding: 15px 20px;
   border: 2px solid #273036;
+  border-radius: 10px;
+
+  & .item:first-child {
+    border-bottom: 2px solid #273036;
+  }
+  & .item:last-child {
+    border-top: 2px solid #273036;
+  }
+}
+
+.account-info {
+  padding: 15px 20px;
+  border: 2px solid #273036;
+  border-radius: 10px;
+
+  & .item:first-child {
+    border-bottom: 2px solid #273036;
+  }
 }

@@ -1,12 +1,112 @@
+import EditIcon from '@mui/icons-material/Edit';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = (): JSX.Element => (
   <div className={styles.profile}>
     <div className={styles.profile__inner}>
-      <h4>Personal account</h4>
+      <h4>PERSONAL ACCOUNT</h4>
+
       <div className={styles['profile__info-block']}>
         <h6>Personal info</h6>
-        <div className={styles['personal-info']} />
+        <div className={styles['personal-info']}>
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              First name
+              <EditIcon fontSize="small" />
+            </span>
+            <span>Lolita</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Last name
+              <EditIcon fontSize="small" />
+            </span>
+            <span>Cher</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Date of birth
+              <EditIcon fontSize="small" />
+            </span>
+            <span>24-08-2005</span>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles['profile__info-block']}>
+        <h6>Account info</h6>
+        <div className={styles['account-info']}>
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Email
+              <EditIcon fontSize="small" />
+            </span>
+            <span>lola@gmail.com</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Password
+              <EditIcon fontSize="small" />
+            </span>
+            <span>24-08-2005</span>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles['profile__info-block']}>
+        <h6>Account info</h6>
+        <div className={styles['personal-info']}>
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Email
+              <EditIcon fontSize="small" />
+            </span>
+            <span>lola@gmail.com</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Password
+              <EditIcon fontSize="small" />
+            </span>
+            <span>24-08-2005</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Email
+              <EditIcon fontSize="small" />
+            </span>
+            <span>lola@gmail.com</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Email
+              <EditIcon fontSize="small" />
+            </span>
+            <span>lola@gmail.com</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Email
+              <EditIcon fontSize="small" />
+            </span>
+            <span>lola@gmail.com</span>
+          </div>
+
+          <div className={styles.item}>
+            <span className={styles.item__name}>
+              Email
+              <EditIcon fontSize="small" />
+            </span>
+            <span>lola@gmail.com</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
