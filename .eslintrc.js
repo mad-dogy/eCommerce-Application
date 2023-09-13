@@ -58,7 +58,7 @@ module.exports = {
     "@typescript-eslint/prefer-nullish-coalescing": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/no-deprecated": "off",
-    "i18next/no-literal-string": ["warn", {markupOnly: true}],
+    "i18next/no-literal-string": "off",
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "arrow-parens": "off",

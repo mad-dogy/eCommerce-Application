@@ -111,7 +111,7 @@ export const BaseRegisterPage = (): JSX.Element => {
         </form>
 
         <Link to={PUBLIC_ROUTES.LoginPage} className={styles['register__to-login']}>
-          Alredy have account?
+          Already have account?
           <span> Log in</span>
         </Link>
       </div>

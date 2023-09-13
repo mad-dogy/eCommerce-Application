@@ -1,3 +1,5 @@
+@import '../../../constants/var.scss';
+
 .input-label {
   top: -8px !important;
 }
@@ -8,10 +10,10 @@
 .select {
   border-radius: 10px !important;
   padding: 0 4px;
-  background: #F9F9F9;
+  background: $darkWhite;
   font-size: 14px;
   letter-spacing: .06rem;
-  color: #110C07;
+  color: $lightBlack;
   max-width: 170px;
   position: relative;
 }

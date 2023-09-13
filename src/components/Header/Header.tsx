@@ -1,16 +1,17 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 import { Logo } from '../Logo/Logo';
 import { PUBLIC_ROUTES, PRIVATE_ROUTES } from '../../constants/routes';
 import styles from './Header.module.scss';
 
 interface HeaderProps {
-  isAuth: boolean,
-  onLogout: () => void
+  isAuth: boolean;
+  onLogout: () => void;
 }
 
-export const Header = (props: HeaderProps): JSX.Element => {
+export const Header = memo((props: HeaderProps): JSX.Element => {
   const { isAuth, onLogout } = props;
   return (
     <header className={styles.header}>
@@ -48,4 +49,4 @@ export const Header = (props: HeaderProps): JSX.Element => {
 
     </header>
   );
-};
+});

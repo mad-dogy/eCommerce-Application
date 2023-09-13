@@ -1,3 +1,5 @@
+@import './constants/var.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +8,24 @@
 
 .app {
   font-size: 30px;
+  background: $darkWhite;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #9c9c9c $darkWhite;
+}
+
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $darkWhite;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #9c9c9c;
+  border-radius: 10px;
+  border: 3px solid $white;
 }

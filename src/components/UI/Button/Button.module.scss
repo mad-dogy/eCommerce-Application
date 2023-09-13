@@ -1,8 +1,10 @@
+@import '../../../constants/var.scss';
+
 button.button {
   padding: 8px 24px;
   font-size: 16px;
-  background: #273036;
+  background: $darkBlue;
 }
 button.button:hover {
-  background: #3B4851;
+  background: $grayBlue;
 }

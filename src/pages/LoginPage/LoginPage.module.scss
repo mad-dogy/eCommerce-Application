@@ -1,15 +1,15 @@
+@import '../../constants/var.scss';
+@import '../../constants/mixins.scss';
+
 .login {
   &__inner {
     max-width: 500px;
     width: 100%;
     padding: 30px 30px 15px;
     border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex-column-center;
     row-gap: 16px;
-    background: #f9f9f9;
+    background: $darkWhite;
   }
 
   &__title {
@@ -19,29 +19,21 @@
   }
 
   &__form {
-    display: flex;
-    flex-direction: column;
+    @include flex-column-center;
     row-gap: 18px;
-    justify-content: center;
-    align-items: center;
   }
 
   &__btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-row-spaceBtw;
     column-gap: 30px;
 
     & * {
       min-height: 25px;
       
       & * {
-        color: #fff;
+        color:  $white;
         text-decoration: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        @include flex-row-center;
         column-gap: 5px;
       }
     }
@@ -50,10 +42,10 @@
   &__to-register {
     font-size: 14px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    color: #273036;
+    color:  $darkBlue;
 
     & span {
-      color: #6A1F11;
+      color:  $bloodRed;
       font-weight: bold;
     }
   }
@@ -82,10 +74,7 @@
   }
 
   .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex-column-center;
     row-gap: 15px;
   }
 }

@@ -13,6 +13,7 @@ export enum PUBLIC_ROUTES {
 export enum PRIVATE_ROUTES {
   Auth = '/auth',
   ExtendRegisterPage = '/auth/extend-register',
+
   Cart = '/cart',
   Profile = '/profile',
   Base = '/',
