@@ -1,4 +1,4 @@
-import { getProjectDetails } from '../api/Customers';
+import { getProjectDetails } from '../api/Project';
 import { type SelectItem } from '../components/UI/Select/Select';
 
 export const getAvailableCountries = async (): Promise<SelectItem[]> => {

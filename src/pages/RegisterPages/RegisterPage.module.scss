@@ -60,7 +60,7 @@
   max-width: 350px;
   width: 100%;
   margin-top: 20px;
-  @include flex-row-center;
+  @include flex-column-center;
   row-gap: 16px;
 }
 
@@ -83,7 +83,7 @@
   
   &__child {
     width: 100%;
-    @include flex-column-spaceBtw;
+    @include flex-row-spaceBtw;
     column-gap: 10px;
   }
 }

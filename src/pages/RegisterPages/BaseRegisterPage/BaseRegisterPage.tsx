@@ -12,7 +12,7 @@ import { validationSchema } from './validationSchema';
 import styles from '../RegisterPage.module.scss';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
 import { AuthContext } from '../../../context';
-import { signUp } from '../../../api/Customers';
+import { signUp } from '../../../api/Customers/Authorization';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const {

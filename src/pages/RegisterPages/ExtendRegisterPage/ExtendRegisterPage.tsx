@@ -3,13 +3,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TextFieldsOutlined } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Button/Button';
 import { TextInput } from '../../../components/UI/inputs/TextInput/TextInput';
 import { availableCountries, validationSchema } from './validationSchema';
 import { Select } from '../../../components/UI/Select/Select';
 import styles from '../RegisterPage.module.scss';
-import { setCustomerExtendInfo } from '../../../api/Customers';
 import { modifyToCorrectDate } from '../../../helpers/modifyToCorrectDate';
+import { setCustomerExtendInfo } from '../../../api/Customers/Authorization';
+import { type CustomerExtendInfo } from '../../../api/types';
+import { PRIVATE_ROUTES } from '../../../constants/routes';
 
 export const ExtendRegisterPage = (): JSX.Element => {
   const {
@@ -19,6 +22,8 @@ export const ExtendRegisterPage = (): JSX.Element => {
     mode: 'all',
   });
 
+  const navigate = useNavigate();
+
   const customerId = localStorage.getItem('customerId');
 
   const onSubmit = async (data: CustomerExtendInfo): Promise<void> => {
@@ -26,6 +31,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
       // eslint-disable-next-line no-param-reassign
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       await setCustomerExtendInfo(customerId, data);
+      navigate(PRIVATE_ROUTES.Base);
     } catch (error) {
       alert(error);
     }
