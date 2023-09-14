@@ -1,11 +1,24 @@
 import EditIcon from '@mui/icons-material/Edit';
 import { type Customer } from '@commercetools/platform-sdk';
-import styles from './ProfilePage.module.scss';
+import { useEffect } from 'react';
 import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
+import styles from './ProfilePage.module.scss';
 
-export const ProfilePage = (): JSX.Element =>
-  /* const customerInfo: Customer = await getCustomerById(); */
-  (
+export const ProfilePage = (): JSX.Element => {
+  console.log(0);
+  let customerInfo: Customer;
+  console.log(1);
+
+  useEffect(() => {
+    const getCustomerInfo = async (): Promise<void> => {
+      customerInfo = await getCustomerById(localStorage.getItem('customerId'));
+      console.log(2, customerInfo);
+    };
+    void getCustomerInfo();
+  }, []);
+  console.log(3);
+
+  return (
     <div className={styles.profile}>
       <div className={styles.profile__inner}>
         <h4>PERSONAL ACCOUNT</h4>
@@ -18,7 +31,9 @@ export const ProfilePage = (): JSX.Element =>
                 First name
                 <EditIcon fontSize="small" />
               </span>
-              <span>Lolita</span>
+              <span>
+                {customerInfo.firstName}
+              </span>
             </div>
 
             <div className={styles.item}>
@@ -26,7 +41,9 @@ export const ProfilePage = (): JSX.Element =>
                 Last name
                 <EditIcon fontSize="small" />
               </span>
-              <span>Cher</span>
+              <span>
+                {customerInfo.lastName}
+              </span>
             </div>
 
             <div className={styles.item}>
@@ -115,3 +132,4 @@ export const ProfilePage = (): JSX.Element =>
       </div>
     </div>
   );
+};

@@ -1,4 +1,4 @@
-import { type CustomerDraft } from '@commercetools/platform-sdk';
+import { type Customer, type CustomerDraft } from '@commercetools/platform-sdk';
 import { apiRoot } from '../server';
 import { getCustomerById } from './GetCustomerInfoActions';
 import { type CustomerExtendInfo } from '../types';
@@ -17,11 +17,14 @@ export const signUp = async ({
   return customerId;
 };
 
+export let customerGlobalInfo: Customer;
+
 export const setCustomerExtendInfo = async (
   customerId: string,
   customerInfo: CustomerExtendInfo,
 ): Promise<void> => {
   const customer = await getCustomerById(customerId);
+  customerGlobalInfo = customer;
   await apiRoot
     .customers()
     .withId({ ID: customerId })
