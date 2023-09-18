@@ -1,27 +1,36 @@
 import EditIcon from '@mui/icons-material/Edit';
-import { type Customer } from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
 import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import styles from './ProfilePage.module.scss';
 import { Loader } from '../../components/UI/Loader/Loader';
-import { useFetching } from '../../hooks/useFetching';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+
   console.log(1);
 
-  const [fetchCustomer, isLoading, getCustomerError] = useFetching(async (customerId: string) => {
-    const customerInfo = await getCustomerById(customerId);
+  /* const [fetchCustomer, isLoading, getCustomerError] =
+  useFetching(async (customerId: string) => {
+
     console.log(customerInfo);
     setCustomer(customerInfo);
   });
-  console.log(2);
+  console.log(2); */
 
   useEffect(() => {
-    void fetchCustomer(localStorage.getItem('customerId'));
+    /* void fetchCustomer(localStorage.getItem('customerId')); */
+
+    const getCustomerInfo = async (): Promise<void> => {
+      const customerInfo = await getCustomerById(localStorage.getItem('customerId'));
+      setCustomer(customerInfo);
+    };
+
+    getCustomerInfo().then(() => {
+      setLoading(false);
+      console.log('ooo');
+    }).catch(() => {});
   }, []);
-  console.log(3);
-  console.log(isLoading);
 
   return (
     <div className={styles.profile}>

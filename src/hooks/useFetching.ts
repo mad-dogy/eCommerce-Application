@@ -1,22 +1,40 @@
 import { useState } from 'react';
 
-export const useFetching = (callback: (customerId: string) => void) => {
+export function useFetching<T, P>(
+  callBack: any,
+  unwrap?: boolean, // to handle errors in components
+): [
+  (args: P) => Promise<IsPromise<T> | undefined>,
+  boolean,
+  string,
+  { errorCode?: string; status: number } | null
+] {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  console.log(10001);
+  const [status, setStatus] = useState<{ errorCode?: string; status: number } | null>(null);
 
-  const fetching = async (customerId: string) => {
+  const fetchData = async (args: P): Promise<IsPromise<T> | undefined> => {
     try {
-      console.log(111);
       setIsLoading(true);
-      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-      await callback(customerId);
-    } catch (error) {
-      setError(error.message);
+      const response = await callBack(args);
+      setError('');
+      return response || 'success';
+    } catch (e) {
+      if (e instanceof ReqError) {
+        setStatus({ errorCode: e.errorCode, status: e.status });
+        setError(e.message);
+      } else {
+        alert('unhandled error');
+        console.warn(e);
+      }
+
+      if (unwrap) {
+        throw e;
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
-  return [fetching, isLoading, error] as const;
-};
+  return [fetchData, isLoading, error, status];
+}
