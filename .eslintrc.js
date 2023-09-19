@@ -62,6 +62,7 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "arrow-parens": "off",
-    "@typescript-eslint/no-misused-promises": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "consistent-return": "off",
   }
 }

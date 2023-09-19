@@ -42,7 +42,7 @@
       border-bottom: 2px solid $darkBlue;
     
       &__name {
-        color: $translucentDarkBlue;
+        color: #616161;
         @include flex-spaceBtw;
         column-gap: 5px;
       }
@@ -60,6 +60,7 @@
 }
 
 .personal-info {
+  width: 100%;
   padding: 15px 20px;
   border: 2px solid $darkBlue;
   border-radius: 10px;

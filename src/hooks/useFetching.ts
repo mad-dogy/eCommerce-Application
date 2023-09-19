@@ -20,8 +20,8 @@ export function useFetching<T, P>(
       setError('');
       return response || 'success';
     } catch (e) {
-      if (e instanceof ReqError) {
-        setStatus({ errorCode: e.errorCode, status: e.status });
+      if (e instanceof Error/* Class */) {
+        /* setStatus({ errorCode: e., status: e.status }); */
         setError(e.message);
       } else {
         alert('unhandled error');

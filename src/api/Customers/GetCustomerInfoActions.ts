@@ -8,5 +8,9 @@ export const getCustomerById = async (customerId: string): Promise<Customer> => 
     .get()
     .execute()
     .then(({ body }) => body);
+    /* .catch((error) => {
+      console.log(error);
+      throw new ErrorClass(error);
+    }); */
   return customer;
 };
