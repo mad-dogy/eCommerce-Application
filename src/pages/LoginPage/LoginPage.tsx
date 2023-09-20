@@ -1,27 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Controller, useForm } from 'react-hook-form';
 import { useContext } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { type MyCustomerSignin } from '@commercetools/platform-sdk';
 import { Logo } from '../../components/Logo/Logo';
-import { Button } from '../../components/UI/Button/Button';
-import { PasswordInput } from '../../components/UI/inputs/PasswordInput/PasswordInput';
-import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
 import styles from './LoginPage.module.scss';
-import { validationSchema } from './validationSchema';
 import { PUBLIC_ROUTES } from '../../constants/routes';
 import { AuthContext } from '../../context';
 import { signIn } from '../../api/ClientMe';
+import { LoginForm } from '../../components/Forms/LoginForm/LoginForm';
 
 export const LoginPage = (): JSX.Element => {
-  const {
-    control, register, formState: { errors, isValid }, handleSubmit,
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-    mode: 'all',
-  });
-
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useContext(AuthContext);
 
@@ -39,61 +26,17 @@ export const LoginPage = (): JSX.Element => {
   return (
     <div className={styles.login__inner}>
       <Logo />
+
       <div className={styles.content}>
         <h3 className={styles.login__title}>Login</h3>
 
-        <form className={styles.login__form} onSubmit={handleSubmit(onLogin)}>
-          <Controller
-            name="email"
-            control={control}
-            {...register('email')}
-            render={({ field }) => (
-              <TextInput
-                {...field as any}
-                placeholder="Enter your email"
-                label="Email"
-                size="small"
-                className={styles.input_default}
-                error={Boolean(errors?.email?.message)}
-                helperText={String(errors?.email?.message ?? '')}
-              />
-            )}
-          />
+        <LoginForm onFormSubmit={onLogin} />
 
-          <Controller
-            name="password"
-            control={control}
-            {...register('password')}
-            render={({ field }) => (
-              <PasswordInput
-                {...field as any}
-                placeholder="Enter password"
-                label="Password"
-                size="small"
-                className={styles.input_default}
-                error={Boolean(errors?.password?.message)}
-                helperText={String(errors?.password?.message ?? '')}
-              />
-            )}
-          />
-
-          <div className={styles.login__btns}>
-            <Button>
-              <Link to={PUBLIC_ROUTES.Base}>
-                <span>Go to shop</span>
-                <ArrowForwardIosIcon fontSize="small" />
-              </Link>
-            </Button>
-            <Button variant="contained" disabled={!isValid} type="submit">LOG IN</Button>
-          </div>
-
-        </form>
         <Link to={PUBLIC_ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
           Do not have an account?
           <span> Sign up</span>
         </Link>
       </div>
-
     </div>
   );
 };

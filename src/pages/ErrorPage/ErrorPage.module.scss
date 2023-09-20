@@ -5,7 +5,7 @@
   padding: 30px;
   max-width: 1360px;
   width: 100%;
-  max-height: 500px;
+  min-height: calc(100vh - 100px);
   border-radius: 20px;
   background: $darkWhite;
   font-family: "Roboto", sans-serif;

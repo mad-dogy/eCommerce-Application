@@ -18,10 +18,10 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
   const { onFormSubmit, className } = props;
 
   const {
-    control, register, formState: { errors, isValid }, handleSubmit,
+    control, register, formState: { errors }, handleSubmit,
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'all',
+    mode: 'onBlur',
   });
 
   return (
@@ -33,7 +33,6 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
         render={({ field }) => (
           <TextInput
             {...field}
-            required
             placeholder="Enter your email"
             label="Email"
             size="small"
@@ -52,7 +51,6 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
           render={({ field }) => (
             <PasswordInput
               {...field}
-              required
               placeholder="Enter password"
               label="Password"
               size="small"
@@ -70,7 +68,6 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
           render={({ field }) => (
             <PasswordInput
               {...field}
-              required
               placeholder="Confirm password"
               label="Confirm password"
               size="small"
@@ -89,7 +86,7 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
             <ArrowForwardIosIcon fontSize="small" />
           </Link>
         </Button>
-        <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
+        <Button variant="contained" type="submit">SIGN UP</Button>
       </div>
 
     </form>

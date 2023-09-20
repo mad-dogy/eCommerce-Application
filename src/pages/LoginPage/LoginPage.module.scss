@@ -23,22 +23,6 @@
     row-gap: 18px;
   }
 
-  &__btns {
-    @include flex-row-spaceBtw;
-    column-gap: 30px;
-
-    & * {
-      min-height: 25px;
-      
-      & * {
-        color:  $white;
-        text-decoration: none;
-        @include flex-row-center;
-        column-gap: 5px;
-      }
-    }
-  }
-
   &__to-register {
     font-size: 14px;
     font-family: "Roboto", sans-serif;
@@ -53,15 +37,6 @@
     cursor: pointer;
   }
 
-}
-
-.input_default {
-  max-width: 350px;
-  width: 100%;
-}
-.input_mini {
-  max-width: 170px;
-  width: 100%;
 }
 
 @media (max-width: 500px) {

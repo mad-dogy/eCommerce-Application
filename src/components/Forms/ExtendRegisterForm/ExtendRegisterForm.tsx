@@ -12,19 +12,19 @@ import { validationSchema } from '../../../pages/RegisterPages/ExtendRegisterPag
 import styles from './ExtendRegisterForm.module.scss';
 import { Select } from '../../UI/Select/Select';
 
-interface BaseRegisterFormProps {
+interface ExtendRegisterFormProps {
   onFormSubmit: (props: any) => Promise<void>;
   className?: string;
 }
 
-export const ExtendRegisterForm = (props: BaseRegisterFormProps) => {
+export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
   const { onFormSubmit, className } = props;
 
   const {
     control, register, formState: { errors }, handleSubmit,
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'onTouched',
+    mode: 'onBlur',
   });
 
   const [availableCountries, setAvailableCountries] = useState(null);

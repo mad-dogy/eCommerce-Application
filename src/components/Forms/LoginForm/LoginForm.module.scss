@@ -1,0 +1,32 @@
+@import '../../../constants/var.scss';
+@import '../../../constants/mixins.scss';
+
+.form {
+  @include flex-column-center;
+  row-gap: 18px;
+}
+
+.btns {
+  @include flex-row-spaceBtw;
+  column-gap: 30px;
+
+  & * {
+    min-height: 25px;
+    
+    & * {
+      color:  $white;
+      text-decoration: none;
+      @include flex-row-center;
+      column-gap: 5px;
+    }
+  }
+}
+
+.input_default {
+  max-width: 350px;
+  width: 100%;
+}
+.input_mini {
+  max-width: 170px;
+  width: 100%;
+}
