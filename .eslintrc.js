@@ -65,5 +65,7 @@ module.exports = {
     "@typescript-eslint/no-misused-promises": "off",
     "consistent-return": "off",
     "@typescript-eslint/explicit-function-return-type": "warn",
+    "no-param-reassign": "off",
+    "import/no-mutable-exports": "off",
   }
 }

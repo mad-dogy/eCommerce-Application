@@ -12,7 +12,6 @@ export const ExtendRegisterPage = (): JSX.Element => {
 
   const onSubmit = async (data: CustomerExtendInfo): Promise<void> => {
     try {
-      // eslint-disable-next-line no-param-reassign
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       await setCustomerExtendInfo(customerId, data);
       navigate(PRIVATE_ROUTES.Base);

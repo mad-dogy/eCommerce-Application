@@ -1,7 +1,7 @@
 import { TextInput } from '../UI/inputs/TextInput/TextInput';
 import styles from './ProfileCard.module.scss';
 
-export const ProfileCard = (props: any): JSX.Element => {
+export const ProfileInfoCard = (props: any): JSX.Element => {
   const { cardInfo, isEdit } = props; // это типизировать говно?))))))
 
   return (

@@ -31,22 +31,22 @@
   text-decoration: none;
   color: $black;
   font-family: "Roboto", sans-serif;
-}
-
-.nav__btn:hover {
   transition: all .2s linear;
-  color: $darkWhite;
-  background: $darkBlue;
+
+  &:hover {
+    color: $darkWhite;
+    background: $darkBlue;
+  }
 }
 
 .nav__icon {
   color: $darkBlue;
-}
+  transition: all .2s linear !important;
 
-.nav__icon:hover {
-  transition: all .2s linear;
-  color: $darkWhite;
-  border-radius: 50%;
-  padding: 10px;
-  background: $darkBlue;
+  &:hover {
+    color: $darkWhite;
+    border-radius: 50%;
+    padding: 10px;
+    background: $darkBlue;
+  }
 }

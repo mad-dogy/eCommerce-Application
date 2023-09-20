@@ -1,1 +1,1 @@
-export const PROFILE_EMPTY_SYMBOL = '—';
+export const PROFILE_DEFAULT_SYMBOL = '—';

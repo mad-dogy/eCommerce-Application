@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import { Loader } from '../../components/UI/Loader/Loader';
-import { PROFILE_EMPTY_SYMBOL } from '../../constants/constants';
+import { PROFILE_DEFAULT_SYMBOL } from '../../constants/constants';
 import { Button } from '../../components/UI/Button/Button';
-import { ProfileCard } from '../../components/ProfileCard/ProfileCard';
+import { ProfileInfoCard } from '../../components/ProfileCard/ProfileCard';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = (): JSX.Element => {
@@ -71,12 +71,12 @@ export const ProfilePage = (): JSX.Element => {
                   Personal info
                 </h6>
 
-                <ProfileCard
+                <ProfileInfoCard
                   isEdit={isInfoEdit}
                   cardInfo={[
-                    { 'First name': customer.firstName ?? PROFILE_EMPTY_SYMBOL },
-                    { 'Last name': customer.lastName ?? PROFILE_EMPTY_SYMBOL },
-                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL },
+                    { 'First name': customer.firstName ?? PROFILE_DEFAULT_SYMBOL },
+                    { 'Last name': customer.lastName ?? PROFILE_DEFAULT_SYMBOL },
+                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_DEFAULT_SYMBOL },
                   ]}
                 />
               </div>
@@ -86,7 +86,7 @@ export const ProfilePage = (): JSX.Element => {
                   Account info
                 </h6>
 
-                <ProfileCard
+                <ProfileInfoCard
                   isEdit={isInfoEdit}
                   cardInfo={[
                     { Email: customer.email },
@@ -100,12 +100,12 @@ export const ProfilePage = (): JSX.Element => {
                   Shipping address info
                 </h6>
 
-                <ProfileCard
+                <ProfileInfoCard
                   isEdit={isInfoEdit}
                   cardInfo={[
-                    { 'First name': customer.firstName ?? PROFILE_EMPTY_SYMBOL },
-                    { 'Last name': customer.lastName ?? PROFILE_EMPTY_SYMBOL },
-                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL },
+                    { 'First name': customer.firstName ?? PROFILE_DEFAULT_SYMBOL },
+                    { 'Last name': customer.lastName ?? PROFILE_DEFAULT_SYMBOL },
+                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_DEFAULT_SYMBOL },
                   ]}
                 />
               </div>
@@ -115,12 +115,12 @@ export const ProfilePage = (): JSX.Element => {
                   Billing address info
                 </h6>
 
-                <ProfileCard
+                <ProfileInfoCard
                   isEdit={isInfoEdit}
                   cardInfo={[
-                    { 'First name': customer.firstName ?? PROFILE_EMPTY_SYMBOL },
-                    { 'Last name': customer.lastName ?? PROFILE_EMPTY_SYMBOL },
-                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL },
+                    { 'First name': customer.firstName ?? PROFILE_DEFAULT_SYMBOL },
+                    { 'Last name': customer.lastName ?? PROFILE_DEFAULT_SYMBOL },
+                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_DEFAULT_SYMBOL },
                   ]}
                 />
               </div>
