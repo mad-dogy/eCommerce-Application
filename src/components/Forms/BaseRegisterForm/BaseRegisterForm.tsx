@@ -1,0 +1,97 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Link } from 'react-router-dom';
+import { validationSchema } from '../../../pages/RegisterPages/BaseRegisterPage/validationSchema';
+import styles from './BaseRegisterForm.module.scss';
+import { TextInput } from '../../UI/inputs/TextInput/TextInput';
+import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
+import { Button } from '../../UI/Button/Button';
+import { PUBLIC_ROUTES } from '../../../constants/routes';
+
+interface BaseRegisterFormProps {
+  onFormSubmit: (props: any) => Promise<void>;
+  className?: string;
+}
+
+export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
+  const { onFormSubmit, className } = props;
+
+  const {
+    control, register, formState: { errors, isValid }, handleSubmit,
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    mode: 'all',
+  });
+
+  return (
+    <form className={`${styles.form} ${className}`} onSubmit={handleSubmit(onFormSubmit)}>
+      <Controller
+        name="email"
+        control={control}
+        {...register('email')}
+        render={({ field }) => (
+          <TextInput
+            {...field}
+            required
+            placeholder="Enter your email"
+            label="Email"
+            size="small"
+            className={styles.input_default}
+            error={Boolean(errors?.email?.message)}
+            helperText={String(errors?.email?.message ?? '')}
+          />
+        )}
+      />
+
+      <div className={styles['form__password-info']}>
+        <Controller
+          name="password"
+          control={control}
+          {...register('password')}
+          render={({ field }) => (
+            <PasswordInput
+              {...field}
+              required
+              placeholder="Enter password"
+              label="Password"
+              size="small"
+              className={styles.input_default}
+              error={Boolean(errors?.password?.message)}
+              helperText={String(errors?.password?.message ?? '')}
+            />
+          )}
+        />
+
+        <Controller
+          name="confirmPassword"
+          control={control}
+          {...register('confirmPassword')}
+          render={({ field }) => (
+            <PasswordInput
+              {...field}
+              required
+              placeholder="Confirm password"
+              label="Confirm password"
+              size="small"
+              className={styles.input_default}
+              error={Boolean(errors?.confirmPassword?.message)}
+              helperText={String(errors?.confirmPassword?.message ?? '')}
+            />
+          )}
+        />
+      </div>
+
+      <div className={styles.btns}>
+        <Button>
+          <Link to={PUBLIC_ROUTES.Base}>
+            <span>Go to shop</span>
+            <ArrowForwardIosIcon fontSize="small" />
+          </Link>
+        </Button>
+        <Button variant="contained" type="submit" disabled={!isValid}>SIGN UP</Button>
+      </div>
+
+    </form>
+  );
+};

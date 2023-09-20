@@ -8,3 +8,8 @@ button.button {
 button.button:hover {
   background: $grayBlue;
 }
+
+button.button_small {
+  padding: 4px 10px;
+  font-size: 12px;
+}

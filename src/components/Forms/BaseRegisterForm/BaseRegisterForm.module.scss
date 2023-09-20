@@ -1,0 +1,55 @@
+@import '../../../constants/mixins.scss';
+@import '../../../constants/var.scss';
+
+.form {
+  margin-top: 10px;
+  @include flex-column-center;
+  row-gap: 16px;
+
+  & p {
+    margin-top: 0;
+  }
+}
+
+.btns {
+  @include flex-spaceBtw;
+  column-gap: 30px;
+
+  & * {
+    min-height: 25px;
+    
+    & * {
+      color: $white;
+      text-decoration: none;
+      @include flex-row-center;
+      column-gap: 5px;
+    }
+  }
+}
+
+.form__password-info {
+  max-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.label {
+  position: absolute;
+  top: -26px;
+  left: 4px;
+  color: $darkBlue;
+  font-size: 16px;
+  font-weight: 200;
+  font-family: "Roboto", sans-serif;
+}
+
+.input_default {
+  max-width: 350px;
+  width: 100%;
+}
+.input_mini {
+  max-width: 170px;
+  width: 100%;
+}

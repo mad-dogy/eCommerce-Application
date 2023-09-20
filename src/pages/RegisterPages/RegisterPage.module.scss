@@ -22,27 +22,15 @@
     margin-top: 10px;
     @include flex-column-center;
     row-gap: 16px;
-  }
 
-  &__btns {
-    @include flex-spaceBtw;
-    column-gap: 30px;
-
-    & * {
-      min-height: 25px;
-      
-      & * {
-        color: $white;
-        text-decoration: none;
-        @include flex-row-center;
-        column-gap: 5px;
-      }
+    & p {
+      margin-top: 0;
     }
   }
 
   &__to-login {
     font-size: 14px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: $darkBlue;
 
     & span {
@@ -53,91 +41,6 @@
   &__to-login:hover {
     cursor: pointer;
   }
-}
-
-.form__personal-info {
-  position: relative;
-  max-width: 350px;
-  width: 100%;
-  margin-top: 20px;
-  @include flex-column-center;
-  row-gap: 16px;
-}
-
-.form__address-info {
-  position: relative;
-  max-width: 350px;
-  width: 100%;
-  margin-top: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  row-gap: 15px;
-  
-  & p {
-    margin-top: 0;
-    position: absolute;
-    bottom: -17px;
-  }
-  
-  &__child {
-    width: 100%;
-    @include flex-row-spaceBtw;
-    column-gap: 10px;
-  }
-}
-
-.form__password-info {
-  max-width: 350px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-}
-
-.label {
-  position: absolute;
-  top: -26px;
-  left: 4px;
-  color: $darkBlue;
-  font-size: 16px;
-  font-weight: 200;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-.input_default {
-  max-width: 350px;
-  width: 100%;
-}
-.input_mini {
-  max-width: 170px;
-  width: 100%;
-}
-
-.checkbox {
-  font-size: 14px;
-  color: $lightBlack;
-}
-
-.datePicker-wrapper {
-  text-align: center;
-}
-
-.error-message {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  color: $red;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-.data div {
-  padding: 6px;
-  border-radius: 10px;
-}
-.data input {
-  padding: 8px;
-  border-radius: 10px;
 }
 
 @media (max-width: 500px) {
@@ -159,14 +62,4 @@
     @include flex-column-center;
     row-gap: 15px;
   }
-
-  .form__personal-info p {
-    margin-top: 0;
-    position: absolute;
-    bottom: -17px;
-  }
-  
-  .form__address-info {
-    row-gap: 16px;
-  }  
 }

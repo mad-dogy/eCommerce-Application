@@ -7,11 +7,9 @@ export function useFetching<T, P>(
   (args: P) => Promise<IsPromise<T> | undefined>,
   boolean,
   string,
-  { errorCode?: string; status: number } | null
 ] {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [status, setStatus] = useState<{ errorCode?: string; status: number } | null>(null);
 
   const fetchData = async (args: P): Promise<IsPromise<T> | undefined> => {
     try {
@@ -20,13 +18,7 @@ export function useFetching<T, P>(
       setError('');
       return response || 'success';
     } catch (e) {
-      if (e instanceof Error/* Class */) {
-        /* setStatus({ errorCode: e., status: e.status }); */
-        setError(e.message);
-      } else {
-        alert('unhandled error');
-        console.warn(e);
-      }
+      setError(e.message);
 
       if (unwrap) {
         throw e;
@@ -36,5 +28,5 @@ export function useFetching<T, P>(
     }
   };
 
-  return [fetchData, isLoading, error, status];
+  return [fetchData, isLoading, error];
 }
