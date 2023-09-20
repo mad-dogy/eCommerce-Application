@@ -1,0 +1,25 @@
+@import '../../constants/mixins.scss';
+@import '../../constants/var.scss';
+
+.info-card {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid $darkBlue;
+  border-radius: 10px;
+}
+
+.item {
+  min-height: 61px;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 4px 15px;
+  @include flex-spaceBtw;
+  border-bottom: 2px solid $darkBlue;
+
+  &__name {
+    color: #616161;
+  }
+}
+.item:last-child {
+  border: none;
+}

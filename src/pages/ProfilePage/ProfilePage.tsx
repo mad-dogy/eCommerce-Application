@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
+import EditIcon from '@mui/icons-material/Edit';
 import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
-import styles from './ProfilePage.module.scss';
 import { Loader } from '../../components/UI/Loader/Loader';
-import { EditInfoBtn } from '../../components/UI/EditInfoButton/EditInfoBtn';
-import { TextInput } from '../../components/UI/inputs/TextInput/TextInput';
 import { PROFILE_EMPTY_SYMBOL } from '../../constants/constants';
 import { Button } from '../../components/UI/Button/Button';
+import { ProfileCard } from '../../components/ProfileCard/ProfileCard';
+import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [isInfoEdit, setInfoEdit] = useState(false);
 
   useEffect(() => {
     const getCustomerInfo = async (): Promise<void> => {
@@ -22,158 +23,106 @@ export const ProfilePage = (): JSX.Element => {
     }).catch(() => {});
   }, []);
 
+  const onEditBtnClick = (): void => {
+    setInfoEdit(true);
+  };
+  const onCancelBtnClick = (): void => {
+    setInfoEdit(false);
+  };
+
+  let editBtns;
+  if (isInfoEdit) {
+    editBtns = (
+      <div className={styles['profile__confirm-edit-btns']}>
+        <Button
+          className="button_small"
+          variant="outlined"
+        >
+          Save
+        </Button>
+        <Button
+          className="button_small"
+          variant="outlined"
+          color="warning"
+          onClick={onCancelBtnClick}
+        >
+          Cancel
+        </Button>
+      </div>
+    );
+  } else {
+    editBtns = <EditIcon fontSize="medium" className={styles.profile__edit_btn} onClick={onEditBtnClick} />;
+  }
+
   return (
     <div className={styles.profile}>
       {isLoading
         ? <Loader />
         : (
           <div className={styles.profile__inner}>
-            <h4>PERSONAL ACCOUNT</h4>
+            <h4>
+              PERSONAL ACCOUNT
+              {editBtns}
+            </h4>
 
             <div className={styles.profile__content}>
               <div className={styles['profile__info-block']}>
                 <h6>
                   Personal info
-                  {/* <EditInfoBtn /> */}
-
-                  <Button
-                    className="button_small"
-                    variant="outlined"
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    className="button_small"
-                    variant="outlined"
-                    color="warning"
-                  >
-                    Cancel
-                  </Button>
-
                 </h6>
 
-                <div className={styles['personal-info']}>
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      First name
-                    </span>
-                    <span>
-
-                      <TextInput
-                        size="small"
-                        placeholder={customer.firstName}
-                        label=""
-                      />
-
-                      {/* {customer.firstName || PROFILE_EMPTY_SYMBOL} */}
-                    </span>
-                  </div>
-
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Last name
-                    </span>
-                    <span>
-
-                      <TextInput
-                        size="small"
-                        placeholder={customer.lastName}
-                        label=""
-                      />
-
-                      {/* {customer.lastName ?? PROFILE_EMPTY_SYMBOL} */}
-                    </span>
-                  </div>
-
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Date of birth
-                    </span>
-                    <span>
-                      <TextInput
-                        size="small"
-                        placeholder={customer.dateOfBirth}
-                        label=""
-                      />
-
-                      {/* {customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL} */}
-                    </span>
-                  </div>
-                </div>
+                <ProfileCard
+                  isEdit={isInfoEdit}
+                  cardInfo={[
+                    { 'First name': customer.firstName ?? PROFILE_EMPTY_SYMBOL },
+                    { 'Last name': customer.lastName ?? PROFILE_EMPTY_SYMBOL },
+                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL },
+                  ]}
+                />
               </div>
 
               <div className={styles['profile__info-block']}>
                 <h6>
                   Account info
-                  <EditInfoBtn />
                 </h6>
 
-                <div className={styles['account-info']}>
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Email
-                    </span>
-                    <span>{customer.email}</span>
-                  </div>
-
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Password
-                    </span>
-                    <span>{customer.password}</span>
-                  </div>
-                </div>
+                <ProfileCard
+                  isEdit={isInfoEdit}
+                  cardInfo={[
+                    { Email: customer.email },
+                    { Password: customer.password },
+                  ]}
+                />
               </div>
 
               <div className={styles['profile__info-block']}>
                 <h6>
-                  Account info
-                  <EditInfoBtn />
+                  Shipping address info
                 </h6>
 
-                <div className={styles['personal-info']}>
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Email
-                    </span>
-                    <span>lola@gmail.com</span>
-                  </div>
+                <ProfileCard
+                  isEdit={isInfoEdit}
+                  cardInfo={[
+                    { 'First name': customer.firstName ?? PROFILE_EMPTY_SYMBOL },
+                    { 'Last name': customer.lastName ?? PROFILE_EMPTY_SYMBOL },
+                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL },
+                  ]}
+                />
+              </div>
 
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Password
-                    </span>
-                    <span>24-08-2005</span>
-                  </div>
+              <div className={styles['profile__info-block']}>
+                <h6>
+                  Billing address info
+                </h6>
 
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Email
-                    </span>
-                    <span>lola@gmail.com</span>
-                  </div>
-
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Email
-                    </span>
-                    <span>lola@gmail.com</span>
-                  </div>
-
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Email
-                    </span>
-                    <span>lola@gmail.com</span>
-                  </div>
-
-                  <div className={styles.item}>
-                    <span className={styles.item__name}>
-                      Email
-                    </span>
-                    <span>lola@gmail.com</span>
-                  </div>
-                </div>
+                <ProfileCard
+                  isEdit={isInfoEdit}
+                  cardInfo={[
+                    { 'First name': customer.firstName ?? PROFILE_EMPTY_SYMBOL },
+                    { 'Last name': customer.lastName ?? PROFILE_EMPTY_SYMBOL },
+                    { 'Date of birth': customer.dateOfBirth ?? PROFILE_EMPTY_SYMBOL },
+                  ]}
+                />
               </div>
             </div>
 
