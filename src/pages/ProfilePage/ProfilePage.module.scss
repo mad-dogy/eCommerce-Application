@@ -5,9 +5,8 @@
   background: $darkBlue;
   min-height: calc(100vh - 100px);
   height: 100%;
-  padding: 25px 15px;
+  padding: 30px 15px;
   @include flex-center;
-  align-items: flex-start;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
 
@@ -16,7 +15,7 @@
     width: 100%;
     min-height: 50vh;
     height: 100%;
-    padding: 15px 25px;
+    padding: 30px 25px;
     background: $darkWhite;
     border-radius: 20px;
 
@@ -26,23 +25,6 @@
       font-size: 26px;
       font-weight: normal;
     }
-  }
-
-  &__confirm-edit-btns {
-    max-width: 166px;
-    width: 100%;
-    @include flex-spaceBtw;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  &__edit_btn {
-    cursor: pointer;
-    color: #616161;
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 
   &__content {
@@ -63,6 +45,7 @@
     & h6 {
       font-size: 20px;
       margin-left: 6px;
+      color: $darkBlue;
     }
   }
 

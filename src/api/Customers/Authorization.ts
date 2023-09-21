@@ -1,7 +1,7 @@
 import { type Customer, type CustomerDraft } from '@commercetools/platform-sdk';
 import { apiRoot } from '../server';
 import { getCustomerById } from './GetCustomerInfoActions';
-import { type CustomerExtendInfo } from '../types';
+import { type CustomerExtendInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 
 export const signUp = async ({
   email, password,
@@ -17,15 +17,12 @@ export const signUp = async ({
   return customerId;
 };
 
-export let customerGlobalInfo: Customer;
-
 export const setCustomerExtendInfo = async (
   customerId: string,
   customerInfo: CustomerExtendInfo,
 ): Promise<void> => {
   const customer = await getCustomerById(customerId);
-  customerGlobalInfo = customer;
-  await apiRoot
+  const response = await apiRoot
     .customers()
     .withId({ ID: customerId })
     .post({
@@ -57,6 +54,21 @@ export const setCustomerExtendInfo = async (
               postalCode: customerInfo.billingPostalCode,
             },
           },
+        ],
+      },
+    })
+    .execute()
+    .then();
+
+  await apiRoot
+    .customers()
+    .withId({ ID: customerId })
+    .post({
+      body: {
+        version: response.body.version,
+        actions: [
+          { action: 'addShippingAddressId', addressId: response.body.addresses[0].id },
+          { action: 'addBillingAddressId', addressId: response.body.addresses[1].id },
         ],
       },
     })

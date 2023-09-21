@@ -1,8 +1,11 @@
-import { TextInput } from '../UI/inputs/TextInput/TextInput';
 import styles from './ProfileCard.module.scss';
 
-export const ProfileInfoCard = (props: any): JSX.Element => {
-  const { cardInfo, isEdit } = props; // это типизировать говно?))))))
+interface ProfileInfoCardProps {
+  cardInfo: any[] ;
+}
+
+export const ProfileInfoCard = (props: ProfileInfoCardProps): JSX.Element => {
+  const { cardInfo } = props;
 
   return (
     <div className={styles['info-card']}>
@@ -12,17 +15,9 @@ export const ProfileInfoCard = (props: any): JSX.Element => {
           <span className={styles.item__name}>
             {Object.keys(item)[0]}
           </span>
-
-          {isEdit
-            ? (
-              <TextInput
-                size="small"
-                placeholder=""
-                label=""
-                value={item[Object.keys(item)[0]]}
-              />
-            )
-            : <span>{item[Object.keys(item)[0]]}</span>}
+          <span>
+            {item[Object.keys(item)[0]]}
+          </span>
         </div>
       ))}
     </div>

@@ -5,7 +5,6 @@ module.exports = {
     "jest": true
   },
   "extends": [
-    "standard-with-typescript",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
@@ -42,6 +41,7 @@ module.exports = {
     "i18next"
   ],
   "rules": {
+    "semi": "warn",
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -51,6 +51,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'warn',
     'react/function-component-definition': 'off',
     'no-shadow': 'off',
+    "no-unused-vars": "off",
     "no-undef": "off",
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -64,7 +65,6 @@ module.exports = {
     "arrow-parens": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "consistent-return": "off",
-    "@typescript-eslint/explicit-function-return-type": "warn",
     "no-param-reassign": "off",
     "import/no-mutable-exports": "off",
   }

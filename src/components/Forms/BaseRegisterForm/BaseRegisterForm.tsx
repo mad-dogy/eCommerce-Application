@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from 'react-router-dom';
-import { validationSchema } from '../../../pages/RegisterPages/BaseRegisterPage/validationSchema';
+import { validationSchema } from './validationSchema';
 import styles from './BaseRegisterForm.module.scss';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';

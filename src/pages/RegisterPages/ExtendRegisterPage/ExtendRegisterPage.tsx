@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import styles from '../RegisterPage.module.scss';
 import { modifyToCorrectDate } from '../../../helpers/modifyToCorrectDate';
 import { setCustomerExtendInfo } from '../../../api/Customers/Authorization';
-import { type CustomerExtendInfo } from '../../../api/types';
+import { type CustomerExtendInfo } from '../../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { PRIVATE_ROUTES } from '../../../constants/routes';
 import { ExtendRegisterForm } from '../../../components/Forms/ExtendRegisterForm/ExtendRegisterForm';
+import styles from '../RegisterPage.module.scss';
 
 export const ExtendRegisterPage = (): JSX.Element => {
   const navigate = useNavigate();

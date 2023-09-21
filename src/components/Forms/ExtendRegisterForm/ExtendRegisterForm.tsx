@@ -8,7 +8,7 @@ import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { Button } from '../../UI/Button/Button';
 import { getAvailableCountries } from '../../../helpers/setAvailableCountries';
 import { Loader } from '../../UI/Loader/Loader';
-import { validationSchema } from '../../../pages/RegisterPages/ExtendRegisterPage/validationSchema';
+import { validationSchema } from './validationSchema';
 import styles from './ExtendRegisterForm.module.scss';
 import { Select } from '../../UI/Select/Select';
 
