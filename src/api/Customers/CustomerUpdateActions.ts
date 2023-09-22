@@ -1,3 +1,4 @@
+import { Customer } from '@commercetools/platform-sdk';
 import { CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { apiRoot } from '../server';
 import { getCustomerById } from './GetCustomerInfoActions';
@@ -23,6 +24,18 @@ export const updateCustomerInfo = async (
         ],
       },
     })
+    .execute()
+    .then();
+};
+
+export const deleteCustomer = async (customer: Customer): Promise<void> => {
+  const customerId = customer.id;
+  const customerVersion = customer.version;
+
+  await apiRoot
+    .customers()
+    .withId({ ID: customerId })
+    .delete({ queryArgs: { version: customerVersion } })
     .execute()
     .then();
 };

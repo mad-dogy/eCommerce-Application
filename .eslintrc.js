@@ -67,5 +67,7 @@ module.exports = {
     "consistent-return": "off",
     "no-param-reassign": "off",
     "import/no-mutable-exports": "off",
+    "no-restricted-globals": "off",
+    "no-alert": "off"
   }
 }

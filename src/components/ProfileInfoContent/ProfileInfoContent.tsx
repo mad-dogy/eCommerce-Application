@@ -3,8 +3,8 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import LockIcon from '@mui/icons-material/Lock';
-import styles from './ProfileInfoContent.module.scss';
 import { selectShippingAddressInfo, selectBillingAddressInfo } from '../../helpers/getAddressesInfo';
+import styles from './ProfileInfoContent.module.scss';
 
 interface ProfileInfoContentProps {
   customer: Customer;

@@ -11,22 +11,22 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { validationSchema } from './validationSchema';
-import styles from './EditPersonalInfoForm.module.scss';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { getAvailableCountries } from '../../../helpers/setAvailableCountries';
 import { selectBillingAddressInfo, selectShippingAddressInfo } from '../../../helpers/getAddressesInfo';
 import { Select, SelectItem } from '../../UI/Select/Select';
-import { Loader } from '../../UI/Loader/Loader';
-import { CustomerUpdateInfo } from '../../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { Button } from '../../UI/Button/Button';
+import { CustomerUpdateInfo } from '../../../entities/CustomerTypes/CustomerExtendInfo.type';
+import styles from './EditPersonalInfoForm.module.scss';
 
 interface EditPersonalInfoFormProps {
   customer: Customer;
   onSubmit: (data: CustomerUpdateInfo) => Promise<void>;
+  onCancelBtnClick: ()=> void;
 }
 
 export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
-  const { customer, onSubmit } = props;
+  const { customer, onSubmit, onCancelBtnClick } = props;
 
   const shippingAddressInfo = selectShippingAddressInfo(customer);
   const billingAddressInfo = selectBillingAddressInfo(customer);
@@ -388,7 +388,7 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
       {isLoading
         ? <div />
         : (
-          <div>
+          <div className={styles['edit-account-form']}>
             <form className={styles.content}>
               <div className={styles['info-block']}>
                 <h6>
@@ -424,17 +424,26 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
               </div>
 
             </form>
-            <Button
-              className="button_small"
-              variant="outlined"
-              type="submit"
-              onClick={handleSubmit(onSubmit)}
-            >
-              Submit
-            </Button>
+            <div className={styles['confirm-edit-btns']}>
+              <Button
+                className="button_small"
+                variant="outlined"
+                type="submit"
+                onClick={handleSubmit(onSubmit)}
+              >
+                Save
+              </Button>
+              <Button
+                className="button_small"
+                variant="outlined"
+                color="warning"
+                onClick={onCancelBtnClick}
+              >
+                Cancel
+              </Button>
+            </div>
           </div>
         )}
-
     </div>
   );
 };

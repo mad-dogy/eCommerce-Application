@@ -13,16 +13,18 @@
   &__inner {
     max-width: 1200px;
     width: 100%;
-    min-height: 50vh;
+    min-height: 685px;
     height: 100%;
     padding: 30px 25px;
     background: $darkWhite;
     border-radius: 20px;
 
     & h4 {
+      max-width: 100%;
+      width: 100%;
       position: relative;
       text-align: center;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: normal;
     }
   }
@@ -58,4 +60,12 @@
     align-items: center;
     column-gap: 5px;
   }
+}
+
+.edit_btn {
+  cursor: pointer;
+  color: #616161;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
