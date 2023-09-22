@@ -9,6 +9,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { TextFieldsOutlined } from '@mui/icons-material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import { validationSchema } from './validationSchema';
 import styles from './EditPersonalInfoForm.module.scss';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
@@ -128,6 +129,7 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
                     {...field as any}
                     label=""
                     className={styles.data}
+                    defaultValue={dayjs(customer.dateOfBirth)}
                     renderInput={(params: any) => (
                       <TextFieldsOutlined
                         {...params}

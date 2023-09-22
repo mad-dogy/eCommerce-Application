@@ -8,6 +8,7 @@ import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileI
 import { EditControlPanel } from '../../components/EditControlPanel/EditControlPanel';
 import { CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
+import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
@@ -48,6 +49,7 @@ export const ProfilePage = (): JSX.Element => {
 
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
     try {
+      data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       const customerId = localStorage.getItem('customerId');
       await updateCustomerInfo(customerId, data);
       setInfoEdit(false);
@@ -68,7 +70,7 @@ export const ProfilePage = (): JSX.Element => {
                 isEdit={isInfoEdit}
                 onEditBtnClick={onEditBtnClick}
                 onCancelBtnClick={onCancelBtnClick}
-                onSaveBtnClick={onSaveBtnClick}
+                onSaveBtnClick={onSaveBtnClick} // TODO: придумать как связать с формой
               />
             </h4>
 
