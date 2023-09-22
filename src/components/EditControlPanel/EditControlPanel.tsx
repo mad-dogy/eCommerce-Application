@@ -15,6 +15,7 @@ export const EditControlPanel = (props: any) => {
             <Button
               className="button_small"
               variant="outlined"
+              type="submit"
               onClick={onSaveBtnClick}
             >
               Save

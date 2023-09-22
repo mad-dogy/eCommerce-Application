@@ -13,3 +13,5 @@ export interface CustomerExtendInfo {
   billingStreet: string;
   billingPostalCode: string;
 }
+
+export type CustomerUpdateInfo = {email: string} & CustomerExtendInfo;

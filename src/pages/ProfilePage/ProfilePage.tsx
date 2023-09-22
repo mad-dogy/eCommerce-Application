@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { type Customer } from '@commercetools/platform-sdk';
 import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import { Loader } from '../../components/UI/Loader/Loader';
@@ -6,6 +6,8 @@ import styles from './ProfilePage.module.scss';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
 import { EditControlPanel } from '../../components/EditControlPanel/EditControlPanel';
+import { CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
+import { updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
@@ -24,14 +26,34 @@ export const ProfilePage = (): JSX.Element => {
     getCustomerInfo().catch(() => {});
   }, []);
 
-  const onEditBtnClick = (): void => {
+  useEffect(() => {
+    const getCustomerInfo = async () => {
+      setLoading(true);
+      const customerId = localStorage.getItem('customerId');
+      const customerInfo = await getCustomerById(customerId);
+      setCustomer(customerInfo);
+      setLoading(false);
+    };
+
+    getCustomerInfo().catch(() => {});
+  }, [isInfoEdit]);
+
+  const onEditBtnClick = useCallback((): void => {
     setInfoEdit(true);
-  };
-  const onCancelBtnClick = (): void => {
+  }, [setInfoEdit]);
+
+  const onCancelBtnClick = useCallback((): void => {
     setInfoEdit(false);
-  };
-  const onSaveBtnClick = (): void => {
-    setInfoEdit(false);
+  }, [setInfoEdit]);
+
+  const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
+    try {
+      const customerId = localStorage.getItem('customerId');
+      await updateCustomerInfo(customerId, data);
+      setInfoEdit(false);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -52,7 +74,7 @@ export const ProfilePage = (): JSX.Element => {
 
             {isInfoEdit
               ? (
-                <EditPersonalInfoForm customer={customer} />
+                <EditPersonalInfoForm onSubmit={onSaveBtnClick} customer={customer} />
               )
               : <ProfileInfoContent customer={customer} /> }
 
