@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
-import './index.scss';
+import { LOCAL_STORAGE_KEYS } from './constants/constants';
 import AppRouter from './router/AppRouter';
 import { AuthContext } from './context';
+import './index.scss';
 
 export const App = (): JSX.Element => {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('customerId')) {
+    if (localStorage.getItem(LOCAL_STORAGE_KEYS.customerId)) {
       setIsAuth(true);
     }
   }, []);

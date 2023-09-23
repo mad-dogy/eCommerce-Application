@@ -252,7 +252,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
   );
 
   return (
-    <div>
+    <div className={styles.form_content}>
       {isLoading
         ? <Loader />
         : formContent}

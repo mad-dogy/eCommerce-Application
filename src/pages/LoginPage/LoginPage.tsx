@@ -2,11 +2,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { type MyCustomerSignin } from '@commercetools/platform-sdk';
 import { Logo } from '../../components/Logo/Logo';
-import styles from './LoginPage.module.scss';
 import { PUBLIC_ROUTES } from '../../constants/routes';
 import { AuthContext } from '../../context';
 import { signIn } from '../../api/ClientMe';
 import { LoginForm } from '../../components/Forms/LoginForm/LoginForm';
+import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
+import styles from './LoginPage.module.scss';
 
 export const LoginPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const LoginPage = (): JSX.Element => {
     try {
       const customerId = await signIn(data);
       setIsAuth(true);
-      localStorage.setItem('customerId', customerId);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, customerId);
       navigate(PUBLIC_ROUTES.Base);
     } catch (error) {
       alert(error);

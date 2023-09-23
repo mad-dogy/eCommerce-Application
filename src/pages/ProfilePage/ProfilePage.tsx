@@ -1,7 +1,5 @@
 import {
-  useCallback,
-  useContext,
-  useEffect, useState,
+  useCallback, useContext, useEffect, useState,
 } from 'react';
 import { type Customer } from '@commercetools/platform-sdk';
 import EditIcon from '@mui/icons-material/Edit';
@@ -15,6 +13,7 @@ import { AuthContext } from '../../context';
 import { deleteCustomer, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
 import { PUBLIC_ROUTES } from '../../constants/routes';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
+import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = (): JSX.Element => {
@@ -26,7 +25,7 @@ export const ProfilePage = (): JSX.Element => {
   useEffect(() => {
     const getCustomerInfo = async () => {
       setLoading(true);
-      const customerId = localStorage.getItem('customerId');
+      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
       const customerInfo = await getCustomerById(customerId);
       setCustomer(customerInfo);
       setLoading(false);
@@ -38,7 +37,7 @@ export const ProfilePage = (): JSX.Element => {
   useEffect(() => {
     const getCustomerInfo = async () => {
       setLoading(true);
-      const customerId = localStorage.getItem('customerId');
+      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
       const customerInfo = await getCustomerById(customerId);
       setCustomer(customerInfo);
       setLoading(false);
@@ -58,7 +57,7 @@ export const ProfilePage = (): JSX.Element => {
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
     try {
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
-      const customerId = localStorage.getItem('customerId');
+      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
       await updateCustomerInfo(customerId, data);
       setInfoEdit(false);
     } catch (error) {
@@ -75,7 +74,7 @@ export const ProfilePage = (): JSX.Element => {
       try {
         await deleteCustomer(customer);
         setIsAuth(false);
-        localStorage.removeItem('customerId');
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
         navigate(PUBLIC_ROUTES.Base);
       } catch (error) {
         alert(error);
@@ -104,7 +103,13 @@ export const ProfilePage = (): JSX.Element => {
                   customer={customer}
                 />
               )
-              : <ProfileInfoContent customer={customer} /> }
+              : (
+                <ProfileInfoContent
+                  customer={customer}
+                  onChangePasswordBtnClick={onDeleteAccount}
+                  onDeleteBtnClick={onDeleteAccount}
+                />
+              ) }
           </div>
         )}
     </div>

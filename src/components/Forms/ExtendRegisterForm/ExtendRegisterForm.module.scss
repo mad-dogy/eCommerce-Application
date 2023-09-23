@@ -1,6 +1,10 @@
 @import '../../../constants/mixins.scss';
 @import '../../../constants/var.scss';
 
+.form_content {
+  @include flex-column-center
+}
+
 .form {
   margin-top: 10px;
   @include flex-column-center;

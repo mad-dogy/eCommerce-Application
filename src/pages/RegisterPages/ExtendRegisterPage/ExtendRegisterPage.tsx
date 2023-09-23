@@ -4,11 +4,12 @@ import { setCustomerExtendInfo } from '../../../api/Customers/Authorization';
 import { type CustomerExtendInfo } from '../../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { PRIVATE_ROUTES } from '../../../constants/routes';
 import { ExtendRegisterForm } from '../../../components/Forms/ExtendRegisterForm/ExtendRegisterForm';
+import { LOCAL_STORAGE_KEYS } from '../../../constants/constants';
 import styles from '../RegisterPage.module.scss';
 
 export const ExtendRegisterPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const customerId = localStorage.getItem('customerId');
+  const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
 
   const onSubmit = async (data: CustomerExtendInfo): Promise<void> => {
     try {

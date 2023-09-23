@@ -6,6 +6,7 @@ import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
 import { AuthContext } from '../../../context';
 import { signUp } from '../../../api/Customers/Authorization';
 import { BaseRegisterForm } from '../../../components/Forms/BaseRegisterForm/BaseRegisterForm';
+import { LOCAL_STORAGE_KEYS } from '../../../constants/constants';
 import styles from '../RegisterPage.module.scss';
 
 export const BaseRegisterPage = (): JSX.Element => {
@@ -16,7 +17,7 @@ export const BaseRegisterPage = (): JSX.Element => {
     try {
       const customerId = await signUp(data);
       setIsAuth(true);
-      localStorage.setItem('customerId', customerId);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, customerId);
 
       navigate(PRIVATE_ROUTES.ExtendRegisterPage);
     } catch (error) {

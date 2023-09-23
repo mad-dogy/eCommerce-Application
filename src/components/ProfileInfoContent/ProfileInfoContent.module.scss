@@ -1,8 +1,14 @@
 @import '../../constants/mixins.scss';
 @import '../../constants/var.scss';
 
+.profile-info {
+  @include flex-center;
+  flex-direction: column;
+}
+
 .content {
   max-width: 100%;
+  width: 100%;
   margin-top: 15px;
   display: flex;
   align-items: flex-start;
@@ -55,4 +61,12 @@ h6 {
 }
 .item:last-child {
   border: none;
+}
+
+.confirm-edit-btns {
+  margin-top: 15px;
+  max-width: 266px;
+  width: 100%;
+  @include flex-spaceBtw;
+  font-size: 14px;
 }

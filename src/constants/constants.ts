@@ -1,1 +1,3 @@
-export const PROFILE_DEFAULT_SYMBOL = '—';
+export enum LOCAL_STORAGE_KEYS {
+  customerId = 'customerId',
+}
