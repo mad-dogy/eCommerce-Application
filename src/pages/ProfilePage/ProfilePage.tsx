@@ -15,11 +15,14 @@ import { PUBLIC_ROUTES } from '../../constants/routes';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import styles from './ProfilePage.module.scss';
+import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
   const [isLoading, setLoading] = useState(true);
   const [isInfoEdit, setInfoEdit] = useState(false);
+  const [isPasswordEdit, setPasswordEdit] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,6 +56,16 @@ export const ProfilePage = (): JSX.Element => {
   const onCancelBtnClick = useCallback((): void => {
     setInfoEdit(false);
   }, [setInfoEdit]);
+
+  const onChangePasswordBtnClick = () => {
+    setPasswordEdit(true);
+  };
+  const onPasswordCancelBtnClick = () => {
+    setPasswordEdit(false);
+  };
+  const onPasswordSaveBtnClick = () => {
+    setPasswordEdit(false);
+  };
 
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
     try {
@@ -106,10 +119,19 @@ export const ProfilePage = (): JSX.Element => {
               : (
                 <ProfileInfoContent
                   customer={customer}
-                  onChangePasswordBtnClick={onDeleteAccount}
+                  onChangePasswordBtnClick={onChangePasswordBtnClick}
                   onDeleteBtnClick={onDeleteAccount}
                 />
               ) }
+
+            {isPasswordEdit
+              ? (
+                <ChangePasswordModal
+                  onPasswordCancelSave={onPasswordCancelBtnClick}
+                  onPasswordSave={onPasswordSaveBtnClick}
+                />
+              )
+              : <div />}
           </div>
         )}
     </div>

@@ -19,8 +19,26 @@ export const updateCustomerInfo = async (
           { action: 'setLastName', lastName: customerInfo.lastName },
           { action: 'setDateOfBirth', dateOfBirth: customerInfo.dateOfBirth },
           { action: 'changeEmail', email: customerInfo.email },
-          /* { action: 'changeAddress', email: customerInfo.email }, */
-
+          {
+            action: 'changeAddress',
+            addressId: customer.shippingAddressIds[0],
+            address: {
+              country: customerInfo.shippingCountry,
+              city: customerInfo.shippingCity,
+              streetName: customerInfo.shippingStreet,
+              postalCode: customerInfo.shippingPostalCode,
+            },
+          },
+          {
+            action: 'changeAddress',
+            addressId: customer.billingAddressIds[0],
+            address: {
+              country: customerInfo.billingCountry,
+              city: customerInfo.billingCity,
+              streetName: customerInfo.billingStreet,
+              postalCode: customerInfo.billingPostalCode,
+            },
+          },
         ],
       },
     })
