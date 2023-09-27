@@ -7,15 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
-import { CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
 import { AuthContext } from '../../context';
-import { deleteCustomer, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
+import { changeCustomerPassword, deleteCustomer, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
 import { PUBLIC_ROUTES } from '../../constants/routes';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
-import styles from './ProfilePage.module.scss';
+import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal';
+import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
@@ -63,8 +63,13 @@ export const ProfilePage = (): JSX.Element => {
   const onPasswordCancelBtnClick = () => {
     setPasswordEdit(false);
   };
-  const onPasswordSaveBtnClick = () => {
-    setPasswordEdit(false);
+  const onPasswordSaveBtnClick = async (data: PasswordUpdateInfo) => {
+    try {
+      await changeCustomerPassword(customer, data);
+      setPasswordEdit(false);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {

@@ -16,7 +16,7 @@ import { getAvailableCountries } from '../../../helpers/setAvailableCountries';
 import { selectBillingAddressInfo, selectShippingAddressInfo } from '../../../helpers/getAddressesInfo';
 import { Select, SelectItem } from '../../UI/Select/Select';
 import { Button } from '../../UI/Button/Button';
-import { CustomerUpdateInfo } from '../../../entities/CustomerTypes/CustomerExtendInfo.type';
+import { CustomerUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import styles from './EditPersonalInfoForm.module.scss';
 
 interface EditPersonalInfoFormProps {

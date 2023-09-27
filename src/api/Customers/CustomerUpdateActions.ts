@@ -1,7 +1,7 @@
 import { Customer } from '@commercetools/platform-sdk';
-import { CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { apiRoot } from '../server';
 import { getCustomerById } from './GetCustomerInfoActions';
+import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 
 export const updateCustomerInfo = async (
   customerId: string,
@@ -54,6 +54,27 @@ export const deleteCustomer = async (customer: Customer): Promise<void> => {
     .customers()
     .withId({ ID: customerId })
     .delete({ queryArgs: { version: customerVersion } })
+    .execute()
+    .then();
+};
+
+export const changeCustomerPassword = async (
+  customer: Customer,
+  passwordInfo: PasswordUpdateInfo,
+): Promise<void> => {
+  const customerId = customer.id;
+  const customerVersion = customer.version;
+
+  await apiRoot
+    .customers()
+    .password().post({
+      body: {
+        id: customerId,
+        version: customerVersion,
+        currentPassword: passwordInfo.currentPassword,
+        newPassword: passwordInfo.newPassword,
+      },
+    })
     .execute()
     .then();
 };

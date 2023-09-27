@@ -1,8 +1,9 @@
+import { PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import { ChangePasswordForm } from '../Forms/ChangePasswordForm/ChangePasswordForm';
 import styles from './ChangePasswordModal.module.scss';
 
 interface ChangePasswordModalProps {
-  onPasswordSave: () => void;
+  onPasswordSave: (data: PasswordUpdateInfo) => Promise<void>;
   onPasswordCancelSave: () => void;
 }
 export const ChangePasswordModal = (props: ChangePasswordModalProps): JSX.Element => {

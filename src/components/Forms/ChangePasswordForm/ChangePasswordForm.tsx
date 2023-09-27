@@ -4,10 +4,11 @@ import { validationSchema } from './validationSchema';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
 import styles from './ChangePasswordForm.module.scss';
+import { PasswordUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
 
 interface ChangePasswordFormProps {
-  onFormSubmit: (props: any) => Promise<void>;
-  onFormCanceling: (props: any) => Promise<void>;
+  onFormSubmit: (data: PasswordUpdateInfo) => Promise<void>;
+  onFormCanceling: () => void;
 
   className?: string;
 }
@@ -26,40 +27,40 @@ export const ChangePasswordForm = (props: ChangePasswordFormProps): JSX.Element 
     <form className={`${styles.form} ${className}`} onSubmit={handleSubmit(onFormSubmit)}>
 
       <Controller
-        name="password"
+        name="currentPassword"
         control={control}
-        {...register('password')}
+        {...register('currentPassword')}
         render={({ field }) => (
           <PasswordInput
             {...field}
-            placeholder="Enter password"
-            label="Password"
+            placeholder="Enter current password"
+            label="Current password"
             size="small"
             className={styles.input_default}
-            error={Boolean(errors?.password?.message)}
-            helperText={String(errors?.password?.message ?? '')}
+            error={Boolean(errors?.currentPassword?.message)}
+            helperText={String(errors?.currentPassword?.message ?? '')}
           />
         )}
       />
 
       <Controller
-        name="confirmPassword"
+        name="newPassword"
         control={control}
-        {...register('confirmPassword')}
+        {...register('newPassword')}
         render={({ field }) => (
           <PasswordInput
             {...field}
-            placeholder="Confirm password"
-            label="Confirm password"
+            placeholder="New password"
+            label="New password"
             size="small"
             className={styles.input_default}
-            error={Boolean(errors?.confirmPassword?.message)}
-            helperText={String(errors?.confirmPassword?.message ?? '')}
+            error={Boolean(errors?.newPassword?.message)}
+            helperText={String(errors?.newPassword?.message ?? '')}
           />
         )}
       />
 
-      <div className={styles['confirm-edit-btns']}>
+      <div className={styles['confirm-btns']}>
         <Button
           className="button_small"
           variant="outlined"
