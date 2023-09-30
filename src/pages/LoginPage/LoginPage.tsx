@@ -11,12 +11,12 @@ import styles from './LoginPage.module.scss';
 
 export const LoginPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAuth, setAuth } = useContext(AuthContext);
 
   const onLogin = async (data: MyCustomerSignin): Promise<void> => {
     try {
       const customerId = await signIn(data);
-      setIsAuth(true);
+      setAuth(true);
       localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, customerId);
       navigate(PUBLIC_ROUTES.Base);
     } catch (error) {

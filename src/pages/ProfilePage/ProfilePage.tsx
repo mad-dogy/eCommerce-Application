@@ -83,7 +83,7 @@ export const ProfilePage = (): JSX.Element => {
     }
   };
 
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAuth, setAuth } = useContext(AuthContext);
 
   const onDeleteAccount = async (): Promise<void> => {
     const isDelete = confirm('Are you sure that you want to delete an account?'); // TODO: сделать подтверждающую модалку?))
@@ -91,7 +91,7 @@ export const ProfilePage = (): JSX.Element => {
     if (isDelete) {
       try {
         await deleteCustomer(customer);
-        setIsAuth(false);
+        setAuth(false);
         localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
         navigate(PUBLIC_ROUTES.Base);
       } catch (error) {

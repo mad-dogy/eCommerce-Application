@@ -8,12 +8,12 @@ import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import styles from './MainRoot.module.scss';
 
 export const MainRoot = memo(() => {
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAuth, setAuth } = useContext(AuthContext);
 
   const onLogout = useCallback(() => {
-    setIsAuth(false);
+    setAuth(false);
     localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
-  }, [setIsAuth]);
+  }, [setAuth]);
 
   return (
     <div className={styles.mainRoot}>

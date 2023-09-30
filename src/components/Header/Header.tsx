@@ -5,6 +5,7 @@ import { memo } from 'react';
 import { Logo } from '../Logo/Logo';
 import { PUBLIC_ROUTES, PRIVATE_ROUTES } from '../../constants/routes';
 import styles from './Header.module.scss';
+import { Navbar } from '../Navbar/Navbar';
 
 interface HeaderProps {
   isAuth: boolean;
@@ -18,6 +19,8 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
       <Link to={PUBLIC_ROUTES.Base}>
         <Logo />
       </Link>
+
+      <Navbar />
 
       {isAuth
         ? (

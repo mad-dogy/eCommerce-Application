@@ -4,6 +4,9 @@ export enum PUBLIC_ROUTES {
   BaseRegisterPage = '/auth/register',
 
   Cart = '/cart',
+  About = '/about',
+  Catalog = '/catalog',
+
   Base = '/',
   Any = '*',
 
@@ -16,6 +19,9 @@ export enum PRIVATE_ROUTES {
 
   Cart = '/cart',
   Profile = '/profile',
+  About = '/about',
+  Catalog = '/catalog',
+
   Base = '/',
   Any = '*',
 

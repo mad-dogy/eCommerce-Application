@@ -68,6 +68,7 @@ module.exports = {
     "no-param-reassign": "off",
     "import/no-mutable-exports": "off",
     "no-restricted-globals": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "linebreak-style": "off"
   }
 }

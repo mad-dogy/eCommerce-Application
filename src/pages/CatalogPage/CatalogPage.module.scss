@@ -1,0 +1,11 @@
+@import '../../constants/mixins.scss';
+@import '../../constants/var.scss';
+
+.catalog {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}

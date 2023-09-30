@@ -5,18 +5,18 @@ import { AuthContext } from './context';
 import './index.scss';
 
 export const App = (): JSX.Element => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setAuth] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem(LOCAL_STORAGE_KEYS.customerId)) {
-      setIsAuth(true);
+      setAuth(true);
     }
   }, []);
 
   const value = useMemo(() => ({
     isAuth,
-    setIsAuth,
-  }), [isAuth, setIsAuth]);
+    setAuth,
+  }), [isAuth, setAuth]);
 
   return (
     <AuthContext.Provider value={value}>

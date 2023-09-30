@@ -11,6 +11,8 @@ import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { CartPage } from '../pages/CartPage/CartPage';
 import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
+import { CatalogPage } from '../pages/CatalogPage/CatalogPage';
+import { AboutPage } from '../pages/AboutPage/AboutPage';
 
 const publicRouter = createHashRouter([
   {
@@ -48,6 +50,16 @@ const publicRouter = createHashRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: PUBLIC_ROUTES.Catalog,
+            element: <CatalogPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: PUBLIC_ROUTES.About,
+            element: <AboutPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: PUBLIC_ROUTES.Any,
             element: <NotFoundPage />,
             errorElement: <ErrorPage />,
@@ -64,7 +76,7 @@ const privateRouter = createHashRouter([
     element: <AppRoot />,
     children: [
       {
-        path: PUBLIC_ROUTES.Auth,
+        path: PRIVATE_ROUTES.Auth,
         element: <AuthRoot />,
         children: [
           {
@@ -94,7 +106,17 @@ const privateRouter = createHashRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: PUBLIC_ROUTES.Any,
+            path: PRIVATE_ROUTES.Catalog,
+            element: <CatalogPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: PRIVATE_ROUTES.About,
+            element: <AboutPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: PRIVATE_ROUTES.Any,
             element: <NotFoundPage />,
             errorElement: <ErrorPage />,
           },

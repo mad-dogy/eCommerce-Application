@@ -11,12 +11,12 @@ import styles from '../RegisterPage.module.scss';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAuth, setAuth } = useContext(AuthContext);
 
   const onSubmit = async (data: CustomerDraft): Promise<void> => {
     try {
       const customerId = await signUp(data);
-      setIsAuth(true);
+      setAuth(true);
       localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, customerId);
 
       navigate(PRIVATE_ROUTES.ExtendRegisterPage);
