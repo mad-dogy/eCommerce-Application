@@ -15,9 +15,10 @@
   letter-spacing: .06rem;
   color: $lightBlack;
   max-width: 170px;
+  min-width: 160px;
   position: relative;
 }
 .select div {
-  padding: 8px;
+  padding: 6px;
   height: 0;
 }

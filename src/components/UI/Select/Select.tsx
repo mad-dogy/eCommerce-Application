@@ -13,8 +13,8 @@ export interface SelectItem {
 interface SelectProps extends MuiSelectProps {
   label: string;
   selectItems: SelectItem[];
-  error: boolean;
-  helperText: string;
+  error?: boolean;
+  helperText?: string;
 }
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
