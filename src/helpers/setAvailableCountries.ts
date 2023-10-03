@@ -19,6 +19,15 @@ export const getAvailableCountries = async (setCountries: any): Promise<void> =>
       case 'AU':
         availableCountries.push({ value: element, name: 'Australia (AU)' });
         break;
+      case 'RU':
+        availableCountries.push({ value: element, name: 'Russia (RU)' });
+        break;
+      case 'FR':
+        availableCountries.push({ value: element, name: 'France (FR)' });
+        break;
+      case 'PL':
+        availableCountries.push({ value: element, name: 'Poland (PL)' });
+        break;
       default: break;
     }
   });
