@@ -2,18 +2,19 @@ import { useEffect, useState } from 'react';
 import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsContainer } from '../../components/ProductsContainer/ProductsContainer';
-import styles from './CatalogPage.module.scss';
 import { queryProducts } from '../../api/Products/Products';
+import styles from './CatalogPage.module.scss';
+import { Loader } from '../../components/UI/Loader/Loader';
 
 export const CatalogPage = () => {
-  const [products, setProducts] = useState<Product[]>();
-  const [IsLoading, setLoading] = useState(true);
+  const [products, setProducts] = useState<ProductPagedQueryResponse>();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
       const productsFromServer = await queryProducts();
-      setProducts(productsFromServer.results);
+      setProducts(productsFromServer);
       setLoading(false);
     };
 
@@ -23,7 +24,9 @@ export const CatalogPage = () => {
   return (
     <div className={styles.catalog}>
       <FilterPanel />
-      <ProductsContainer products="" />
+      {isLoading
+        ? <Loader />
+        : <ProductsContainer productsInfo={products} />}
     </div>
   );
 };

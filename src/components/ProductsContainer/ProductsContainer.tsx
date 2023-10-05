@@ -1,10 +1,18 @@
+import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { ProductItem } from '../ProductItem/ProductItem';
+import styles from './ProductsContainer.module.scss';
+
 interface ProductsContainerProps {
-  products: string;
+  productsInfo: ProductPagedQueryResponse;
 }
 
 export const ProductsContainer = (props: ProductsContainerProps) => {
-  const { products } = props;
+  const { productsInfo } = props;
+  const products = productsInfo.results;
+
   return (
-    <div>Products container</div>
+    <div className={styles.container}>
+      {products.map(item => <ProductItem product={item} />)}
+    </div>
   );
 };
