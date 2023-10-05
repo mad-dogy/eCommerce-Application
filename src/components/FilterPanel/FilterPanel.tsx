@@ -5,15 +5,15 @@ import { Select } from '../UI/Select/Select';
 export const FilterPanel = () => (
   <div className={styles['filter-panel']}>
     <SearchInput />
-    <div>
-      <span>
+    <div className={styles['order-panel']}>
+      <span className={styles['order-item']}>
         order by
         <Select
           label=""
           selectItems={[{ name: 'price', value: 'price' }]}
         />
       </span>
-      <span>
+      <span className={styles['order-item']}>
         order by
         <Select
           label=""

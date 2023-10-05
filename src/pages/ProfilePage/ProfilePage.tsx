@@ -34,7 +34,7 @@ export const ProfilePage = (): JSX.Element => {
       setLoading(false);
     };
 
-    getCustomerInfo().catch(() => {});
+    getCustomerInfo().catch((error) => { alert(error); });
   }, []);
 
   useEffect(() => {

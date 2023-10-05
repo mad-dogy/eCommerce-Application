@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 interface ProductsContainerProps {
   products: string;
 }

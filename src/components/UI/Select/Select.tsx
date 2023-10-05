@@ -15,6 +15,7 @@ interface SelectProps extends MuiSelectProps {
   selectItems: SelectItem[];
   error?: boolean;
   helperText?: string;
+  className?: string
 }
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
