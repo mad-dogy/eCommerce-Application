@@ -7,6 +7,13 @@ interface ProductItemProps {
 
 export const ProductItem = (props: ProductItemProps) => {
   const { product } = props;
+  const productInfo = product.masterData.current;
+  const productName = productInfo.name['en-US'];
+  const productPrice = productInfo.masterVariant.prices[0]?.value.centAmount || 0;
+  const productPriceCurrency = productInfo.masterVariant.prices[0]?.value.currencyCode || 'USD';
+
+  console.log(product);
+
   return (
     <div className={styles.product}>
       <img
@@ -14,7 +21,15 @@ export const ProductItem = (props: ProductItemProps) => {
         alt=""
         className={styles.product__img}
       />
-      {product.masterData.current.name['en-US']}
+      <div className={styles.product__characteristic}>
+        <div className={styles.name}>
+          {productName}
+        </div>
+        <div className={styles.price}>
+          {`${productPrice / 100} ${productPriceCurrency}`}
+        </div>
+      </div>
+
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsContainer } from '../../components/ProductsContainer/ProductsContainer';
 import { queryProducts } from '../../api/Products/Products';
-import styles from './CatalogPage.module.scss';
 import { Loader } from '../../components/UI/Loader/Loader';
+import styles from './CatalogPage.module.scss';
 
 export const CatalogPage = () => {
   const [products, setProducts] = useState<ProductPagedQueryResponse>();
