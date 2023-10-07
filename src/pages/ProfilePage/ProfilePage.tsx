@@ -14,7 +14,7 @@ import { PUBLIC_ROUTES } from '../../constants/routes';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
-import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal';
+import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal/ChangePasswordModal';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = (): JSX.Element => {

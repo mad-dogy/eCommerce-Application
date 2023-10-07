@@ -69,6 +69,8 @@ module.exports = {
     "import/no-mutable-exports": "off",
     "no-restricted-globals": "off",
     "no-alert": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }

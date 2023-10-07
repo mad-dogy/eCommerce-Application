@@ -1,5 +1,5 @@
-import { PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
-import { ChangePasswordForm } from '../Forms/ChangePasswordForm/ChangePasswordForm';
+import { PasswordUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
+import { ChangePasswordForm } from '../../Forms/ChangePasswordForm/ChangePasswordForm';
 import styles from './ChangePasswordModal.module.scss';
 
 interface ChangePasswordModalProps {

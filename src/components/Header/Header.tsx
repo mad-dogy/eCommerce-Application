@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { memo } from 'react';
 import { Logo } from '../Logo/Logo';
 import { PUBLIC_ROUTES, PRIVATE_ROUTES } from '../../constants/routes';
-import styles from './Header.module.scss';
 import { Navbar } from '../Navbar/Navbar';
+import styles from './Header.module.scss';
 
 interface HeaderProps {
   isAuth: boolean;
