@@ -1,14 +1,28 @@
-import { Product } from '@commercetools/platform-sdk';
+import { ProductData } from '@commercetools/platform-sdk';
+import CircleIcon from '@mui/icons-material/Circle';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useState } from 'react';
 import CloseBtn from '../../../assets/cross.svg';
 import styles from './ProductItemModal.module.scss';
 
 interface ProductItemModalProps {
-  productInfo: Product;
+  product: ProductData;
   onCloseBtnClick: () => void;
 }
 
 export const ProductItemModal = (props: ProductItemModalProps) => {
-  const { productInfo, onCloseBtnClick } = props;
+  const { product, onCloseBtnClick } = props;
+
+  const [imgNumber, setImgNumber] = useState(0);
+
+  const productName = product.name['en-US'];
+  const productDescription = product.description['en-US'];
+  const productCategories = product.categories;
+  console.log(productCategories);
+
+  const productImages = product.masterVariant.images;
+  const productPrice = product.masterVariant.prices[0]?.value.centAmount || 0;
+  const productPriceCurrency = product.masterVariant.prices[0]?.value.currencyCode || 'USD';
 
   return (
     <div className={styles.wrapper}>
@@ -16,7 +30,29 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
         <div className={styles['close-btn']} onClick={onCloseBtnClick}>
           <CloseBtn />
         </div>
-        <div>{productInfo.masterData.current.name['en-US']}</div>
+        <div className={styles['imgs-container']}>
+          {productImages.length > 1
+            ? (
+              <div className={styles['img-container']}>
+                <ArrowForwardIosIcon className={styles.forward_back} />
+                <img src={productImages[imgNumber].url} alt="" className={styles.img} />
+                <ArrowForwardIosIcon />
+              </div>
+            )
+            : <img src={productImages[imgNumber].url} alt="" className={styles.img} />}
+
+          <div>{productImages.map(() => <CircleIcon />)}</div>
+
+        </div>
+
+        <div>{productName}</div>
+        <div>{productDescription}</div>
+        <div>
+          Categories:
+          {' '}
+          {productCategories.map(category => <span>{category.id || ''}</span>)}
+        </div>
+
       </div>
     </div>
   );

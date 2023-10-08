@@ -12,16 +12,16 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  overflow-y: auto;
 
   & .window {
     position: relative;
     @include flex-center;
+    justify-content: flex-start;
     flex-direction: column;
-    width: 400px;
-    max-height: 300px;
+    width: 600px;
+    max-height: 600px;
     height: 100%;
-    padding: 0;
+    padding: 10px;
     z-index: 1;
     margin: 30px 15px;
     background-color: $darkWhite;
@@ -47,6 +47,42 @@
     .close-btn:hover{
       cursor: pointer;
       background: #ffffff;
+    }
+
+    & .imgs-container {
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      row-gap: 8px;
+
+      & .img-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 12px;
+
+        & .img {
+          max-width: 500px;
+          width: 100%;
+          border-radius: 6px;
+        }
+
+        & .forward_back {
+          transform: rotate(180deg);
+        }
+      }
+
+      & .img {
+        max-width: 500px;
+        width: 100%;
+        border-radius: 6px;
+      }
     }
   }
 }

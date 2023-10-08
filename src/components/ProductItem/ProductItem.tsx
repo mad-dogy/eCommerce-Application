@@ -14,6 +14,7 @@ export const ProductItem = (props: ProductItemProps) => {
   const [isInfoOpened, setInfoOpened] = useState(false);
 
   const productInfo = product.masterData.current;
+  const productImgUrl = productInfo.masterVariant.images[0].url;
   const productName = productInfo.name['en-US'];
   const productPrice = productInfo.masterVariant.prices[0]?.value.centAmount || 0;
   const productPriceCurrency = productInfo.masterVariant.prices[0]?.value.currencyCode || 'USD';
@@ -23,6 +24,7 @@ export const ProductItem = (props: ProductItemProps) => {
 
   const onOpenItem = () => {
     setInfoOpened(true);
+    setTimeout(() => setInfoOpened(false), 3000);
   };
 
   const onCloseItem = () => {
@@ -32,7 +34,7 @@ export const ProductItem = (props: ProductItemProps) => {
   return (
     <div className={styles.product} onClick={onOpenItem}>
       <img
-        src={product.masterData.staged.masterVariant.images[0].url}
+        src={productImgUrl}
         alt=""
         className={styles.product__img}
       />
@@ -48,7 +50,7 @@ export const ProductItem = (props: ProductItemProps) => {
       <Button className={styles.btn}>To cart</Button>
 
       {isInfoOpened
-        ? <ProductItemModal productInfo={product} onCloseBtnClick={onCloseItem} />
+        ? <ProductItemModal product={productInfo} onCloseBtnClick={onCloseItem} />
         : <div />}
     </div>
   );
