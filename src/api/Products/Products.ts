@@ -1,4 +1,4 @@
-import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import { apiRoot } from '../server';
 
 const defaultProducts: ProductPagedQueryResponse = {
@@ -9,7 +9,7 @@ const defaultProducts: ProductPagedQueryResponse = {
   results: [],
 };
 
-export const queryProducts = async () => {
+export const queryProducts = async (): Promise<ProductPagedQueryResponse> => {
   const products = await apiRoot
     .products()
     .get()

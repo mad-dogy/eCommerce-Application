@@ -19,12 +19,9 @@ export const ProductItem = (props: ProductItemProps) => {
   const productPrice = productInfo.masterVariant.prices[0]?.value.centAmount || 0;
   const productPriceCurrency = productInfo.masterVariant.prices[0]?.value.currencyCode || 'USD';
 
-  console.log(product);
-  console.log(isInfoOpened);
-
   const onOpenItem = () => {
     setInfoOpened(true);
-    setTimeout(() => setInfoOpened(false), 3000);
+    setTimeout(() => setInfoOpened(false), 5000);
   };
 
   const onCloseItem = () => {
