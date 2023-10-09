@@ -1,5 +1,5 @@
 import { Product } from '@commercetools/platform-sdk';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './ProductItem.module.scss';
 import { Button } from '../UI/Button/Button';
 import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemModal';
@@ -21,10 +21,10 @@ export const ProductItem = (props: ProductItemProps) => {
 
   const onOpenItem = () => {
     setInfoOpened(true);
-    setTimeout(() => setInfoOpened(false), 5000);
   };
 
-  const onCloseItem = () => {
+  const onCloseItem = (event: React.MouseEvent) => {
+    event.stopPropagation();
     setInfoOpened(false);
   };
 
