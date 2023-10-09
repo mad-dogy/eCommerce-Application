@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 .app {
   font-size: 30px;
   background: $darkWhite;

@@ -1,35 +1,24 @@
 import { Product } from '@commercetools/platform-sdk';
-import React, { useState } from 'react';
-import styles from './ProductItem.module.scss';
 import { Button } from '../UI/Button/Button';
-import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemModal';
+import styles from './ProductItem.module.scss';
 
 interface ProductItemProps {
   product: Product;
+  onItemClick: (productId: string) => void
 }
 
 export const ProductItem = (props: ProductItemProps) => {
-  const { product } = props;
+  const { product, onItemClick } = props;
 
-  const [isInfoOpened, setInfoOpened] = useState(false);
-
+  const productId = product.id;
   const productInfo = product.masterData.current;
   const productImgUrl = productInfo.masterVariant.images[0].url;
   const productName = productInfo.name['en-US'];
   const productPrice = productInfo.masterVariant.prices[0]?.value.centAmount || 0;
   const productPriceCurrency = productInfo.masterVariant.prices[0]?.value.currencyCode || 'USD';
 
-  const onOpenItem = () => {
-    setInfoOpened(true);
-  };
-
-  const onCloseItem = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    setInfoOpened(false);
-  };
-
   return (
-    <div className={styles.product} onClick={onOpenItem}>
+    <div className={styles.product} onClick={() => onItemClick(productId)}>
       <img
         src={productImgUrl}
         alt=""
@@ -45,10 +34,6 @@ export const ProductItem = (props: ProductItemProps) => {
       </div>
 
       <Button className={styles.btn}>To cart</Button>
-
-      {isInfoOpened
-        ? <ProductItemModal product={productInfo} onCloseBtnClick={onCloseItem} />
-        : <div />}
     </div>
   );
 };

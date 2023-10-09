@@ -1,5 +1,5 @@
-import styles from './Loader.module.scss';
+import LoaderSvg from '../../../assets/loader.svg';
 
 export const Loader = (): JSX.Element => (
-  <div className={styles.loader} />
+  <div><LoaderSvg /></div>
 );

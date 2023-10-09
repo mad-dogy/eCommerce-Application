@@ -26,6 +26,11 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     ],
   };
 
+  const cssLoader = {
+    test: /\.css$/,
+    use: [ 'style-loader', 'css-loader' ]
+  }
+
   const svgLoader = {
     test: /\.svg$/,
     use: ['@svgr/webpack'],

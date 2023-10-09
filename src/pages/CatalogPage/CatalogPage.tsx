@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
-import { ProductsContainer } from '../../components/ProductsContainer/ProductsContainer';
+import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { queryProducts } from '../../api/Products/Products';
 import { Loader } from '../../components/UI/Loader/Loader';
 import styles from './CatalogPage.module.scss';
@@ -26,7 +26,7 @@ export const CatalogPage = () => {
       <FilterPanel />
       {isLoading
         ? <Loader />
-        : <ProductsContainer productsInfo={products} />}
+        : <ProductsList productsInfo={products} />}
     </div>
   );
 };

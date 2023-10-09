@@ -3,6 +3,7 @@ import { LOCAL_STORAGE_KEYS } from './constants/constants';
 import AppRouter from './router/AppRouter';
 import { AuthContext } from './context';
 import './index.scss';
+/* import 'swiper/css'; */
 
 export const App = (): JSX.Element => {
   const [isAuth, setAuth] = useState(false);
