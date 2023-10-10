@@ -5,10 +5,16 @@ import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { queryProducts } from '../../api/Products/Products';
 import { Loader } from '../../components/UI/Loader/Loader';
 import styles from './CatalogPage.module.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { catalogSlice } from '../../store/reducers/catalogSlice';
 
 export const CatalogPage = () => {
   const [products, setProducts] = useState<ProductPagedQueryResponse>();
   const [isLoading, setLoading] = useState(true);
+
+  const { count } = useAppSelector(state => state.catalogReducer);
+  const { increment } = catalogSlice.actions;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -23,6 +29,8 @@ export const CatalogPage = () => {
 
   return (
     <div className={styles.catalog}>
+      <div>{count}</div>
+      <button onClick={() => dispatch(increment(5))}>increment</button>
       <FilterPanel />
       {isLoading
         ? <Loader />
