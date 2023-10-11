@@ -1,7 +1,7 @@
 import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import { apiRoot } from '../server';
 
-const defaultProducts: ProductPagedQueryResponse = {
+export const defaultProducts: ProductPagedQueryResponse = {
   limit: 20,
   offset: 0,
   count: 0,

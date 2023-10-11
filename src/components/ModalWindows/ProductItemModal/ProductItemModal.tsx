@@ -54,7 +54,7 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
             isLoading
               ? <Loader />
               : (
-                <div>
+                <div className={styles.window__inner}>
                   <div className={styles['imgs-container']}>
                     {productImages.length > 1
                       ? (
@@ -67,7 +67,18 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
                       : <img src={productImages[imgNumber].url} alt="" className={styles.img} />}
                   </div>
 
-                  <div className={styles['img-slider-items']}>{productImages.map(() => <CircleIcon />)}</div>
+                  {productImages.length > 1
+                    ? (
+                      <div className={styles['img-slider-items']}>
+                        {productImages.map((item, index) => {
+                          if (index === imgNumber) {
+                            return <CircleIcon className={`${styles['slider-item_active']}`} />;
+                          }
+                          return <CircleIcon className={styles['slider-item']} />;
+                        })}
+                      </div>
+                    )
+                    : <div />}
 
                   <div className={styles.info}>
                     <div className={styles.info__name}>{productName}</div>

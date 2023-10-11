@@ -1,17 +1,36 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { defaultProducts } from '../../api/Products/Products';
 
-const initialState = {
-  count: 0,
+interface ProductState {
+  products: ProductPagedQueryResponse;
+  isLoading: boolean;
+  error: string;
+}
+
+const initialState: ProductState = {
+  products: defaultProducts,
+  isLoading: false,
+  error: '',
 };
 
 export const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
-    increment(state, action: PayloadAction<number>) {
-      state.count += action.payload;
+    productsFetching(state) {
+      state.isLoading = true;
+    },
+    productsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
+      state.products = action.payload;
+      state.isLoading = false;
+      state.error = '';
+    },
+    productsFetchingError(state, action: PayloadAction<string>) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export default catalogSlice.reducer;
+export const catalogReducer = catalogSlice.reducer;

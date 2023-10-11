@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import catalogReducer from './reducers/catalogSlice';
+import { catalogReducer } from './reducers/catalogSlice';
 
 const rootReducer = combineReducers({
   catalogReducer,

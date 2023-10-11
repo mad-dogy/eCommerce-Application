@@ -12,7 +12,6 @@ export const ProductsList = (props: ProductsContainerProps) => {
   const { productsInfo } = props;
 
   const [currentProductId, setCurrentProductId] = useState('');
-
   const products = productsInfo.results;
 
   const onItemClick = (productId: string) => {
