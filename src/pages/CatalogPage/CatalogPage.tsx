@@ -26,7 +26,10 @@ export const CatalogPage = () => {
   }, [search.query]);
 
   useEffect(() => {
-    dispatch(fetchSortProducts(sort.option, sort.order));
+    const dispatchSortProducts = async () => {
+      await dispatch(fetchSortProducts(sort.option, sort.order));
+    };
+    dispatchSortProducts().finally(() => dispatch(searchProducts(search.query)));
   }, [sort.option, sort.order]);
 
   return (

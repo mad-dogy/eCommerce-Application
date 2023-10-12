@@ -24,6 +24,12 @@ export const querySortProducts = async (
   sortOption: string,
   sortOrder: string,
 ): Promise<ProductPagedQueryResponse> => {
+  switch (sortOption) {
+    case 'name': sortOption = 'masterData.current.name.en-US'; break;
+    case 'createdAt': sortOption = 'createdAt'; break;
+    default: sortOption = 'id';
+  }
+
   sortOrder = sortOrder.toLowerCase();
 
   const products = await apiRoot

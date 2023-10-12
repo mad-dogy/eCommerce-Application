@@ -50,7 +50,6 @@ export const catalogSlice = createSlice({
     },
     sortProductsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
       state.products = action.payload;
-      state.searchedProducts = action.payload;
 
       state.isLoading = false;
       state.error = '';

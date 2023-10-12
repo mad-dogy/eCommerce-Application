@@ -29,10 +29,9 @@ export const FilterPanel = (props: FilterPanelProps) => {
             onChange={(event) => setSort({ ...sort, option: event.target.value as string })}
             label=""
             selectItems={[
-              { name: 'Price', value: 'id' },
-              { name: 'Name', value: 'masterData.current.name.en-US' },
+              { name: 'ID', value: 'id' },
+              { name: 'Name', value: 'name' },
               { name: 'Date of creation', value: 'createdAt' },
-
             ]}
           />
         </span>
