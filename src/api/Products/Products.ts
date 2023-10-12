@@ -20,6 +20,22 @@ export const queryProducts = async (): Promise<ProductPagedQueryResponse> => {
   return defaultProducts;
 };
 
+export const querySortProducts = async (
+  sortOption: string,
+  sortOrder: string,
+): Promise<ProductPagedQueryResponse> => {
+  sortOrder = sortOrder.toLowerCase();
+
+  const products = await apiRoot
+    .products()
+    .get({ queryArgs: { sort: `${sortOption} ${sortOrder}` } })
+    .execute()
+    .then(({ body }) => body)
+    .catch((error) => alert(error));
+  if (products) return products;
+  return defaultProducts;
+};
+
 export const getProductById = async (id: string): Promise<Product> => {
   const product = await apiRoot
     .products()

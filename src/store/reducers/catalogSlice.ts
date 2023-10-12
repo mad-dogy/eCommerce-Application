@@ -44,6 +44,21 @@ export const catalogSlice = createSlice({
         state.searchedProducts = state.products;
       }
     },
+
+    sortProductsFetching(state) {
+      state.isLoading = true;
+    },
+    sortProductsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
+      state.products = action.payload;
+      state.searchedProducts = action.payload;
+
+      state.isLoading = false;
+      state.error = '';
+    },
+    sortProductsFetchingError(state, action: PayloadAction<string>) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 

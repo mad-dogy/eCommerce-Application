@@ -3,7 +3,7 @@ import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchProducts } from '../../store/reducers/actionCreators';
+import { fetchProducts, fetchSortProducts } from '../../store/reducers/actionCreators';
 import { catalogSlice } from '../../store/reducers/catalogSlice';
 import styles from './CatalogPage.module.scss';
 
@@ -15,7 +15,7 @@ export const CatalogPage = () => {
   const { searchProducts } = catalogSlice.actions;
 
   const [search, setSearch] = useState({ query: '' });
-  console.log(search.query);
+  const [sort, setSort] = useState({ option: 'id', order: 'ASC' });
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -25,9 +25,18 @@ export const CatalogPage = () => {
     dispatch(searchProducts(search.query));
   }, [search.query]);
 
+  useEffect(() => {
+    dispatch(fetchSortProducts(sort.option, sort.order));
+  }, [sort.option, sort.order]);
+
   return (
     <div className={styles.catalog}>
-      <FilterPanel search={search} setSearch={setSearch} />
+      <FilterPanel
+        search={search}
+        setSearch={setSearch}
+        sort={sort}
+        setSort={setSort}
+      />
       {error ?? <div>{error}</div>}
       {isLoading
         ? <Loader />
