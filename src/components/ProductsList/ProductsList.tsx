@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ProductItem } from '../ProductItem/ProductItem';
 import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemModal';
 import styles from './ProductsList.module.scss';
+import { Pagination } from '../Pagination/Pagination';
 
 interface ProductsContainerProps {
   productsInfo: ProductPagedQueryResponse;
@@ -26,6 +27,7 @@ export const ProductsList = (props: ProductsContainerProps) => {
     <div className={styles.container}>
       {products.map(item => <ProductItem product={item} onItemClick={onItemClick} />)}
       <ProductItemModal productId={currentProductId} onCloseBtnClick={onCloseModal} />
+      <Pagination />
     </div>
   );
 };

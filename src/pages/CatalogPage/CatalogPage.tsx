@@ -10,7 +10,7 @@ import styles from './CatalogPage.module.scss';
 export const CatalogPage = () => {
   const dispatch = useAppDispatch();
   const {
-    products, searchedProducts, isLoading, error,
+    searchedProducts, isLoading, error,
   } = useAppSelector(state => state.catalogReducer);
   const { searchProducts } = catalogSlice.actions;
 
