@@ -11,6 +11,9 @@ interface ProductState {
   total: number;
   limit: number;
 
+  pagesAmount: number;
+  currentPageNumber: number;
+
   queryString: string;
   querySortOption: QuerySortOptionType;
   querySortOrder: QuerySortOrderType;
@@ -24,6 +27,9 @@ const initialState: ProductState = {
   searchedProducts: defaultProductsResponse.results,
   total: defaultProductsResponse.total,
   limit: defaultProductsResponse.limit,
+
+  pagesAmount: 1,
+  currentPageNumber: 1,
 
   queryString: '',
   querySortOption: 'id',
@@ -47,6 +53,8 @@ export const catalogSlice = createSlice({
       state.total = action.payload.total;
       state.limit = action.payload.limit;
 
+      state.pagesAmount = Math.ceil(state.total / state.limit);
+
       state.isLoading = false;
       state.error = '';
     },
@@ -69,6 +77,7 @@ export const catalogSlice = createSlice({
     },
     sortProductsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
       state.products = action.payload.results;
+      state.pagesAmount = Math.ceil(state.total / state.limit);
 
       state.isLoading = false;
       state.error = '';
@@ -89,6 +98,10 @@ export const catalogSlice = createSlice({
     },
     setLimit(state, action: PayloadAction<number>) {
       state.limit = action.payload;
+      state.pagesAmount = Math.ceil(state.total / state.limit);
+    },
+    setCurrentPageNumber(state, action: PayloadAction<number>) {
+      state.currentPageNumber = action.payload;
     },
   },
 });

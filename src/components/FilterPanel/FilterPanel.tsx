@@ -8,11 +8,10 @@ interface FilterPanelProps {
   onSearchValueChange: (value: string) => void;
 
   sortOption: QuerySortOptionType;
-  sortOrder: QuerySortOrderType;
-
   onSortOptionChange: (value: QuerySortOptionType) => void;
-  onSortOrderChange: (value: QuerySortOrderType) => void;
 
+  sortOrder: QuerySortOrderType;
+  onSortOrderChange: (value: QuerySortOrderType) => void;
 }
 export const FilterPanel = (props: FilterPanelProps) => {
   const {

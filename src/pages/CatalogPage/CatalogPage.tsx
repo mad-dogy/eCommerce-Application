@@ -13,6 +13,8 @@ export const CatalogPage = () => {
     searchedProducts,
     total,
     limit,
+    pagesAmount,
+    currentPageNumber,
     queryString,
     querySortOption,
     querySortOrder,
@@ -20,11 +22,16 @@ export const CatalogPage = () => {
     error,
   } = useAppSelector(state => state.catalogReducer);
   const {
-    searchProducts, setQueryString, setQuerySortOption, setQuerySortOrder, setLimit,
+    searchProducts,
+    setQueryString, setQuerySortOption, setQuerySortOrder,
+    setLimit,
+    setCurrentPageNumber,
   } = catalogSlice.actions;
 
+  // TODO: поиграться с offset и исправить пагинацию,
+  // т.к думала что offset это страница, а это оказалось какое кол-во элементов надо пропустить
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(limit, currentPageNumber));
   }, []);
 
   useEffect(() => {
@@ -33,10 +40,18 @@ export const CatalogPage = () => {
 
   useEffect(() => {
     const dispatchSortProducts = async () => {
-      await dispatch(fetchSortProducts(querySortOption, querySortOrder));
+      await dispatch(fetchSortProducts(limit, currentPageNumber, querySortOption, querySortOrder));
     };
     dispatchSortProducts().finally(() => dispatch(searchProducts(queryString)));
   }, [querySortOption, querySortOrder]);
+
+  useEffect(() => {
+    dispatch(fetchProducts(limit, currentPageNumber));
+  }, [limit]);
+
+  useEffect(() => {
+    dispatch(fetchProducts(limit, currentPageNumber));
+  }, [currentPageNumber]);
 
   const onQueryStringChange = (value: string) => {
     dispatch(setQueryString(value));
@@ -46,6 +61,12 @@ export const CatalogPage = () => {
   };
   const onQuerySortOrderChange = (value: QuerySortOrderType) => {
     dispatch(setQuerySortOrder(value));
+  };
+  const onLimitChange = (value: number) => {
+    dispatch(setLimit(value));
+  };
+  const onCurrentPageNumberChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    dispatch(setCurrentPageNumber(value));
   };
 
   return (
@@ -64,7 +85,11 @@ export const CatalogPage = () => {
         : (
           <ProductsList
             products={searchedProducts}
-            pagesCount={Math.ceil(total / 20)}
+            pagesCount={pagesAmount}
+            currentPage={currentPageNumber}
+            handleChangePage={onCurrentPageNumberChange}
+            productsLimit={limit}
+            onChangeProductsLimit={onLimitChange}
           />
         )}
     </div>

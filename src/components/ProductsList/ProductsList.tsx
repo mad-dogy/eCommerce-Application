@@ -8,10 +8,21 @@ import styles from './ProductsList.module.scss';
 interface ProductsContainerProps {
   products: Product[];
   pagesCount: number;
+
+  currentPage: number;
+  handleChangePage: (event: React.ChangeEvent<unknown>, value: number) => void;
+
+  productsLimit: number;
+  onChangeProductsLimit: (value: number) => void;
 }
 
 export const ProductsList = (props: ProductsContainerProps) => {
-  const { products, pagesCount } = props;
+  const {
+    products,
+    pagesCount,
+    currentPage, handleChangePage,
+    productsLimit, onChangeProductsLimit,
+  } = props;
 
   const [currentProductId, setCurrentProductId] = useState('');
   const [page, setPage] = useState(1);
@@ -24,10 +35,6 @@ export const ProductsList = (props: ProductsContainerProps) => {
     setCurrentProductId('');
   };
 
-  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
-
   return (
     <div className={styles.list}>
       <div className={styles.list__container}>
@@ -36,8 +43,10 @@ export const ProductsList = (props: ProductsContainerProps) => {
       <ProductItemModal productId={currentProductId} onCloseBtnClick={onCloseModal} />
       <Pagination
         pagesCount={pagesCount}
-        page={page}
+        currentPage={currentPage}
         handleChangePage={handleChangePage}
+        productsLimit={productsLimit}
+        onChangeProductsLimit={onChangeProductsLimit}
       />
     </div>
   );
