@@ -1,17 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
-import { defaultProducts } from '../../api/Products/Products';
+import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { defaultProductsResponse } from '../../api/Products/Products';
+
+export type QuerySortOptionType = 'id' | 'name' | 'createdAt';
+export type QuerySortOrderType = 'asc' | 'desc';
 
 interface ProductState {
-  products: ProductPagedQueryResponse;
-  searchedProducts: ProductPagedQueryResponse;
+  products: Product[];
+  searchedProducts: Product[];
+  total: number;
+  limit: number;
+
+  queryString: string;
+  querySortOption: QuerySortOptionType;
+  querySortOrder: QuerySortOrderType;
+
   isLoading: boolean;
   error: string;
 }
 
 const initialState: ProductState = {
-  products: defaultProducts,
-  searchedProducts: defaultProducts,
+  products: defaultProductsResponse.results,
+  searchedProducts: defaultProductsResponse.results,
+  total: defaultProductsResponse.total,
+  limit: defaultProductsResponse.limit,
+
+  queryString: '',
+  querySortOption: 'id',
+  querySortOrder: 'asc',
+
   isLoading: false,
   error: '',
 };
@@ -24,8 +41,11 @@ export const catalogSlice = createSlice({
       state.isLoading = true;
     },
     productsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
-      state.products = action.payload;
-      state.searchedProducts = action.payload;
+      state.products = action.payload.results;
+      state.searchedProducts = action.payload.results;
+
+      state.total = action.payload.total;
+      state.limit = action.payload.limit;
 
       state.isLoading = false;
       state.error = '';
@@ -37,8 +57,7 @@ export const catalogSlice = createSlice({
 
     searchProducts(state, action: PayloadAction<string>) {
       if (state.products) {
-        const productList = state.products.results;
-        state.searchedProducts.results = productList.filter(product => product.masterData.current.name['en-US'].toLowerCase().includes(action.payload.toLowerCase()));
+        state.searchedProducts = state.products.filter(product => product.masterData.current.name['en-US'].toLowerCase().includes(action.payload.toLowerCase()));
       }
       if (!action.payload) {
         state.searchedProducts = state.products;
@@ -49,7 +68,7 @@ export const catalogSlice = createSlice({
       state.isLoading = true;
     },
     sortProductsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
-      state.products = action.payload;
+      state.products = action.payload.results;
 
       state.isLoading = false;
       state.error = '';
@@ -57,6 +76,19 @@ export const catalogSlice = createSlice({
     sortProductsFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+
+    setQueryString(state, action: PayloadAction<string>) {
+      state.queryString = action.payload;
+    },
+    setQuerySortOption(state, action: PayloadAction<QuerySortOptionType>) {
+      state.querySortOption = action.payload;
+    },
+    setQuerySortOrder(state, action: PayloadAction<QuerySortOrderType>) {
+      state.querySortOrder = action.payload;
+    },
+    setLimit(state, action: PayloadAction<number>) {
+      state.limit = action.payload;
     },
   },
 });

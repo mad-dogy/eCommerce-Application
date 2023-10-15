@@ -6,7 +6,7 @@ import { type SelectProps as MuiSelectProps } from '@mui/material/Select/Select'
 import styles from './Select.module.scss';
 
 export interface SelectItem {
-  value: string;
+  value: string | number;
   name: string;
 }
 

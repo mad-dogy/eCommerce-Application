@@ -4,46 +4,69 @@ import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchProducts, fetchSortProducts } from '../../store/reducers/actionCreators';
-import { catalogSlice } from '../../store/reducers/catalogSlice';
+import { QuerySortOptionType, QuerySortOrderType, catalogSlice } from '../../store/reducers/catalogSlice';
 import styles from './CatalogPage.module.scss';
 
 export const CatalogPage = () => {
   const dispatch = useAppDispatch();
   const {
-    searchedProducts, isLoading, error,
+    searchedProducts,
+    total,
+    limit,
+    queryString,
+    querySortOption,
+    querySortOrder,
+    isLoading,
+    error,
   } = useAppSelector(state => state.catalogReducer);
-  const { searchProducts } = catalogSlice.actions;
-
-  const [search, setSearch] = useState({ query: '' });
-  const [sort, setSort] = useState({ option: 'id', order: 'ASC' });
+  const {
+    searchProducts, setQueryString, setQuerySortOption, setQuerySortOrder, setLimit,
+  } = catalogSlice.actions;
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
   useEffect(() => {
-    dispatch(searchProducts(search.query));
-  }, [search.query]);
+    dispatch(searchProducts(queryString));
+  }, [queryString]);
 
   useEffect(() => {
     const dispatchSortProducts = async () => {
-      await dispatch(fetchSortProducts(sort.option, sort.order));
+      await dispatch(fetchSortProducts(querySortOption, querySortOrder));
     };
-    dispatchSortProducts().finally(() => dispatch(searchProducts(search.query)));
-  }, [sort.option, sort.order]);
+    dispatchSortProducts().finally(() => dispatch(searchProducts(queryString)));
+  }, [querySortOption, querySortOrder]);
+
+  const onQueryStringChange = (value: string) => {
+    dispatch(setQueryString(value));
+  };
+  const onQuerySortOptionChange = (value: QuerySortOptionType) => {
+    dispatch(setQuerySortOption(value));
+  };
+  const onQuerySortOrderChange = (value: QuerySortOrderType) => {
+    dispatch(setQuerySortOrder(value));
+  };
 
   return (
     <div className={styles.catalog}>
       <FilterPanel
-        search={search}
-        setSearch={setSearch}
-        sort={sort}
-        setSort={setSort}
+        searchValue={queryString}
+        onSearchValueChange={onQueryStringChange}
+        sortOption={querySortOption}
+        onSortOptionChange={onQuerySortOptionChange}
+        sortOrder={querySortOrder}
+        onSortOrderChange={onQuerySortOrderChange}
       />
       {error ?? <div>{error}</div>}
       {isLoading
         ? <Loader />
-        : <ProductsList productsInfo={searchedProducts} />}
+        : (
+          <ProductsList
+            products={searchedProducts}
+            pagesCount={Math.ceil(total / 20)}
+          />
+        )}
     </div>
   );
 };

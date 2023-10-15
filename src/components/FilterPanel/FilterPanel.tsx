@@ -1,32 +1,34 @@
+import { QuerySortOptionType, QuerySortOrderType } from '../../store/reducers/catalogSlice';
 import { SearchInput } from '../UI/inputs/SearchInput/SearchInput';
 import { Select } from '../UI/Select/Select';
 import styles from './FilterPanel.module.scss';
 
 interface FilterPanelProps {
-  search: {query: string};
-  setSearch: React.Dispatch<React.SetStateAction<{
-    query: string;
-  }>>;
+  searchValue: string;
+  onSearchValueChange: (value: string) => void;
 
-  sort: { option: string, order: string }
-  setSort: React.Dispatch<React.SetStateAction<{
-    option: string;
-    order: string;
-  }>>
+  sortOption: QuerySortOptionType;
+  sortOrder: QuerySortOrderType;
+
+  onSortOptionChange: (value: QuerySortOptionType) => void;
+  onSortOrderChange: (value: QuerySortOrderType) => void;
+
 }
 export const FilterPanel = (props: FilterPanelProps) => {
   const {
-    search, setSearch, sort, setSort,
+    searchValue, onSearchValueChange,
+    sortOption, onSortOptionChange,
+    sortOrder, onSortOrderChange,
   } = props;
   return (
     <div className={styles['filter-panel']}>
-      <SearchInput search={search} setSearch={setSearch} />
+      <SearchInput searchValue={searchValue} onSearchValueChange={onSearchValueChange} />
       <div className={styles['order-panel']}>
         <span className={styles['order-item']}>
           order by
           <Select
-            value={sort.option}
-            onChange={(event) => setSort({ ...sort, option: event.target.value as string })}
+            value={sortOption}
+            onChange={event => onSortOptionChange(event.target.value as QuerySortOptionType)}
             label=""
             selectItems={[
               { name: 'ID', value: 'id' },
@@ -38,10 +40,10 @@ export const FilterPanel = (props: FilterPanelProps) => {
         <span className={styles['order-item']}>
           order by
           <Select
-            value={sort.order}
-            onChange={(event) => setSort({ ...sort, order: event.target.value as string })}
+            value={sortOrder}
+            onChange={event => onSortOrderChange(event.target.value as QuerySortOrderType)}
             label=""
-            selectItems={[{ name: 'ASC', value: 'ASC' }, { name: 'DESC', value: 'DESC' }]}
+            selectItems={[{ name: 'ASC', value: 'asc' }, { name: 'DESC', value: 'desc' }]}
           />
         </span>
       </div>

@@ -1,7 +1,7 @@
 import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import { apiRoot } from '../server';
 
-export const defaultProducts: ProductPagedQueryResponse = {
+export const defaultProductsResponse: ProductPagedQueryResponse = {
   limit: 20,
   offset: 0,
   count: 0,
@@ -17,7 +17,7 @@ export const queryProducts = async (): Promise<ProductPagedQueryResponse> => {
     .then(({ body }) => body)
     .catch((error) => alert(error));
   if (products) return products;
-  return defaultProducts;
+  return defaultProductsResponse;
 };
 
 export const querySortProducts = async (
@@ -32,14 +32,19 @@ export const querySortProducts = async (
 
   sortOrder = sortOrder.toLowerCase();
 
-  const products = await apiRoot
+  const productsResponse = await apiRoot
     .products()
-    .get({ queryArgs: { sort: `${sortOption} ${sortOrder}` } })
+    .get({
+      queryArgs: {
+        limit: 20,
+        sort: `${sortOption} ${sortOrder}`,
+      },
+    })
     .execute()
     .then(({ body }) => body)
     .catch((error) => alert(error));
-  if (products) return products;
-  return defaultProducts;
+  if (productsResponse) return productsResponse;
+  return defaultProductsResponse;
 };
 
 export const getProductById = async (id: string): Promise<Product> => {

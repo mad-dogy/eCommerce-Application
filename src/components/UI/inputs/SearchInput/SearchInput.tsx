@@ -4,14 +4,12 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
 interface SearchInputProps {
-  search: {query: string};
-  setSearch: React.Dispatch<React.SetStateAction<{
-    query: string;
-  }>>;
+  searchValue: string;
+  onSearchValueChange: (value: string) => void;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-  const { search, setSearch } = props;
+  const { searchValue, onSearchValueChange } = props;
   return (
     <Paper
       component="form"
@@ -20,8 +18,8 @@ export const SearchInput = (props: SearchInputProps) => {
       }}
     >
       <InputBase
-        value={search.query}
-        onChange={event => setSearch({ query: event.target.value })}
+        value={searchValue}
+        onChange={event => onSearchValueChange(event.target.value)}
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search..."
         inputProps={{ 'aria-label': 'search' }}

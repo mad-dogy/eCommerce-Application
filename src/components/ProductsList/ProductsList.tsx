@@ -1,19 +1,20 @@
-import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { Product, ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import React, { useState } from 'react';
 import { ProductItem } from '../ProductItem/ProductItem';
 import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemModal';
-import styles from './ProductsList.module.scss';
 import { Pagination } from '../Pagination/Pagination';
+import styles from './ProductsList.module.scss';
 
 interface ProductsContainerProps {
-  productsInfo: ProductPagedQueryResponse;
+  products: Product[];
+  pagesCount: number;
 }
 
 export const ProductsList = (props: ProductsContainerProps) => {
-  const { productsInfo } = props;
+  const { products, pagesCount } = props;
 
   const [currentProductId, setCurrentProductId] = useState('');
-  const products = productsInfo.results;
+  const [page, setPage] = useState(1);
 
   const onItemClick = (productId: string) => {
     setCurrentProductId(productId);
@@ -23,11 +24,21 @@ export const ProductsList = (props: ProductsContainerProps) => {
     setCurrentProductId('');
   };
 
+  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   return (
-    <div className={styles.container}>
-      {products.map(item => <ProductItem product={item} onItemClick={onItemClick} />)}
+    <div className={styles.list}>
+      <div className={styles.list__container}>
+        {products.map(item => <ProductItem product={item} onItemClick={onItemClick} />)}
+      </div>
       <ProductItemModal productId={currentProductId} onCloseBtnClick={onCloseModal} />
-      <Pagination />
+      <Pagination
+        pagesCount={pagesCount}
+        page={page}
+        handleChangePage={handleChangePage}
+      />
     </div>
   );
 };
