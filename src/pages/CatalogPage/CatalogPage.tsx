@@ -28,30 +28,20 @@ export const CatalogPage = () => {
     setCurrentPageNumber,
   } = catalogSlice.actions;
 
-  // TODO: поиграться с offset и исправить пагинацию,
-  // т.к думала что offset это страница, а это оказалось какое кол-во элементов надо пропустить
-  useEffect(() => {
-    dispatch(fetchProducts(limit, currentPageNumber));
-  }, []);
-
   useEffect(() => {
     dispatch(searchProducts(queryString));
   }, [queryString]);
 
   useEffect(() => {
     const dispatchSortProducts = async () => {
-      await dispatch(fetchSortProducts(limit, currentPageNumber, querySortOption, querySortOrder));
+      await dispatch(fetchSortProducts(limit, (currentPageNumber-1)*limit, querySortOption, querySortOrder));
     };
     dispatchSortProducts().finally(() => dispatch(searchProducts(queryString)));
   }, [querySortOption, querySortOrder]);
 
   useEffect(() => {
-    dispatch(fetchProducts(limit, currentPageNumber));
-  }, [limit]);
-
-  useEffect(() => {
-    dispatch(fetchProducts(limit, currentPageNumber));
-  }, [currentPageNumber]);
+    dispatch(fetchSortProducts(limit, (currentPageNumber-1)*limit, querySortOption, querySortOrder));
+  }, [limit, currentPageNumber]);
 
   const onQueryStringChange = (value: string) => {
     dispatch(setQueryString(value));
@@ -64,6 +54,7 @@ export const CatalogPage = () => {
   };
   const onLimitChange = (value: number) => {
     dispatch(setLimit(value));
+    dispatch(setCurrentPageNumber(1));
   };
   const onCurrentPageNumberChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setCurrentPageNumber(value));

@@ -77,6 +77,11 @@ export const catalogSlice = createSlice({
     },
     sortProductsFetchingSuccess(state, action: PayloadAction<ProductPagedQueryResponse>) {
       state.products = action.payload.results;
+      state.searchedProducts = action.payload.results;
+
+      state.total = action.payload.total;
+      state.limit = action.payload.limit;
+
       state.pagesAmount = Math.ceil(state.total / state.limit);
 
       state.isLoading = false;
