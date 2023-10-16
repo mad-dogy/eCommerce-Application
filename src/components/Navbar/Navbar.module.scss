@@ -1,10 +1,12 @@
-@import '../../constants/mixins.scss';
-@import '../../constants/var.scss';
+@import '../../constants/mixins';
+@import '../../constants/var';
 
 .navbar {
   max-width: 210px;
   width: 100%;
+
   @include flex-spaceBtw;
+
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
 }

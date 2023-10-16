@@ -1,5 +1,5 @@
-@import '../../constants/mixins.scss';
-@import '../../constants/var.scss';
+@import '../../constants/mixins';
+@import '../../constants/var';
 
 .product {
   max-width: 400px;
@@ -26,6 +26,7 @@
       color: $darkBlue;
       margin-bottom: 8px;
     }
+
     & .price {
       font-size: 16px;
       font-weight: bold;
@@ -48,8 +49,8 @@
 
   &:hover {
     cursor: pointer;
-    -webkit-box-shadow: 8px 8px 8px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 8px 8px 8px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 8px 8px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 8px 8px 8px 0 rgb(34 60 80 / 20%);
+    box-shadow: 8px 8px 8px 0 rgb(34 60 80 / 20%);
+    box-shadow: 8px 8px 8px 0 rgb(34 60 80 / 20%);
   }
 }

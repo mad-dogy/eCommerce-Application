@@ -1,10 +1,11 @@
-@import '../../../constants/var.scss';
+@import '../../../constants/var';
 
 button.button {
   padding: 8px 24px;
   font-size: 16px;
   background: $darkBlue;
 }
+
 button.button:hover {
   background: $grayBlue;
 }

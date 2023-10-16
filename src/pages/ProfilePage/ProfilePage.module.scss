@@ -1,13 +1,15 @@
-@import '../../constants/var.scss';
-@import '../../constants/mixins.scss';
+@import '../../constants/var';
+@import '../../constants/mixins';
 
 .profile {
   background: $darkBlue;
   min-height: calc(100vh - 100px);
   height: 100%;
   padding: 30px 15px;
+
   @include flex-center;
-  font-family: 'Roboto', sans-serif;
+
+  font-family: Roboto, sans-serif;
   font-weight: bold;
 
   &__inner {

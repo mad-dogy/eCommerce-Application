@@ -1,8 +1,9 @@
-@import '../../constants/mixins.scss';
-@import '../../constants/var.scss';
+@import '../../constants/mixins';
+@import '../../constants/var';
 
 .profile-info {
   @include flex-center;
+
   flex-direction: column;
 }
 
@@ -52,13 +53,16 @@ h6 {
   font-size: 16px;
   font-weight: normal;
   padding: 4px 15px;
+
   @include flex-spaceBtw;
+
   border-bottom: 2px solid $darkBlue;
 
   &__name {
     color: #616161;
   }
 }
+
 .item:last-child {
   border: none;
 }
@@ -67,6 +71,8 @@ h6 {
   margin-top: 15px;
   max-width: 266px;
   width: 100%;
+
   @include flex-spaceBtw;
+
   font-size: 14px;
 }

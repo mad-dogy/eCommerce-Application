@@ -1,4 +1,4 @@
-@import '../../constants/var.scss';
+@import '../../constants/var';
 
 .authRoot {
   min-height: 100vh;
@@ -6,17 +6,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../../assets//lines.png), linear-gradient(120.15deg, $darkBlue 1.11%, $darkBlue 100.53%);
+  background-image: url("../../assets//lines.png"), linear-gradient(120.15deg, $darkBlue 1.11%, $darkBlue 100.53%);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .authRoot {
     padding: 20px 0;
     background: $darkWhite;

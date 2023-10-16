@@ -1,9 +1,11 @@
-@import '../../../constants/mixins.scss';
-@import '../../../constants/var.scss';
+@import '../../../constants/mixins';
+@import '../../../constants/var';
 
 .form {
   margin-top: 10px;
+
   @include flex-column-center;
+
   row-gap: 16px;
 
   & p {
@@ -13,6 +15,7 @@
 
 .btns {
   @include flex-spaceBtw;
+
   column-gap: 30px;
 
   & * {
@@ -21,7 +24,9 @@
     & * {
       color: $white;
       text-decoration: none;
+
       @include flex-row-center;
+
       column-gap: 5px;
     }
   }
@@ -42,13 +47,14 @@
   color: $darkBlue;
   font-size: 16px;
   font-weight: 200;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .input_default {
   max-width: 350px;
   width: 100%;
 }
+
 .input_mini {
   max-width: 170px;
   width: 100%;

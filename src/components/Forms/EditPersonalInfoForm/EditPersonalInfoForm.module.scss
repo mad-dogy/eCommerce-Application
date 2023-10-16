@@ -1,8 +1,9 @@
-@import '../../../constants/mixins.scss';
-@import '../../../constants/var.scss';
+@import '../../../constants/mixins';
+@import '../../../constants/var';
 
 .edit-account-form {
   @include flex-center;
+
   flex-direction: column;
 }
 
@@ -50,13 +51,16 @@ h6 {
   font-size: 16px;
   font-weight: normal;
   padding: 4px 15px;
+
   @include flex-spaceBtw;
+
   border-bottom: 2px solid $darkBlue;
 
   &__name {
     color: #616161;
   }
 }
+
 .item:last-child {
   border: none;
 }
@@ -68,13 +72,14 @@ h6 {
   color: $darkBlue;
   font-size: 16px;
   font-weight: 200;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .confirm-edit-btns {
   margin-top: 15px;
   max-width: 166px;
   width: 100%;
+
   @include flex-spaceBtw;
 }
 
@@ -82,22 +87,24 @@ h6 {
   max-width: 350px;
   width: 100%;
 }
+
 .input_mini {
   max-width: 170px;
   width: 100%;
 }
 
 .error-message {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   color: $red;
   font-size: 12px;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .data div {
   padding: 4px;
   border-radius: 10px;
 }
+
 .data input {
   padding: 6px 8px;
   border-radius: 10px;

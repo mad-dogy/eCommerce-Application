@@ -1,4 +1,4 @@
-@import '../../constants/var.scss';
+@import '../../constants/var';
 
 .page {
   margin: 20px auto;
@@ -8,13 +8,14 @@
   min-height: calc(100vh - 100px);
   border-radius: 20px;
   background: $darkWhite;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
 }
+
 .message {
   max-width: 600px;
   width: 100%;
@@ -22,6 +23,7 @@
   font-size: 24px;
   color: $lightBlack;
 }
+
 .page h5 {
   padding-top: 25px;
   padding-bottom: 20px;

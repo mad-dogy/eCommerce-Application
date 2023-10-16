@@ -1,5 +1,5 @@
-@import '../../constants/mixins.scss';
-@import '../../constants/var.scss';
+@import '../../constants/mixins';
+@import '../../constants/var';
 
 .pagination {
   margin: 0 auto;
@@ -11,6 +11,7 @@
   & *:nth-child(1) {
     max-width: 400px;
   }
+
   & *:nth-child(2) {
     max-width: 80px;
   }

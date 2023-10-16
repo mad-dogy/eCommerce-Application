@@ -1,9 +1,10 @@
-@import '../../../constants/var.scss';
+@import '../../../constants/var';
 
 .input-label {
   top: -8px !important;
 }
-.input-label[data-shrink=true] {
+
+.input-label[data-shrink="true"] {
   top: 0 !important;
 }
 
@@ -19,6 +20,7 @@
   width: 100%;
   position: relative;
 }
+
 .select div {
   padding: 6px;
   height: 0;

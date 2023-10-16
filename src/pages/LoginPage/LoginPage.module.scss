@@ -1,5 +1,5 @@
-@import '../../constants/var.scss';
-@import '../../constants/mixins.scss';
+@import '../../constants/var';
+@import '../../constants/mixins';
 
 .login {
   &__inner {
@@ -7,7 +7,9 @@
     width: 100%;
     padding: 30px 30px 15px;
     border-radius: 40px;
+
     @include flex-column-center;
+
     row-gap: 16px;
     background: $darkWhite;
   }
@@ -20,12 +22,13 @@
 
   &__form {
     @include flex-column-center;
+
     row-gap: 18px;
   }
 
   &__to-register {
     font-size: 14px;
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     color:  $darkBlue;
 
     & span {
@@ -33,13 +36,14 @@
       font-weight: bold;
     }
   }
+
   &__to-register:hover {
     cursor: pointer;
   }
 
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .login {
     &__inner {
       max-width: 390px;
@@ -50,6 +54,7 @@
 
   .content {
     @include flex-column-center;
+
     row-gap: 15px;
   }
 }
