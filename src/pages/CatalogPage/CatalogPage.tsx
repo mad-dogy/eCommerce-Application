@@ -3,7 +3,7 @@ import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchProductsWithSearch } from '../../store/reducers/actionCreators';
+import { fetchProducts } from '../../store/reducers/actionCreators';
 import { QuerySortOptionType, QuerySortOrderType, catalogSlice } from '../../store/reducers/catalogSlice';
 import { useDebounce } from '../../hooks/useDebounce';
 import styles from './CatalogPage.module.scss';
@@ -29,36 +29,36 @@ export const CatalogPage = () => {
   } = catalogSlice.actions;
 
   const search = () => {
-    dispatch(fetchProductsWithSearch(
-      limit, 
-      (currentPageNumber-1)*limit, 
-      queryString, 
-      querySortOption, 
-      querySortOrder
+    dispatch(fetchProducts(
+      limit,
+      (currentPageNumber - 1) * limit,
+      queryString,
+      querySortOption,
+      querySortOrder,
     ));
-  }
+  };
   const debauncedSearch = useDebounce(search, 500);
   useEffect(() => {
-    debauncedSearch()
+    debauncedSearch();
   }, [queryString]);
 
   useEffect(() => {
-    dispatch(fetchProductsWithSearch(
-      limit, 
-      (currentPageNumber-1)*limit, 
-      queryString, 
-      querySortOption, 
-      querySortOrder
+    dispatch(fetchProducts(
+      limit,
+      (currentPageNumber - 1) * limit,
+      queryString,
+      querySortOption,
+      querySortOrder,
     ));
   }, [querySortOption, querySortOrder]);
 
   useEffect(() => {
-    dispatch(fetchProductsWithSearch(
-      limit, 
-      (currentPageNumber-1)*limit, 
-      queryString, 
-      querySortOption, 
-      querySortOrder
+    dispatch(fetchProducts(
+      limit,
+      (currentPageNumber - 1) * limit,
+      queryString,
+      querySortOption,
+      querySortOrder,
     ));
   }, [limit, currentPageNumber]);
 

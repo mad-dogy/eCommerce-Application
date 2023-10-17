@@ -10,8 +10,6 @@ export const defaultProductsResponse: ProductProjectionPagedSearchResponse = {
   results: [],
 };
 
-//какие запросы оставить? всегда отправлять products-projection?
-
 export const getProductById = async (id: string): Promise<Product> => {
   const product = await apiRoot
     .products()
@@ -39,14 +37,16 @@ export const productsProjectionSearch = async (
   const productsProjectionSearchResponse = await apiRoot
     .productProjections()
     .search()
-    .get({queryArgs: {
-      fuzzy: true,
-      limit: productsLimit,
-      offset: productsOffset,
-      sort: `${sortOption} ${sortOrder}`,
-      'text.en-US': searchText
-    }})
+    .get({
+      queryArgs: {
+        fuzzy: true,
+        limit: productsLimit,
+        offset: productsOffset,
+        sort: `${sortOption} ${sortOrder}`,
+        'text.en-US': searchText,
+      },
+    })
     .execute()
-    .then(({body}) => body);
+    .then(({ body }) => body);
   return productsProjectionSearchResponse;
-}
+};

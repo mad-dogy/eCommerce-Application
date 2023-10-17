@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product, ProductPagedQueryResponse, ProductProjection, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
+import { ProductProjection, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
 import { defaultProductsResponse } from '../../api/Products/Products';
 
 export type QuerySortOptionType = 'id' | 'name' | 'createdAt';

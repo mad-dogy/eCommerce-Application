@@ -2,7 +2,7 @@ import { productsProjectionSearch } from '../../api/Products/Products';
 import { AppDispatch } from '../store';
 import { catalogSlice } from './catalogSlice';
 
-export const fetchProductsWithSearch = (
+export const fetchProducts = (
   productsRequestLimit: number,
   productsRequestOffset: number,
   searchString: string,

@@ -1,4 +1,4 @@
-import { Product, ProductPagedQueryResponse, ProductProjection } from '@commercetools/platform-sdk';
+import { ProductProjection } from '@commercetools/platform-sdk';
 import React, { useState } from 'react';
 import { ProductItem } from '../ProductItem/ProductItem';
 import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemModal';
@@ -25,7 +25,6 @@ export const ProductsList = (props: ProductsContainerProps) => {
   } = props;
 
   const [currentProductId, setCurrentProductId] = useState('');
-  const [page, setPage] = useState(1);
 
   const onItemClick = (productId: string) => {
     setCurrentProductId(productId);
@@ -38,13 +37,13 @@ export const ProductsList = (props: ProductsContainerProps) => {
   return (
     <div className={styles.list}>
       {products.length
-      ? (
-        <div className={styles.list__container}>
-        {products.map(item => <ProductItem product={item} onItemClick={onItemClick} />)}
-      </div>
-      )
-      : 'Products list is empty'}
-      
+        ? (
+          <div className={styles.list__container}>
+            {products.map(item => <ProductItem product={item} onItemClick={onItemClick} />)}
+          </div>
+        )
+        : 'Products list is empty'}
+
       <ProductItemModal productId={currentProductId} onCloseBtnClick={onCloseModal} />
       <Pagination
         pagesCount={pagesCount}
