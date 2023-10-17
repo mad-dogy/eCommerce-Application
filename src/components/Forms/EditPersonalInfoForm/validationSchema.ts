@@ -3,8 +3,8 @@ import * as yup from 'yup';
 export const validationSchema = yup.object().shape({
   email: yup.string().email('Email is invalid').required('Email is required'),
 
-  firstName: yup.string().required('Field is required'),
-  lastName: yup.string().required('Field is required'),
+  firstName: yup.string().required('Field is required').max(30),
+  lastName: yup.string().required('Field is required').max(30),
   dateOfBirth: yup.date()
     .required('Date of birth is required')
     .max(new Date(), 'Date of birth cannot be in the future')
@@ -40,12 +40,12 @@ export const validationSchema = yup.object().shape({
     }),
 
   shippingCountry: yup.string().required('Field is required'),
-  shippingCity: yup.string().required('Field is required'),
-  shippingStreet: yup.string().required('Field is required'),
-  shippingPostalCode: yup.string().required('Field is required'),
+  shippingCity: yup.string().required('Field is required').max(30),
+  shippingStreet: yup.string().required('Field is required').max(30),
+  shippingPostalCode: yup.string().required('Field is required').max(8),
 
   billingCountry: yup.string().required('Field is required'),
-  billingCity: yup.string().required('Field is required'),
-  billingStreet: yup.string().required('Field is required'),
-  billingPostalCode: yup.string().required('Field is required'),
+  billingCity: yup.string().required('Field is required').max(30),
+  billingStreet: yup.string().required('Field is required').max(30),
+  billingPostalCode: yup.string().required('Field is required').max(8),
 });
