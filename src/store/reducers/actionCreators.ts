@@ -1,36 +1,25 @@
-import { queryProducts, querySortProducts } from '../../api/Products/Products';
+import { productsProjectionSearch } from '../../api/Products/Products';
 import { AppDispatch } from '../store';
 import { catalogSlice } from './catalogSlice';
 
-export const fetchProducts = (
+export const fetchProductsWithSearch = (
   productsRequestLimit: number,
   productsRequestOffset: number,
-) => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(catalogSlice.actions.productsFetching());
-    const products = await queryProducts(productsRequestLimit, productsRequestOffset);
-    dispatch(catalogSlice.actions.productsFetchingSuccess(products));
-  } catch (error) {
-    dispatch(catalogSlice.actions.productsFetchingError(error.message));
-  }
-};
-
-export const fetchSortProducts = (
-  productsRequestLimit: number,
-  productsRequestOffset: number,
+  searchString: string,
   option: string,
   order: string,
 ) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(catalogSlice.actions.sortProductsFetching());
-    const products = await querySortProducts(
+    dispatch(catalogSlice.actions.productsFetchingWithSearch());
+    const productsProjectionSearchResponse = await productsProjectionSearch(
       productsRequestLimit,
       productsRequestOffset,
+      searchString,
       option,
       order,
     );
-    dispatch(catalogSlice.actions.sortProductsFetchingSuccess(products));
+    dispatch(catalogSlice.actions.productsFetchingWithSearchSuccess(productsProjectionSearchResponse));
   } catch (error) {
-    dispatch(catalogSlice.actions.sortProductsFetchingError(error.message));
+    dispatch(catalogSlice.actions.productsFetchingWithSearchError(error.message));
   }
 };

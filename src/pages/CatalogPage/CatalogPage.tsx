@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchProducts, fetchSortProducts } from '../../store/reducers/actionCreators';
+import { fetchProductsWithSearch } from '../../store/reducers/actionCreators';
 import { QuerySortOptionType, QuerySortOrderType, catalogSlice } from '../../store/reducers/catalogSlice';
+import { useDebounce } from '../../hooks/useDebounce';
 import styles from './CatalogPage.module.scss';
 
 export const CatalogPage = () => {
   const dispatch = useAppDispatch();
   const {
-    searchedProducts,
+    products,
     total,
     limit,
     pagesAmount,
@@ -22,25 +23,43 @@ export const CatalogPage = () => {
     error,
   } = useAppSelector(state => state.catalogReducer);
   const {
-    searchProducts,
     setQueryString, setQuerySortOption, setQuerySortOrder,
     setLimit,
     setCurrentPageNumber,
   } = catalogSlice.actions;
 
+  const search = () => {
+    dispatch(fetchProductsWithSearch(
+      limit, 
+      (currentPageNumber-1)*limit, 
+      queryString, 
+      querySortOption, 
+      querySortOrder
+    ));
+  }
+  const debauncedSearch = useDebounce(search, 500);
   useEffect(() => {
-    dispatch(searchProducts(queryString));
+    debauncedSearch()
   }, [queryString]);
 
   useEffect(() => {
-    const dispatchSortProducts = async () => {
-      await dispatch(fetchSortProducts(limit, (currentPageNumber-1)*limit, querySortOption, querySortOrder));
-    };
-    dispatchSortProducts().finally(() => dispatch(searchProducts(queryString)));
+    dispatch(fetchProductsWithSearch(
+      limit, 
+      (currentPageNumber-1)*limit, 
+      queryString, 
+      querySortOption, 
+      querySortOrder
+    ));
   }, [querySortOption, querySortOrder]);
 
   useEffect(() => {
-    dispatch(fetchSortProducts(limit, (currentPageNumber-1)*limit, querySortOption, querySortOrder));
+    dispatch(fetchProductsWithSearch(
+      limit, 
+      (currentPageNumber-1)*limit, 
+      queryString, 
+      querySortOption, 
+      querySortOrder
+    ));
   }, [limit, currentPageNumber]);
 
   const onQueryStringChange = (value: string) => {
@@ -75,7 +94,7 @@ export const CatalogPage = () => {
         ? <Loader />
         : (
           <ProductsList
-            products={searchedProducts}
+            products={products}
             pagesCount={pagesAmount}
             currentPage={currentPageNumber}
             handleChangePage={onCurrentPageNumberChange}
