@@ -1,74 +1,31 @@
-import { useCallback, useEffect, useMemo } from 'react';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
-import { Loader } from '../../components/UI/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchProducts } from '../../store/reducers/actionCreators';
 import { QuerySortOptionType, QuerySortOrderType, catalogSlice } from '../../store/reducers/catalogSlice';
-import { useDebounce } from '../../hooks/useDebounce';
 import styles from './CatalogPage.module.scss';
 
 const {
-  setQueryString, setQuerySortOption, setQuerySortOrder,
-  setLimit,
-  setCurrentPageNumber,
+  setQueryString,
+  setQuerySortOption,
+  setQuerySortOrder,
 } = catalogSlice.actions;
 
 export const CatalogPage = () => {
   const dispatch = useAppDispatch();
   const {
-    products,
-    total,
-    limit,
-    pagesAmount,
-    currentPageNumber,
     queryString,
     querySortOption,
     querySortOrder,
-    isLoading,
-    error,
   } = useAppSelector(state => state.catalogReducer);
 
-  const searchProducts = () => {
-    dispatch(fetchProducts(
-      limit,
-      (currentPageNumber - 1) * limit,
-      queryString,
-      querySortOption,
-      querySortOrder,
-    ));
-  }
-
-  const debauncedSearch = useDebounce(searchProducts, 500);
-
-  useEffect(() => {
-    debauncedSearch();
-  }, [queryString]);
-
-  useEffect(() => {
-    dispatch(fetchProducts(
-      limit,
-      (currentPageNumber - 1) * limit,
-      queryString,
-      querySortOption,
-      querySortOrder,
-    ));
-  }, [querySortOption, querySortOrder, limit, currentPageNumber]);
-
+  const onQuerySortOrderChange = (value: QuerySortOrderType) => {
+    dispatch(setQuerySortOrder(value));
+  };
   const onQueryStringChange = (value: string) => {
     dispatch(setQueryString(value));
   };
   const onQuerySortOptionChange = (value: QuerySortOptionType) => {
     dispatch(setQuerySortOption(value));
-  };
-  const onQuerySortOrderChange = (value: QuerySortOrderType) => {
-    dispatch(setQuerySortOrder(value));
-  };
-  const onLimitChange = (value: number) => {
-    dispatch(setLimit(value));
-  };
-  const onCurrentPageNumberChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    dispatch(setCurrentPageNumber(value));
   };
 
   return (
@@ -81,19 +38,7 @@ export const CatalogPage = () => {
         sortOrder={querySortOrder}
         onSortOrderChange={onQuerySortOrderChange}
       />
-      {error ?? <div>{error}</div>}
-      {isLoading
-        ? <Loader />
-        : (
-          <ProductsList
-            products={products}
-            pagesCount={pagesAmount}
-            currentPage={currentPageNumber}
-            handleChangePage={onCurrentPageNumberChange}
-            productsLimit={limit}
-            onChangeProductsLimit={onLimitChange}
-          />
-        )}
+      <ProductsList />
     </div>
   );
 };

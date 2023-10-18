@@ -53,11 +53,9 @@ h6 {
   font-size: 16px;
   font-weight: normal;
   padding: 4px 15px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   border-bottom: 2px solid $primaryColor;
 
   &__name {
@@ -73,10 +71,8 @@ h6 {
   margin-top: 15px;
   max-width: 266px;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   font-size: 14px;
 }

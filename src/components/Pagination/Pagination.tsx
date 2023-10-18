@@ -28,8 +28,8 @@ export const Pagination = (props: PaginationProps) => {
 
   const onChangePaginationSelectValue = (event: SelectChangeEvent<unknown>) => {
     onChangeProductsLimit(event.target.value as number);
-  }
-  
+  };
+
   return (
     <div className={styles.pagination}>
       <MuiPagination count={pagesCount} page={currentPage} onChange={handleChangePage} color="primary" />

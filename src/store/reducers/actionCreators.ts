@@ -18,7 +18,9 @@ export const fetchProducts = (
       option,
       order,
     );
-    dispatch(catalogSlice.actions.productsFetchingWithSearchSuccess(productsProjectionSearchResponse));
+    dispatch(catalogSlice.actions.productsFetchingWithSearchSuccess(
+      productsProjectionSearchResponse,
+    ));
   } catch (error) {
     dispatch(catalogSlice.actions.productsFetchingWithSearchError(error.message));
   }

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
+import { SelectChangeEvent } from '@mui/material';
 import { QuerySortOptionType, QuerySortOrderType } from '../../store/reducers/catalogSlice';
 import { SearchInput } from '../UI/inputs/SearchInput/SearchInput';
 import { Select, SelectItem } from '../UI/Select/Select';
-import { SelectChangeEvent } from '@mui/material';
 import styles from './FilterPanel.module.scss';
 
 interface FilterPanelProps {
@@ -23,26 +23,22 @@ export const FilterPanel = (props: FilterPanelProps) => {
     sortOrder, onSortOrderChange,
   } = props;
 
-  const sortOptionSelectItems: SelectItem[] = useMemo(() => {
-    return [
-      { name: 'ID', value: 'id' },
-      { name: 'Name', value: 'name' },
-      { name: 'Date of creation', value: 'createdAt' },
-    ]
-  }, []);
+  const sortOptionSelectItems: SelectItem[] = useMemo(() => [
+    { name: 'ID', value: 'id' },
+    { name: 'Name', value: 'name' },
+    { name: 'Date of creation', value: 'createdAt' },
+  ], []);
   const onChangeSortOptionSelectValue = (event: SelectChangeEvent<unknown>) => {
     onSortOptionChange(event.target.value as QuerySortOptionType);
-  }
+  };
 
-  const sortOrderSelectItems: SelectItem[] = useMemo(() => {
-    return [
-      { name: 'ASC', value: 'asc' }, 
-      { name: 'DESC', value: 'desc' }
-    ]
-  }, []);
+  const sortOrderSelectItems: SelectItem[] = useMemo(() => [
+    { name: 'ASC', value: 'asc' },
+    { name: 'DESC', value: 'desc' },
+  ], []);
   const onChangeSortOrderSelectValue = (event: SelectChangeEvent<unknown>) => {
     onSortOrderChange(event.target.value as QuerySortOrderType);
-  }
+  };
 
   return (
     <div className={styles['filter-panel']}>

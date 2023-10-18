@@ -44,7 +44,10 @@ export const catalogSlice = createSlice({
     productsFetchingWithSearch(state) {
       state.isLoading = true;
     },
-    productsFetchingWithSearchSuccess(state, action: PayloadAction<ProductProjectionPagedSearchResponse>) {
+    productsFetchingWithSearchSuccess(
+      state,
+      action: PayloadAction<ProductProjectionPagedSearchResponse>,
+    ) {
       state.products = action.payload.results;
 
       state.total = action.payload.total;

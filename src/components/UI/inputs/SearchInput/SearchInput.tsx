@@ -12,10 +12,10 @@ export const SearchInput = (props: SearchInputProps) => {
   const { searchValue, onSearchValueChange } = props;
 
   const onChangeSearchInputValue = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    onSearchValueChange(event.target.value)
-  }
+    onSearchValueChange(event.target.value);
+  };
 
   return (
     <Paper

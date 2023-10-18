@@ -60,14 +60,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
     billingCity: billingAddressInfo.city,
     billingStreet: billingAddressInfo.streetName,
     billingPostalCode: billingAddressInfo.postalCode,
-  }
+  };
 
   const {
     control, register, formState: { errors }, handleSubmit,
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur',
-    defaultValues: {...formDefaultValues}
+    defaultValues: { ...formDefaultValues },
   });
 
   const [availableCountries, setAvailableCountries] = useState<SelectItem[]>();

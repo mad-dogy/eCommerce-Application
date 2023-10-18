@@ -4,11 +4,11 @@ import styles from './ProductItem.module.scss';
 
 interface ProductItemProps {
   product: ProductProjection;
-  onItemClick: (productId: string) => void
+  onClick: (productId: string) => void
 }
 
 export const ProductItem = (props: ProductItemProps) => {
-  const { product, onItemClick } = props;
+  const { product, onClick } = props;
 
   const productId = product.id;
   const productImgUrl = product.masterVariant.images[0].url;
@@ -17,7 +17,7 @@ export const ProductItem = (props: ProductItemProps) => {
   const productPriceCurrency = product.masterVariant.prices[0]?.value.currencyCode || 'USD';
 
   return (
-    <div className={styles.product} onClick={() => onItemClick(productId)}>
+    <div className={styles.product} onClick={() => onClick(productId)}>
       <img
         src={productImgUrl}
         alt=""
