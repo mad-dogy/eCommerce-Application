@@ -4,9 +4,9 @@ import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemMo
 import { Pagination } from '../Pagination/Pagination';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { catalogSlice } from '../../store/reducers/catalogSlice';
-import { fetchProducts } from '../../store/reducers/actionCreators';
 import { useDebounce } from '../../hooks/useDebounce';
 import { Loader } from '../UI/Loader/Loader';
+import { fetchProducts } from '../../store/reducers/actionCreators/catalogActionCreators';
 import styles from './ProductsList.module.scss';
 
 const {

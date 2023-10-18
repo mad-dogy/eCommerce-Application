@@ -1,6 +1,6 @@
-import { productsProjectionSearch } from '../../api/Products/Products';
-import { AppDispatch } from '../store';
-import { catalogSlice } from './catalogSlice';
+import { productsProjectionSearch } from '../../../api/Products/Products';
+import { AppDispatch } from '../../store';
+import { catalogSlice } from '../catalogSlice';
 
 export const fetchProducts = (
   productsRequestLimit: number,

@@ -1,11 +1,17 @@
-import { type Customer, type CustomerDraft } from '@commercetools/platform-sdk';
+import { type CustomerDraft } from '@commercetools/platform-sdk';
+import { type CustomerExtendInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { apiRoot } from '../server';
 import { getCustomerById } from './GetCustomerInfoActions';
-import { type CustomerExtendInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
+
+export interface SignUpProps extends CustomerDraft {
+  email: string;
+  password: string;
+}
+export type SignUpResponseType = string;
 
 export const signUp = async ({
   email, password,
-}: CustomerDraft): Promise<string> => {
+}: SignUpProps): Promise<SignUpResponseType> => {
   const customerId = await apiRoot
     .customers()
     .post({

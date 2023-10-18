@@ -5,8 +5,7 @@ export interface SignInProps extends MyCustomerSignin {
   readonly email: string;
   readonly password: string;
 }
-
-type SignInResponseType = string
+export type SignInResponseType = string;
 
 export const signIn = async ({ email, password }: SignInProps): Promise<SignInResponseType> => {
   const customerId = await apiRoot

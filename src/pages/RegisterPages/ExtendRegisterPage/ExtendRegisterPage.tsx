@@ -27,7 +27,6 @@ export const ExtendRegisterPage = (): JSX.Element => {
         <h3 className={styles['register__step-title']}>Extend registration</h3>
 
         <ExtendRegisterForm onFormSubmit={onSubmit} />
-
       </div>
     </div>
   );

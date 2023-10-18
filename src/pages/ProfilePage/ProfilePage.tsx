@@ -8,17 +8,15 @@ import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
 import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
-import { changeCustomerPassword, deleteCustomer, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
-import { PUBLIC_ROUTES } from '../../constants/routes';
+import { changeCustomerPassword, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal/ChangePasswordModal';
-import { useAppDispatch } from '../../hooks/redux';
-import { authSlice } from '../../store/reducers/authSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchDeleteCustomerAccount } from '../../store/reducers/actionCreators/authActionCreators';
 import styles from './ProfilePage.module.scss';
-
-const { setAuth } = authSlice.actions;
+import { PUBLIC_ROUTES } from '../../constants/routes';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
@@ -28,6 +26,8 @@ export const ProfilePage = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const { error } = useAppSelector(state => state.authReducer);
 
   useEffect(() => {
     const getCustomerInfo = async () => {
@@ -88,16 +88,12 @@ export const ProfilePage = (): JSX.Element => {
   };
 
   const onDeleteAccount = async (): Promise<void> => {
-    const isDelete = confirm('Are you sure that you want to delete an account?'); // TODO: сделать подтверждающую модалку?))
+    const isDelete = confirm('Are you sure that you want to delete an account?');
 
     if (isDelete) {
-      try {
-        await deleteCustomer(customer);
-        dispatch(setAuth(false));
-        localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
+      dispatch(fetchDeleteCustomerAccount(customer));
+      if (!error) {
         navigate(PUBLIC_ROUTES.Base);
-      } catch (error) {
-        alert(error);
       }
     }
   };
