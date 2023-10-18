@@ -1,5 +1,4 @@
-@import '../../constants/var';
-@import '../../constants/mixins';
+@import '../../constants/global';
 
 .header {
   margin: 0 auto;
@@ -8,49 +7,52 @@
   width: 100%;
   min-height: 100px;
 
-  @include flex-row-spaceBtw;
-
-  background: $darkWhite;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  background: $backgroundPrimaryColor;
 
   & a {
     text-decoration: none;
-    color: $black;
+    color: #000;
   }
 
   &__nav {
     max-width: 250px;
     width: 100%;
-
-    @include flex-center;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     column-gap: 30px;
   }
 }
 
 .nav__btn {
   padding: 8px 10px;
-  border: 2px solid $darkBlue;
+  border: 2px solid $primaryColor;
   border-radius: 10px;
   font-size: 14px;
   text-decoration: none;
-  color: $black;
+  color: #000;
   font-family: Roboto, sans-serif;
   transition: all .2s linear;
 
   &:hover {
-    color: $darkWhite;
-    background: $darkBlue;
+    color: $backgroundPrimaryColor;
+    background: $primaryColor;
   }
 }
 
 .nav__icon {
-  color: $darkBlue;
+  color: $primaryColor;
   transition: all .2s linear !important;
 
   &:hover {
-    color: $darkWhite;
+    color: $backgroundPrimaryColor;
     border-radius: 50%;
     padding: 10px;
-    background: $darkBlue;
+    background: $primaryColor;
   }
 }

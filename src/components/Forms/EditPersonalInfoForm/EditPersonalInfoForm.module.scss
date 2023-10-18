@@ -1,9 +1,9 @@
-@import '../../../constants/mixins';
-@import '../../../constants/var';
+@import '../../../constants/global';
 
 .edit-account-form {
-  @include flex-center;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -25,7 +25,7 @@
   & h6 {
     font-size: 18px;
     margin-left: 6px;
-    color: $darkBlue;
+    color: $primaryColor;
   }
 }
 
@@ -42,7 +42,7 @@ h6 {
 .info-card {
   width: 100%;
   padding: 6px 10px;
-  border: 2px solid $darkBlue;
+  border: 2px solid $primaryColor;
   border-radius: 10px;
 }
 
@@ -52,9 +52,11 @@ h6 {
   font-weight: normal;
   padding: 4px 15px;
 
-  @include flex-spaceBtw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  border-bottom: 2px solid $darkBlue;
+  border-bottom: 2px solid $primaryColor;
 
   &__name {
     color: #616161;
@@ -69,7 +71,7 @@ h6 {
   position: absolute;
   top: -26px;
   left: 4px;
-  color: $darkBlue;
+  color: $primaryColor;
   font-size: 16px;
   font-weight: 200;
   font-family: Roboto, sans-serif;
@@ -80,7 +82,9 @@ h6 {
   max-width: 166px;
   width: 100%;
 
-  @include flex-spaceBtw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .input_default {
@@ -95,7 +99,7 @@ h6 {
 
 .error-message {
   font-family: Roboto, sans-serif;
-  color: $red;
+  color: $errorColor;
   font-size: 12px;
   margin-top: 0;
 }

@@ -1,25 +1,31 @@
-@import '../../../constants/var';
-@import '../../../constants/mixins';
+@import '../../../constants/global';
 
 .form {
-  @include flex-column-center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   row-gap: 18px;
 }
 
 .btns {
-  @include flex-row-spaceBtw;
-
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
   column-gap: 30px;
 
   & * {
     min-height: 25px;
     
     & * {
-      color:  $white;
+      color:  #fff;
       text-decoration: none;
 
-      @include flex-row-center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       column-gap: 5px;
     }

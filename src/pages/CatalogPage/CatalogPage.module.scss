@@ -1,10 +1,9 @@
-@import '../../constants/mixins';
-@import '../../constants/var';
+@import '../../constants/global';
 
 .catalog {
   min-height: calc(100vh - 100px);
-  display: flex;
   padding: 15px;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;

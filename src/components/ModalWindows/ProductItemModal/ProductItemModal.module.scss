@@ -1,5 +1,4 @@
-@import '../../../constants/mixins';
-@import '../../../constants/var';
+@import '../../../constants/global';
 
 .wrapper{
   position: fixed;
@@ -8,7 +7,7 @@
   width: 100%;
   height: 100vh;
   z-index: 3;
-  background: $transparentBlack;
+  background: $modalBackgroundColor;
   display: grid;
   align-items: center;
   justify-content: center;
@@ -16,16 +15,17 @@
   & .window {
     position: relative;
 
-    @include flex-center;
-
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    
     width: 600px;
     min-height: 600px;
     padding: 20px 10px 25px;
     z-index: 1;
     margin: 30px 15px;
-    background-color: $darkWhite;
+    background-color: $backgroundPrimaryColor;
     border-radius: 9px;
 
     & .close-btn{
@@ -96,12 +96,12 @@
       & .slider-item {
         max-width: 20px;
         max-height: 20px;
-        color: $darkBlue;
+        color: $primaryColor;
 
         &_active {
           max-width: 20px;
           max-height: 20px;
-          color: $lightBlue;
+          color: $transparentPrimaryColor;
         }
       }
 
@@ -117,7 +117,7 @@
   
         &__description {
           letter-spacing: .06;
-          color: $transparentBlack;
+          color: $modalBackgroundColor;
           font-size: 16px;
           margin-bottom: 15px;
         }
@@ -133,20 +133,20 @@
         &__price {
           font-size: 22px;
           font-weight: bold;
-          color: $bloodRed;
+          color: $secondaryColor;
         }
   
         & .add-btn {
           margin-left: 10px;
           padding: 4px 16px;
-          background: $darkBlue;
-          color: $darkWhite;
+          background: $primaryColor;
+          color: $backgroundPrimaryColor;
           text-transform: none;
           font-size: 16px;
           transition: all .2s linear;
   
           &:hover {
-            background: $grayBlue;
+            background: $thirdColor;
           }
         }
       }

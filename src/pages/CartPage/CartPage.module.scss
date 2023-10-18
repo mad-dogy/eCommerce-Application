@@ -1,14 +1,8 @@
-@import '../../constants/var';
-@import '../../constants/mixins';
+@import '../../constants/global';
 
 .cart {
-  min-height: calc(100vh - 100px);
-
-  @include flex-center;
-
   font-size: 120px;
-  color: $bloodRed;
-  font-family: Roboto, sans-serif;
+  color: $secondaryColor;
   font-weight: bold;
   text-shadow: 4px 4px 2px rgb(0 0 0 / 60%);
 }

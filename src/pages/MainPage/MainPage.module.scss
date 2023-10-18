@@ -1,4 +1,4 @@
-@import '../../constants/var';
+@import '../../constants/global';
 
 .main {
   min-height: calc(100vh - 100px);
@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   font-size: 120px;
-  color: $bloodRed;
+  color: $secondaryColor;
   font-family: Roboto, sans-serif;
   font-weight: bold;
   text-shadow: 4px 4px 2px rgb(0 0 0 / 60%);

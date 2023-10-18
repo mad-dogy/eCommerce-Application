@@ -1,5 +1,4 @@
-@import '../../constants/mixins';
-@import '../../constants/var';
+@import '../../constants/global';
 
 .filter-panel {
   margin: 0 auto;
@@ -13,10 +12,10 @@
   align-items: center;
   justify-content: center;
   row-gap: 15px;
-  background: $darkBlue;
+  background: $primaryColor;
   border-radius: 20px;
   text-align: center;
-  color: $darkWhite;
+  color: $backgroundPrimaryColor;
 
   & .order-panel {
     display: flex;

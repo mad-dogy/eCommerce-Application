@@ -13,7 +13,7 @@ import { CartPage } from '../pages/CartPage/CartPage';
 import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
 import { CatalogPage } from '../pages/CatalogPage/CatalogPage';
 import { AboutPage } from '../pages/AboutPage/AboutPage';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { useAppSelector } from '../hooks/redux';
 
 const publicRouter = createHashRouter([
   {
@@ -128,7 +128,6 @@ const privateRouter = createHashRouter([
 ]);
 
 const AppRouter = (): JSX.Element => {
-  const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector(state => state.authReducer);
 
   const router = isAuth ? privateRouter : publicRouter;

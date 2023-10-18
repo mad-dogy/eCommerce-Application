@@ -1,4 +1,4 @@
-@import './constants/var';
+@import './constants/global';
 
 * {
   margin: 0;
@@ -10,14 +10,9 @@ body {
   overflow-y: scroll;
 }
 
-.app {
-  font-size: 30px;
-  background: $darkWhite;
-}
-
 * {
   scrollbar-width: auto;
-  scrollbar-color: #9c9c9c $darkWhite;
+  scrollbar-color: #9c9c9c $backgroundPrimaryColor;
 }
 
 *::-webkit-scrollbar {
@@ -25,11 +20,11 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: $darkWhite;
+  background: $backgroundPrimaryColor;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #9c9c9c;
   border-radius: 10px;
-  border: 3px solid $white;
+  border: 3px solid #fff;
 }

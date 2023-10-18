@@ -1,4 +1,4 @@
-@import '../../../constants/var';
+@import '../../../constants/global';
 
 .input-label {
   top: -8px !important;
@@ -11,10 +11,10 @@
 .select {
   border-radius: 10px !important;
   padding: 0 4px;
-  background: $darkWhite;
+  background: $backgroundPrimaryColor;
   font-size: 14px;
   letter-spacing: .06rem;
-  color: $lightBlack;
+  color: $textColor;
   max-width: 170px;
   min-width: 160px;
   width: 100%;

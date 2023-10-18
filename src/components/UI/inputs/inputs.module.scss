@@ -1,12 +1,12 @@
-@import '../../../constants/var';
+@import '../../../constants/global';
 
 .input {
   border-radius: 10px !important;
   padding: 0;
-  background: $darkWhite;
+  background: $backgroundPrimaryColor;
   font-size: 18px;
   letter-spacing: .06rem;
-  color: $lightBlack;
+  color: $textColor;
 }
 
 .password__btn {

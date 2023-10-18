@@ -1,11 +1,11 @@
-@import '../../../constants/var';
+@import '../../../constants/global';
 
 button.button {
   padding: 8px 24px;
   font-size: 16px;
-  background: $darkBlue;
+  background: $primaryColor;
 }
 
 button.button:hover {
-  background: $grayBlue;
+  background: $thirdColor;
 }

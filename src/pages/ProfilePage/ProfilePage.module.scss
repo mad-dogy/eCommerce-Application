@@ -1,13 +1,14 @@
-@import '../../constants/var';
-@import '../../constants/mixins';
+@import '../../constants/global';
 
 .profile {
-  background: $darkBlue;
+  background: $primaryColor;
   min-height: calc(100vh - 100px);
   height: 100%;
   padding: 30px 15px;
 
-  @include flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   font-family: Roboto, sans-serif;
   font-weight: bold;
@@ -18,7 +19,7 @@
     min-height: 685px;
     height: 100%;
     padding: 30px 25px;
-    background: $darkWhite;
+    background: $backgroundPrimaryColor;
     border-radius: 20px;
 
     & h4 {
@@ -49,7 +50,7 @@
     & h6 {
       font-size: 20px;
       margin-left: 6px;
-      color: $darkBlue;
+      color: $primaryColor;
     }
   }
 

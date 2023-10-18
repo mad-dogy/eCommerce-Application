@@ -1,5 +1,4 @@
-@import '../../constants/var';
-@import '../../constants/mixins';
+@import '../../constants/global';
 
 .login {
   &__inner {
@@ -8,10 +7,13 @@
     padding: 30px 30px 15px;
     border-radius: 40px;
 
-    @include flex-column-center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     row-gap: 16px;
-    background: $darkWhite;
+    background: $backgroundPrimaryColor;
   }
 
   &__title {
@@ -21,18 +23,20 @@
   }
 
   &__form {
-    @include flex-column-center;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     row-gap: 18px;
   }
 
   &__to-register {
     font-size: 14px;
     font-family: Roboto, sans-serif;
-    color:  $darkBlue;
+    color:  $primaryColor;
 
     & span {
-      color:  $bloodRed;
+      color:  $secondaryColor;
       font-weight: bold;
     }
   }
@@ -53,8 +57,10 @@
   }
 
   .content {
-    @include flex-column-center;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     row-gap: 15px;
   }
 }

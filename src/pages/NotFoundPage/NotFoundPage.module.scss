@@ -1,4 +1,4 @@
-@import '../../constants/var';
+@import '../../constants/global';
 
 .page {
   margin: 20px auto;
@@ -7,7 +7,7 @@
   width: 100%;
   min-height: calc(100vh - 100px);
   border-radius: 20px;
-  background: $darkWhite;
+  background: $backgroundPrimaryColor;
   font-family: Roboto, sans-serif;
   font-weight: bold;
   display: flex;
@@ -21,25 +21,25 @@
   width: 100%;
   padding-top: 25px;
   font-size: 24px;
-  color: $lightBlack;
+  color: $textColor;
 }
 
 .page h5 {
   padding-top: 25px;
   padding-bottom: 20px;
   font-size: 32px;
-  color: $lightBlack;
+  color: $textColor;
 
 }
 
 .go-home-btn {
   margin-top: 15px !important;
-  background: $bloodRed !important;
+  background: $secondaryColor !important;
   font-size: 16px !important;
 }
 
 .go-home-btn:hover {
-  background: $darkBlue !important;
+  background: $primaryColor !important;
 }
 
 .img {
