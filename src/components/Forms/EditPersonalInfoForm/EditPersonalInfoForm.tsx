@@ -22,7 +22,22 @@ import styles from './EditPersonalInfoForm.module.scss';
 interface EditPersonalInfoFormProps {
   customer: Customer;
   onSubmit: (data: CustomerUpdateInfo) => Promise<void>;
-  onCancelBtnClick: ()=> void;
+  onCancelBtnClick: () => void;
+}
+interface formDefaultValuesType {
+  firstName: string,
+  lastName: string,
+  email: string,
+
+  shippingCountry: string
+  shippingCity: string,
+  shippingStreet: string,
+  shippingPostalCode: string,
+
+  billingCountry: string,
+  billingCity: string,
+  billingStreet: string,
+  billingPostalCode: string,
 }
 
 export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
@@ -31,26 +46,28 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
   const shippingAddressInfo = useMemo(() => selectShippingAddressInfo(customer), [customer]);
   const billingAddressInfo = useMemo(() => selectBillingAddressInfo(customer), [customer]);
 
+  const formDefaultValues: formDefaultValuesType = {
+    firstName: customer.firstName,
+    lastName: customer.lastName,
+    email: customer.email,
+
+    shippingCountry: shippingAddressInfo.country,
+    shippingCity: shippingAddressInfo.city,
+    shippingStreet: shippingAddressInfo.streetName,
+    shippingPostalCode: shippingAddressInfo.postalCode,
+
+    billingCountry: billingAddressInfo.country,
+    billingCity: billingAddressInfo.city,
+    billingStreet: billingAddressInfo.streetName,
+    billingPostalCode: billingAddressInfo.postalCode,
+  }
+
   const {
     control, register, formState: { errors }, handleSubmit,
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur',
-    defaultValues: {
-      firstName: customer.firstName,
-      lastName: customer.lastName,
-      email: customer.email,
-
-      shippingCountry: shippingAddressInfo.country,
-      shippingCity: shippingAddressInfo.city,
-      shippingStreet: shippingAddressInfo.streetName,
-      shippingPostalCode: shippingAddressInfo.postalCode,
-
-      billingCountry: billingAddressInfo.country,
-      billingCity: billingAddressInfo.city,
-      billingStreet: billingAddressInfo.streetName,
-      billingPostalCode: billingAddressInfo.postalCode,
-    },
+    defaultValues: {...formDefaultValues}
   });
 
   const [availableCountries, setAvailableCountries] = useState<SelectItem[]>();

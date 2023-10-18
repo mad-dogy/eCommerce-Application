@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { Loader } from '../../components/UI/Loader/Loader';
@@ -29,7 +29,7 @@ export const CatalogPage = () => {
     error,
   } = useAppSelector(state => state.catalogReducer);
 
-  const search = () => {
+  const searchProducts = () => {
     dispatch(fetchProducts(
       limit,
       (currentPageNumber - 1) * limit,
@@ -37,9 +37,9 @@ export const CatalogPage = () => {
       querySortOption,
       querySortOrder,
     ));
-  };
+  }
 
-  const debauncedSearch = useDebounce(search, 500);
+  const debauncedSearch = useDebounce(searchProducts, 500);
 
   useEffect(() => {
     debauncedSearch();
@@ -53,17 +53,7 @@ export const CatalogPage = () => {
       querySortOption,
       querySortOrder,
     ));
-  }, [querySortOption, querySortOrder]);
-
-  useEffect(() => {
-    dispatch(fetchProducts(
-      limit,
-      (currentPageNumber - 1) * limit,
-      queryString,
-      querySortOption,
-      querySortOrder,
-    ));
-  }, [limit, currentPageNumber]);
+  }, [querySortOption, querySortOrder, limit, currentPageNumber]);
 
   const onQueryStringChange = (value: string) => {
     dispatch(setQueryString(value));
@@ -76,7 +66,6 @@ export const CatalogPage = () => {
   };
   const onLimitChange = (value: number) => {
     dispatch(setLimit(value));
-    dispatch(setCurrentPageNumber(1));
   };
   const onCurrentPageNumberChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setCurrentPageNumber(value));

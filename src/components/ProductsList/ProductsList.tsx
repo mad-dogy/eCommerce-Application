@@ -24,14 +24,14 @@ export const ProductsList = (props: ProductsContainerProps) => {
     productsLimit, onChangeProductsLimit,
   } = props;
 
-  const [currentProductId, setCurrentProductId] = useState('');
+  const [currentProductId, setCurrentProductId] = useState<string | undefined>(undefined);
 
   const onItemClick = (productId: string) => {
     setCurrentProductId(productId);
   };
   const onCloseModal = (event: React.MouseEvent) => {
     event.stopPropagation();
-    setCurrentProductId('');
+    setCurrentProductId(undefined);
   };
 
   return (
@@ -49,7 +49,7 @@ export const ProductsList = (props: ProductsContainerProps) => {
         pagesCount={pagesCount}
         currentPage={currentPage}
         handleChangePage={handleChangePage}
-        productsLimit={productsLimit}
+        productsItemLimit={productsLimit}
         onChangeProductsLimit={onChangeProductsLimit}
       />
     </div>

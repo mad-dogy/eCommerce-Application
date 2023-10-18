@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { type MyCustomerSignin } from '@commercetools/platform-sdk';
 import { Logo } from '../../components/Logo/Logo';
 import { PUBLIC_ROUTES } from '../../constants/routes';
-import { signIn } from '../../api/ClientMe';
+import { SignInProps, signIn } from '../../api/ClientMe';
 import { LoginForm } from '../../components/Forms/LoginForm/LoginForm';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -17,7 +16,7 @@ export const LoginPage = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const onLogin = async (data: MyCustomerSignin) => {
+  const onLogin = async (data: SignInProps) => {
     try {
       const customerId = await signIn(data);
       dispatch(setAuth(true));

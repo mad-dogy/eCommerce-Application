@@ -4,13 +4,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import React, { useEffect, useState } from 'react';
 import CloseBtn from '../../../assets/cross.svg';
 import { Button } from '../../UI/Button/Button';
-import { SwiperComponent } from '../../SwiperComponentMy/SwiperComponentMy';
 import { getProductById } from '../../../api/Products/Products';
 import { Loader } from '../../UI/Loader/Loader';
 import styles from './ProductItemModal.module.scss';
 
 interface ProductItemModalProps {
-  productId?: string;
+  productId: string | undefined;
   onCloseBtnClick: (event: React.MouseEvent) => void;
 }
 
@@ -50,7 +49,6 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
           <div className={styles['close-btn']} onClick={onCloseBtnClick}>
             <CloseBtn />
           </div>
-          {/* <SwiperComponent /> */}
           {
             isLoading
               ? <Loader />

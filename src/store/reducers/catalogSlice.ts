@@ -72,6 +72,7 @@ export const catalogSlice = createSlice({
     setLimit(state, action: PayloadAction<number>) {
       state.limit = action.payload;
       state.pagesAmount = Math.ceil(state.total / state.limit);
+      state.currentPageNumber = 1;
     },
     setCurrentPageNumber(state, action: PayloadAction<number>) {
       state.currentPageNumber = action.payload;
