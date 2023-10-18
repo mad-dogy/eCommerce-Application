@@ -2,7 +2,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { validationSchema } from '../../../pages/LoginPage/validationSchema';
+import { MyCustomerSignin } from '@commercetools/platform-sdk';
+import { validationSchema } from './validationSchema';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
@@ -24,10 +25,14 @@ export const LoginForm = (props: LoginFormProps): JSX.Element => {
     mode: 'onBlur',
   });
 
+  const onSubmit = (data: MyCustomerSignin) => {
+    onFormSubmit?.(data);
+  };
+
   return (
     <form
       className={`${styles.form} ${className}`}
-      onSubmit={handleSubmit(onFormSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         name="email"

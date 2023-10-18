@@ -1,7 +1,8 @@
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
 import { App } from './App';
 import { setupStore } from './store/store';
+import { Provider } from 'react-redux';
+import './index.scss';
 
 const rootElement = document.createElement('div');
 rootElement.id = 'root';
@@ -11,8 +12,8 @@ const store = setupStore();
 
 root.render(
   <Provider store={store}>
-    <App />
-  </Provider>,
+    <App />,
+  </Provider>
 );
 
 document.body.append(rootElement);

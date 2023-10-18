@@ -1,5 +1,5 @@
 import {
-  useCallback, useContext, useEffect, useState,
+  useCallback, useEffect, useState,
 } from 'react';
 import { type Customer } from '@commercetools/platform-sdk';
 import EditIcon from '@mui/icons-material/Edit';
@@ -8,14 +8,17 @@ import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
 import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
-import { AuthContext } from '../../context';
 import { changeCustomerPassword, deleteCustomer, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
 import { PUBLIC_ROUTES } from '../../constants/routes';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal/ChangePasswordModal';
+import { useAppDispatch } from '../../hooks/redux';
+import { authSlice } from '../../store/reducers/authSlice';
 import styles from './ProfilePage.module.scss';
+
+const { setAuth } = authSlice.actions;
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
@@ -23,6 +26,7 @@ export const ProfilePage = (): JSX.Element => {
   const [isInfoEdit, setInfoEdit] = useState(false);
   const [isPasswordEdit, setPasswordEdit] = useState(false);
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,15 +87,13 @@ export const ProfilePage = (): JSX.Element => {
     }
   };
 
-  const { isAuth, setAuth } = useContext(AuthContext);
-
   const onDeleteAccount = async (): Promise<void> => {
     const isDelete = confirm('Are you sure that you want to delete an account?'); // TODO: сделать подтверждающую модалку?))
 
     if (isDelete) {
       try {
         await deleteCustomer(customer);
-        setAuth(false);
+        dispatch(setAuth(false));
         localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
         navigate(PUBLIC_ROUTES.Base);
       } catch (error) {

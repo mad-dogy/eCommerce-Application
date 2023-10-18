@@ -11,6 +11,14 @@ interface PaginationProps {
   onChangeProductsLimit: (value: number) => void;
 }
 
+const selectItems = [
+  { name: '4', value: 4 },
+  { name: '8', value: 8 },
+  { name: '12', value: 12 },
+  { name: '16', value: 16 },
+  { name: '20', value: 20 },
+];
+
 export const Pagination = (props: PaginationProps) => {
   const {
     pagesCount,
@@ -21,15 +29,8 @@ export const Pagination = (props: PaginationProps) => {
     <div className={styles.pagination}>
       <MuiPagination count={pagesCount} page={currentPage} onChange={handleChangePage} color="primary" />
       <Select
-        label=""
         defaultValue={productsLimit}
-        selectItems={[
-          { name: '4', value: 4 },
-          { name: '8', value: 8 },
-          { name: '12', value: 12 },
-          { name: '16', value: 16 },
-          { name: '20', value: 20 },
-        ]}
+        selectItems={selectItems}
         onChange={event => onChangeProductsLimit(event.target.value as number)}
         className={styles.pagination__select}
       />

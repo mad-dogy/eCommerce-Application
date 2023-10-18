@@ -1,22 +1,26 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { type MyCustomerSignin } from '@commercetools/platform-sdk';
 import { Logo } from '../../components/Logo/Logo';
 import { PUBLIC_ROUTES } from '../../constants/routes';
-import { AuthContext } from '../../context';
 import { signIn } from '../../api/ClientMe';
 import { LoginForm } from '../../components/Forms/LoginForm/LoginForm';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { authSlice } from '../../store/reducers/authSlice';
 import styles from './LoginPage.module.scss';
 
-export const LoginPage = (): JSX.Element => {
-  const navigate = useNavigate();
-  const { isAuth, setAuth } = useContext(AuthContext);
+const { setAuth } = authSlice.actions;
 
-  const onLogin = async (data: MyCustomerSignin): Promise<void> => {
+export const LoginPage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector(state => state.authReducer);
+
+  const navigate = useNavigate();
+
+  const onLogin = async (data: MyCustomerSignin) => {
     try {
       const customerId = await signIn(data);
-      setAuth(true);
+      dispatch(setAuth(true));
       localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, customerId);
       navigate(PUBLIC_ROUTES.Base);
     } catch (error) {

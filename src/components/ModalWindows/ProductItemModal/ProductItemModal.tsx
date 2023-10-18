@@ -10,7 +10,7 @@ import { Loader } from '../../UI/Loader/Loader';
 import styles from './ProductItemModal.module.scss';
 
 interface ProductItemModalProps {
-  productId: string;
+  productId?: string;
   onCloseBtnClick: (event: React.MouseEvent) => void;
 }
 
@@ -22,6 +22,7 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
 
   useEffect(() => {
     if (!productId) return;
+
     const setProductById = async (id: string) => {
       setLoading(true);
       const receivedProduct = await getProductById(id);
@@ -99,6 +100,7 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
       </div>
     );
   }
+
   return (
     <div>
       {productId

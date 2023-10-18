@@ -1,22 +1,24 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { type CustomerDraft } from '@commercetools/platform-sdk';
 import { Logo } from '../../../components/Logo/Logo';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
-import { AuthContext } from '../../../context';
 import { signUp } from '../../../api/Customers/Authorization';
 import { BaseRegisterForm } from '../../../components/Forms/BaseRegisterForm/BaseRegisterForm';
 import { LOCAL_STORAGE_KEYS } from '../../../constants/constants';
+import { authSlice } from '../../../store/reducers/authSlice';
+import { useAppDispatch } from '../../../hooks/redux';
 import styles from '../RegisterPage.module.scss';
 
+const { setAuth } = authSlice.actions;
+
 export const BaseRegisterPage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { isAuth, setAuth } = useContext(AuthContext);
 
   const onSubmit = async (data: CustomerDraft): Promise<void> => {
     try {
       const customerId = await signUp(data);
-      setAuth(true);
+      dispatch(setAuth(true));
       localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, customerId);
 
       navigate(PRIVATE_ROUTES.ExtendRegisterPage);

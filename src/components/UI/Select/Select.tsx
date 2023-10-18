@@ -11,7 +11,7 @@ export interface SelectItem {
 }
 
 interface SelectProps extends MuiSelectProps {
-  label: string;
+  label?: string;
   selectItems: SelectItem[];
   error?: boolean;
   helperText?: string;

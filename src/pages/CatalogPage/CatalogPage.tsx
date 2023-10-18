@@ -8,6 +8,12 @@ import { QuerySortOptionType, QuerySortOrderType, catalogSlice } from '../../sto
 import { useDebounce } from '../../hooks/useDebounce';
 import styles from './CatalogPage.module.scss';
 
+const {
+  setQueryString, setQuerySortOption, setQuerySortOrder,
+  setLimit,
+  setCurrentPageNumber,
+} = catalogSlice.actions;
+
 export const CatalogPage = () => {
   const dispatch = useAppDispatch();
   const {
@@ -22,11 +28,6 @@ export const CatalogPage = () => {
     isLoading,
     error,
   } = useAppSelector(state => state.catalogReducer);
-  const {
-    setQueryString, setQuerySortOption, setQuerySortOrder,
-    setLimit,
-    setCurrentPageNumber,
-  } = catalogSlice.actions;
 
   const search = () => {
     dispatch(fetchProducts(
@@ -37,7 +38,9 @@ export const CatalogPage = () => {
       querySortOrder,
     ));
   };
+
   const debauncedSearch = useDebounce(search, 500);
+
   useEffect(() => {
     debauncedSearch();
   }, [queryString]);

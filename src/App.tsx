@@ -1,27 +1,22 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEYS } from './constants/constants';
 import AppRouter from './router/AppRouter';
-import { AuthContext } from './context';
-import './index.scss';
+import { useAppDispatch } from './hooks/redux';
+import { authSlice } from './store/reducers/authSlice';
 /* import 'swiper/css'; */
 
+const { setAuth } = authSlice.actions;
+
 export const App = (): JSX.Element => {
-  const [isAuth, setAuth] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (localStorage.getItem(LOCAL_STORAGE_KEYS.customerId)) {
-      setAuth(true);
+      dispatch(setAuth(true));
     }
   }, []);
 
-  const value = useMemo(() => ({
-    isAuth,
-    setAuth,
-  }), [isAuth, setAuth]);
-
   return (
-    <AuthContext.Provider value={value}>
-      <AppRouter isAuth={isAuth} />
-    </AuthContext.Provider>
+    <AppRouter />
   );
 };

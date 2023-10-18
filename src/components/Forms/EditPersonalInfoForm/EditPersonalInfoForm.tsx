@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { TextFieldsOutlined } from '@mui/icons-material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { validationSchema } from './validationSchema';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
@@ -28,8 +28,8 @@ interface EditPersonalInfoFormProps {
 export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
   const { customer, onSubmit, onCancelBtnClick } = props;
 
-  const shippingAddressInfo = selectShippingAddressInfo(customer);
-  const billingAddressInfo = selectBillingAddressInfo(customer);
+  const shippingAddressInfo = useMemo(() => selectShippingAddressInfo(customer), [customer]);
+  const billingAddressInfo = useMemo(() => selectBillingAddressInfo(customer), [customer]);
 
   const {
     control, register, formState: { errors }, handleSubmit,

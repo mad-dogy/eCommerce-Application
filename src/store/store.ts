@@ -1,8 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { catalogReducer } from './reducers/catalogSlice';
+import { authReducer } from './reducers/authSlice';
+import { cartReducer } from './reducers/cartSlice';
 
 const rootReducer = combineReducers({
+  authReducer,
   catalogReducer,
+  cartReducer,
 });
 
 export const setupStore = () => configureStore({

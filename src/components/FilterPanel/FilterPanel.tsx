@@ -19,6 +19,7 @@ export const FilterPanel = (props: FilterPanelProps) => {
     sortOption, onSortOptionChange,
     sortOrder, onSortOrderChange,
   } = props;
+
   return (
     <div className={styles['filter-panel']}>
       <SearchInput searchValue={searchValue} onSearchValueChange={onSearchValueChange} />
@@ -28,7 +29,6 @@ export const FilterPanel = (props: FilterPanelProps) => {
           <Select
             value={sortOption}
             onChange={event => onSortOptionChange(event.target.value as QuerySortOptionType)}
-            label=""
             selectItems={[
               { name: 'ID', value: 'id' },
               { name: 'Name', value: 'name' },
@@ -41,7 +41,6 @@ export const FilterPanel = (props: FilterPanelProps) => {
           <Select
             value={sortOrder}
             onChange={event => onSortOrderChange(event.target.value as QuerySortOrderType)}
-            label=""
             selectItems={[{ name: 'ASC', value: 'asc' }, { name: 'DESC', value: 'desc' }]}
           />
         </span>
