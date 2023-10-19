@@ -7,8 +7,8 @@ import { validationSchema } from './validationSchema';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
-import { PUBLIC_ROUTES } from '../../../constants/routes';
 import styles from './LoginForm.module.scss';
+import { ROUTES } from '../../../constants/routes';
 
 interface LoginFormProps {
   onFormSubmit: (props: any) => Promise<void>;
@@ -70,7 +70,7 @@ export const LoginForm = (props: LoginFormProps): JSX.Element => {
 
       <div className={styles.btns}>
         <Button>
-          <Link to={PUBLIC_ROUTES.Base}>
+          <Link to={ROUTES.Base}>
             <span>Go to shop</span>
             <ArrowForwardIosIcon fontSize="small" />
           </Link>

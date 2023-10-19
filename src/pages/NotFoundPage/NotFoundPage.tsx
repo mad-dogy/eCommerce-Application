@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styles from './NotFoundPage.module.scss';
 import NotFoundImg from '../../assets/404.png';
-import { PUBLIC_ROUTES } from '../../constants/routes';
+import { ROUTES } from '../../constants/routes';
 
 export const NotFoundPage = (): JSX.Element => (
   <div className={styles.page}>
@@ -14,7 +14,7 @@ export const NotFoundPage = (): JSX.Element => (
         How you got here is a mystery 🌙✨. But you can
         click on the button below to return to the main page.
       </div>
-      <Link to={PUBLIC_ROUTES.Base}>
+      <Link to={ROUTES.Base}>
         <Button className={styles['go-home-btn']} variant="contained">Home</Button>
       </Link>
     </div>

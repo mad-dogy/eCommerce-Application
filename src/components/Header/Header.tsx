@@ -3,7 +3,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 import { Logo } from '../Logo/Logo';
-import { PUBLIC_ROUTES, PRIVATE_ROUTES } from '../../constants/routes';
+import { ROUTES } from '../../constants/routes';
 import { Navbar } from '../Navbar/Navbar';
 import styles from './Header.module.scss';
 
@@ -16,7 +16,7 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
   const { isAuth, onLogout } = props;
   return (
     <header className={styles.header}>
-      <Link to={PUBLIC_ROUTES.Base}>
+      <Link to={ROUTES.Base}>
         <Logo />
       </Link>
 
@@ -25,14 +25,14 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
       {isAuth
         ? (
           <nav className={styles.header__nav}>
-            <Link to={PRIVATE_ROUTES.Cart}>
+            <Link to={ROUTES.Cart}>
               <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
             </Link>
-            <Link to={PRIVATE_ROUTES.Profile}>
+            <Link to={ROUTES.Profile}>
               <PersonIcon className={styles.nav__icon} fontSize="large" />
             </Link>
             <Link
-              to={PRIVATE_ROUTES.Base}
+              to={ROUTES.Base}
               className={styles.nav__btn}
               onClick={() => { onLogout(); }}
             >
@@ -42,11 +42,11 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
         )
         : (
           <nav className={styles.header__nav}>
-            <Link to={PUBLIC_ROUTES.Cart}>
+            <Link to={ROUTES.Cart}>
               <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
             </Link>
-            <Link to={PUBLIC_ROUTES.BaseRegisterPage} className={styles.nav__btn}>Sign up</Link>
-            <Link to={PUBLIC_ROUTES.LoginPage} className={styles.nav__btn}>Log in</Link>
+            <Link to={ROUTES.BaseRegisterPage} className={styles.nav__btn}>Sign up</Link>
+            <Link to={ROUTES.LoginPage} className={styles.nav__btn}>Log in</Link>
           </nav>
         )}
 

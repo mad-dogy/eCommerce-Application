@@ -7,7 +7,7 @@ import styles from './BaseRegisterForm.module.scss';
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
-import { PUBLIC_ROUTES } from '../../../constants/routes';
+import { ROUTES } from '../../../constants/routes';
 
 interface BaseRegisterFormProps {
   onFormSubmit: (props: any) => Promise<void>;
@@ -81,7 +81,7 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
 
       <div className={styles.btns}>
         <Button>
-          <Link to={PUBLIC_ROUTES.Base}>
+          <Link to={ROUTES.Base}>
             <span>Go to shop</span>
             <ArrowForwardIosIcon fontSize="small" />
           </Link>

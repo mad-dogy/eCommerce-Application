@@ -17,6 +17,7 @@ export const fetchSignIn = (data: SignInProps) => async (dispatch: AppDispatch) 
     dispatch(fetchingSignInSuccess(customerId));
   } catch (error) {
     dispatch(fetchingSignInError(error.message));
+    throw error
   }
 };
 
@@ -29,10 +30,13 @@ export const fetchSignUp = (data: SignUpProps) => async (dispatch: AppDispatch) 
 
   try {
     dispatch(fetchingSignUp());
+
     const customerId = await signUp(data);
+    
     dispatch(fetchingSignUpSuccess(customerId));
   } catch (error) {
     dispatch(fetchingSignUpError(error.message));
+    throw error;
   }
 };
 

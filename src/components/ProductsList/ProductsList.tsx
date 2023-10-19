@@ -8,6 +8,13 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { Loader } from '../UI/Loader/Loader';
 import { fetchProducts } from '../../store/reducers/actionCreators/catalogActionCreators';
 import styles from './ProductsList.module.scss';
+import { getCatalogProducts } from '../../store/selectors/getCatalogFields/getCatalogProducts';
+import { getCatalogLimit } from '../../store/selectors/getCatalogFields/getCatalogProductsLimit';
+import { getCatalogPagesAmount } from '../../store/selectors/getCatalogFields/getCatalogPagesAmount';
+import { getCatalogCurrentPageNumber } from '../../store/selectors/getCatalogFields/getCatalogCurrentPageNumber';
+import { getCatalogQueryString, getCatalogSortOption, getCatalogSortOrder } from '../../store/selectors/getCatalogFields/getCatalogFilterOptions';
+import { getCatalogLoading } from '../../store/selectors/getCatalogFields/getCatalogLoading';
+import { getCatalogError } from '../../store/selectors/getCatalogFields/getCatalogError';
 
 const {
   setLimit,
@@ -16,17 +23,16 @@ const {
 
 export const ProductsList = () => {
   const dispatch = useAppDispatch();
-  const {
-    products,
-    limit,
-    pagesAmount,
-    currentPageNumber,
-    queryString,
-    querySortOption,
-    querySortOrder,
-    isLoading,
-    error,
-  } = useAppSelector(state => state.catalogReducer);
+  
+  const products = useAppSelector(getCatalogProducts);
+  const limit = useAppSelector(getCatalogLimit);
+  const pagesAmount = useAppSelector(getCatalogPagesAmount);
+  const currentPageNumber = useAppSelector(getCatalogCurrentPageNumber);
+  const queryString = useAppSelector(getCatalogQueryString);
+  const querySortOption = useAppSelector(getCatalogSortOption);
+  const querySortOrder = useAppSelector(getCatalogSortOrder);
+  const isLoading = useAppSelector(getCatalogLoading);
+  const error = useAppSelector(getCatalogError);
 
   const dispatchFetchProducts = () => {
     dispatch(fetchProducts(

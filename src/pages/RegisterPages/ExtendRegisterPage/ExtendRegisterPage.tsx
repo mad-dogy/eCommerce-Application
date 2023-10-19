@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { modifyToCorrectDate } from '../../../helpers/modifyToCorrectDate';
 import { setCustomerExtendInfo } from '../../../api/Customers/Authorization';
 import { type CustomerExtendInfo } from '../../../entities/CustomerTypes/CustomerExtendInfo.type';
-import { PRIVATE_ROUTES } from '../../../constants/routes';
+import { ROUTES } from '../../../constants/routes';
 import { ExtendRegisterForm } from '../../../components/Forms/ExtendRegisterForm/ExtendRegisterForm';
 import { LOCAL_STORAGE_KEYS } from '../../../constants/constants';
 import styles from '../RegisterPage.module.scss';
@@ -15,7 +15,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
     try {
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       await setCustomerExtendInfo(customerId, data);
-      navigate(PRIVATE_ROUTES.Base);
+      navigate(ROUTES.Base);
     } catch (error) {
       alert(error);
     }

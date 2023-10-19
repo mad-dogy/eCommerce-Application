@@ -1,27 +1,25 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '../../../components/Logo/Logo';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../../constants/routes';
 import { SignUpProps } from '../../../api/Customers/Authorization';
 import { BaseRegisterForm } from '../../../components/Forms/BaseRegisterForm/BaseRegisterForm';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchSignUp } from '../../../store/reducers/actionCreators/authActionCreators';
 import { Loader } from '../../../components/UI/Loader/Loader';
+import { ROUTES } from '../../../constants/routes';
 import styles from '../RegisterPage.module.scss';
+import { getAuthLoading } from '../../../store/selectors/getAuthFields/getAuthLoading';
 
 export const BaseRegisterPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { error, isLoading, isAuth } = useAppSelector(state => state.authReducer);
+  const isLoading= useAppSelector(getAuthLoading);
 
   const onSignUp = async (data: SignUpProps): Promise<void> => {
-    dispatch(fetchSignUp(data)).then(() => {
-      console.log(isAuth)
-
-      if (!error) {
-        navigate(PRIVATE_ROUTES.ExtendRegisterPage);
-      }
-    });
+    try {
+      await dispatch(fetchSignUp(data));
+      navigate(ROUTES.ExtendRegisterPage);
+    } catch(error) {}
   };
 
   let content;
@@ -34,7 +32,7 @@ export const BaseRegisterPage = (): JSX.Element => {
 
         <BaseRegisterForm className={styles.register__form} onFormSubmit={onSignUp} />
 
-        <Link to={PUBLIC_ROUTES.LoginPage} className={styles['register__to-login']}>
+        <Link to={ROUTES.LoginPage} className={styles['register__to-login']}>
           Already have account?
           <span> Log in</span>
         </Link>

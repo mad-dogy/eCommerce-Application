@@ -16,7 +16,8 @@ import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswor
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchDeleteCustomerAccount } from '../../store/reducers/actionCreators/authActionCreators';
 import styles from './ProfilePage.module.scss';
-import { PUBLIC_ROUTES } from '../../constants/routes';
+import { getAuthError } from '../../store/selectors/getAuthFields/getAuthError';
+import { ROUTES } from '../../constants/routes';
 
 export const ProfilePage = (): JSX.Element => {
   const [customer, setCustomer] = useState<Customer>();
@@ -27,7 +28,7 @@ export const ProfilePage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { error } = useAppSelector(state => state.authReducer);
+  const error = useAppSelector(getAuthError);
 
   useEffect(() => {
     const getCustomerInfo = async () => {
@@ -93,7 +94,7 @@ export const ProfilePage = (): JSX.Element => {
     if (isDelete) {
       dispatch(fetchDeleteCustomerAccount(customer));
       if (!error) {
-        navigate(PUBLIC_ROUTES.Base);
+        navigate(ROUTES.Base);
       }
     }
   };

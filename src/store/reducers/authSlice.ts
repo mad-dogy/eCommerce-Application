@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useNavigate } from 'react-router-dom';
 import { SignInResponseType } from '../../api/ClientMe';
 import { SignUpResponseType } from '../../api/Customers/Authorization';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../../constants/routes';
 
-interface AuthState {
+export interface AuthState {
   isAuth: boolean;
   isLoading: boolean;
   error: string;
