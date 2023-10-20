@@ -5,6 +5,7 @@ export const CartPage = (): JSX.Element => {
   useEffect(() => {
 
   }, []);
+
   return (
     <div className={styles.cart}>
       Cart

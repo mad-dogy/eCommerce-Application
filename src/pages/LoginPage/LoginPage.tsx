@@ -20,14 +20,14 @@ export const LoginPage = (): JSX.Element => {
   const onSignIn = async (data: SignInProps) => {
     try {
       await dispatch(fetchSignIn(data));
-      
+
       navigate(ROUTES.Base);
-    } catch(error) {}
+    } catch (error) {}
   };
 
   let content;
-  if(isLoading) {
-    content = <Loader />
+  if (isLoading) {
+    content = <Loader />;
   } else {
     content = (
       <div className={styles.content}>
@@ -40,7 +40,7 @@ export const LoginPage = (): JSX.Element => {
           <span> Sign up</span>
         </Link>
       </div>
-    )
+    );
   }
 
   return (

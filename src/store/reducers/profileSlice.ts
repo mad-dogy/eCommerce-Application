@@ -36,14 +36,12 @@ export const profileSlice = createSlice({
     setPasswordEdit(state, action: PayloadAction<boolean>) {
       state.isPasswordEdit = action.payload;
     },
-    
+
     fetchingCustomer(state) {
       state.isLoading = true;
     },
     fetchingCustomerSuccess(state, action: PayloadAction<Customer>) {
       state.customer = action.payload;
-      state.isInfoEdit = false;
-      state.isPasswordEdit = false;
 
       state.isLoading = false;
       state.error = '';
@@ -51,8 +49,8 @@ export const profileSlice = createSlice({
     fetchingCustomerError(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.isLoading = false;
-    }
-  }
+    },
+  },
 });
 
 export const profileReducer = profileSlice.reducer;

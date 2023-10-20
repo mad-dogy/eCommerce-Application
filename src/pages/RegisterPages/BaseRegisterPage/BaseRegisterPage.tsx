@@ -13,18 +13,18 @@ export const BaseRegisterPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const isLoading= useAppSelector(getAuthLoading);
+  const isLoading = useAppSelector(getAuthLoading);
 
   const onSignUp = async (data: SignUpProps): Promise<void> => {
     try {
       await dispatch(fetchSignUp(data));
       navigate(ROUTES.ExtendRegisterPage);
-    } catch(error) {}
+    } catch (error) {}
   };
 
   let content;
-  if(isLoading) {
-    content = <Loader />
+  if (isLoading) {
+    content = <Loader />;
   } else {
     content = (
       <div className={styles.content}>
@@ -37,7 +37,7 @@ export const BaseRegisterPage = (): JSX.Element => {
           <span> Log in</span>
         </Link>
       </div>
-    )
+    );
   }
 
   return (

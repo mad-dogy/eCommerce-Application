@@ -17,6 +17,7 @@ import { getAuthState } from '../store/selectors/getAuthFields/getAuthState';
 import { ROUTES } from '../constants/routes';
 import { PrivateRoute } from './decorators/PrivateRoute';
 import { ExtendRegisterRoute } from './decorators/ExtendRegisterRoute';
+import { Loader } from '../components/UI/Loader/Loader';
 
 export const router = createHashRouter([
   {
@@ -86,6 +87,9 @@ export const router = createHashRouter([
 
 const AppRouter = (): JSX.Element => {
   const isAuth = useAppSelector(getAuthState);
+  if (isAuth === undefined) {
+    return <Loader />;
+  }
 
   return (
     <RouterProvider router={router} />

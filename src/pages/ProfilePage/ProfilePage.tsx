@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/UI/Loader/Loader';
@@ -20,27 +20,26 @@ import { getProfilePasswordEdit } from '../../store/selectors/getProfileFields.t
 import { profileSlice } from '../../store/reducers/profileSlice';
 import { fetchCustomer } from '../../store/reducers/actionCreators/profileActionCreators';
 import styles from './ProfilePage.module.scss';
+import { getProfileCustomerId } from '../../store/selectors/getProfileFields.ts/getProfileCustomerId';
 
 const { setInfoEdit, setPasswordEdit } = profileSlice.actions;
 
 export const ProfilePage = (): JSX.Element => {
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const customer = useAppSelector(getProfileCustomer);
+  const customerId = useAppSelector(getProfileCustomerId);
   const isInfoEdit = useAppSelector(getProfileInfoEdit);
   const isPasswordEdit = useAppSelector(getProfilePasswordEdit);
   const isLoading = useAppSelector(getProfileLoading);
   const error = useAppSelector(getProfileError);
 
   useEffect(() => {
-    const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
     dispatch(fetchCustomer(customerId));
   }, []);
 
   useEffect(() => {
-    const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
     dispatch(fetchCustomer(customerId));
   }, [isInfoEdit]);
 
@@ -50,7 +49,7 @@ export const ProfilePage = (): JSX.Element => {
 
   const onCancelBtnClick = (): void => {
     dispatch(setInfoEdit(false));
-  }
+  };
 
   const onChangePasswordBtnClick = () => {
     dispatch(setPasswordEdit(true));
@@ -70,7 +69,6 @@ export const ProfilePage = (): JSX.Element => {
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
     try {
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
-      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
       await updateCustomerInfo(customerId, data);
       dispatch(setInfoEdit(false));
     } catch (error) {
@@ -92,42 +90,42 @@ export const ProfilePage = (): JSX.Element => {
   return (
     <div className={styles.profile}>
       {isLoading
-      ? <Loader />
-      : (
-        <div className={styles.profile__inner}>
-          <h4>
-            PERSONAL ACCOUNT
+        ? <Loader />
+        : (
+          <div className={styles.profile__inner}>
+            <h4>
+              PERSONAL ACCOUNT
+              {isInfoEdit
+                ? <span />
+                : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
+            </h4>
+
             {isInfoEdit
-            ? <span />
-            : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
-          </h4>
+              ? (
+                <EditPersonalInfoForm
+                  onSubmit={onSaveBtnClick}
+                  onCancelBtnClick={onCancelBtnClick}
+                  customer={customer}
+                />
+              )
+              : (
+                <ProfileInfoContent
+                  customer={customer}
+                  onChangePasswordBtnClick={onChangePasswordBtnClick}
+                  onDeleteBtnClick={onDeleteAccount}
+                />
+              ) }
 
-          {isInfoEdit
-          ? (
-            <EditPersonalInfoForm
-              onSubmit={onSaveBtnClick}
-              onCancelBtnClick={onCancelBtnClick}
-              customer={customer}
-            />
-          )
-          : (
-            <ProfileInfoContent
-              customer={customer}
-              onChangePasswordBtnClick={onChangePasswordBtnClick}
-              onDeleteBtnClick={onDeleteAccount}
-            />
-          ) }
-
-          {isPasswordEdit
-          ? (
-            <ChangePasswordModal
-              onPasswordCancelSave={onPasswordCancelBtnClick}
-              onPasswordSave={onPasswordSaveBtnClick}
-            />
-          )
-          : <div />}
-        </div>
-      )}
+            {isPasswordEdit
+              ? (
+                <ChangePasswordModal
+                  onPasswordCancelSave={onPasswordCancelBtnClick}
+                  onPasswordSave={onPasswordSaveBtnClick}
+                />
+              )
+              : <div />}
+          </div>
+        )}
     </div>
   );
 };
