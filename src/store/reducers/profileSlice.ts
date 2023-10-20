@@ -50,6 +50,20 @@ export const profileSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+
+    fetchingCustomerUpdate(state) {
+      state.isLoading = true;
+    },
+    fetchingCustomerUpdateSuccess(state) {
+      state.isInfoEdit = false;
+      state.isPasswordEdit = false;
+      state.isLoading = false;
+      state.error = '';
+    },
+    fetchingCustomerUpdateError(state, action: PayloadAction<string>) {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 

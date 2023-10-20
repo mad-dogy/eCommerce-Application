@@ -44,22 +44,22 @@ export const FilterPanel = (props: FilterPanelProps) => {
     <div className={styles['filter-panel']}>
       <SearchInput searchValue={searchValue} onSearchValueChange={onSearchValueChange} />
       <div className={styles['order-panel']}>
-        <span className={styles['order-item']}>
-          order by
+        <div className={styles['order-item']}>
+          <span>order by</span>
           <Select
             value={sortOption}
             onChange={onChangeSortOptionSelectValue}
             selectItems={sortOptionSelectItems}
           />
-        </span>
-        <span className={styles['order-item']}>
-          order by
+        </div>
+        <div className={styles['order-item']}>
+          <span>order by</span>
           <Select
             value={sortOrder}
             onChange={onChangeSortOrderSelectValue}
             selectItems={sortOrderSelectItems}
           />
-        </span>
+        </div>
       </div>
     </div>
   );

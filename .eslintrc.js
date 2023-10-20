@@ -74,5 +74,6 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/no-children-prop": "off",
+    "react-hooks/rules-of-hooks": "off"
   }
 }

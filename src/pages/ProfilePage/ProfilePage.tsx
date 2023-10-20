@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
 import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
-import { changeCustomerPassword, updateCustomerInfo } from '../../api/Customers/CustomerUpdateActions';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
-import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
-import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
+import { CustomerPasswordUpdateInfo, CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal/ChangePasswordModal';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchDeleteCustomerAccount } from '../../store/reducers/actionCreators/authActionCreators';
@@ -18,9 +16,9 @@ import { getProfileError } from '../../store/selectors/getProfileFields.ts/getPr
 import { getProfileInfoEdit } from '../../store/selectors/getProfileFields.ts/getProfileInfoEdit';
 import { getProfilePasswordEdit } from '../../store/selectors/getProfileFields.ts/getProfilePasswordEdit';
 import { profileSlice } from '../../store/reducers/profileSlice';
-import { fetchCustomer } from '../../store/reducers/actionCreators/profileActionCreators';
-import styles from './ProfilePage.module.scss';
+import { fetchChangeCustomerPassword, fetchCustomer, fetchUpdateCustomer } from '../../store/reducers/actionCreators/profileActionCreators';
 import { getProfileCustomerId } from '../../store/selectors/getProfileFields.ts/getProfileCustomerId';
+import styles from './ProfilePage.module.scss';
 
 const { setInfoEdit, setPasswordEdit } = profileSlice.actions;
 
@@ -41,7 +39,7 @@ export const ProfilePage = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(fetchCustomer(customerId));
-  }, [isInfoEdit]);
+  }, [isInfoEdit, isPasswordEdit]);
 
   const onEditBtnClick = (): void => {
     dispatch(setInfoEdit(true));
@@ -57,23 +55,13 @@ export const ProfilePage = (): JSX.Element => {
   const onPasswordCancelBtnClick = () => {
     dispatch(setPasswordEdit(false));
   };
-  const onPasswordSaveBtnClick = async (data: PasswordUpdateInfo) => {
-    try {
-      await changeCustomerPassword(customer, data);
-      dispatch(setPasswordEdit(false));
-    } catch (error) {
-      alert(error);
-    }
+  const onPasswordSaveBtnClick = async (data: CustomerPasswordUpdateInfo) => {
+    dispatch(fetchChangeCustomerPassword(customer, data));
   };
 
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
-    try {
-      data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
-      await updateCustomerInfo(customerId, data);
-      dispatch(setInfoEdit(false));
-    } catch (error) {
-      alert(error);
-    }
+    data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
+    dispatch(fetchUpdateCustomer(customerId, data));
   };
 
   const onDeleteAccount = async (): Promise<void> => {
@@ -87,45 +75,47 @@ export const ProfilePage = (): JSX.Element => {
     }
   };
 
+  let content;
+  if (!isLoading) {
+    content = (
+      <div className={styles.profile__inner}>
+        <h4>
+          PERSONAL ACCOUNT
+          {isInfoEdit
+            ? <span />
+            : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
+        </h4>
+
+        {isInfoEdit
+          ? (
+            <EditPersonalInfoForm
+              onSubmit={onSaveBtnClick}
+              onCancelBtnClick={onCancelBtnClick}
+              customer={customer}
+            />
+          )
+          : (
+            <ProfileInfoContent
+              customer={customer}
+              onChangePasswordBtnClick={onChangePasswordBtnClick}
+              onDeleteBtnClick={onDeleteAccount}
+            />
+          )}
+
+        <ChangePasswordModal
+          onPasswordCancelSave={onPasswordCancelBtnClick}
+          onPasswordSave={onPasswordSaveBtnClick}
+          isPasswordEdit={isPasswordEdit}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.profile}>
       {isLoading
         ? <Loader />
-        : (
-          <div className={styles.profile__inner}>
-            <h4>
-              PERSONAL ACCOUNT
-              {isInfoEdit
-                ? <span />
-                : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
-            </h4>
-
-            {isInfoEdit
-              ? (
-                <EditPersonalInfoForm
-                  onSubmit={onSaveBtnClick}
-                  onCancelBtnClick={onCancelBtnClick}
-                  customer={customer}
-                />
-              )
-              : (
-                <ProfileInfoContent
-                  customer={customer}
-                  onChangePasswordBtnClick={onChangePasswordBtnClick}
-                  onDeleteBtnClick={onDeleteAccount}
-                />
-              ) }
-
-            {isPasswordEdit
-              ? (
-                <ChangePasswordModal
-                  onPasswordCancelSave={onPasswordCancelBtnClick}
-                  onPasswordSave={onPasswordSaveBtnClick}
-                />
-              )
-              : <div />}
-          </div>
-        )}
+        : content}
     </div>
   );
 };

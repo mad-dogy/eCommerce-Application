@@ -4,10 +4,10 @@ import { validationSchema } from './validationSchema';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
 import styles from './ChangePasswordForm.module.scss';
-import { PasswordUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
+import { CustomerPasswordUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
 
 interface ChangePasswordFormProps {
-  onFormSubmit: (data: PasswordUpdateInfo) => Promise<void>;
+  onFormSubmit: (data: CustomerPasswordUpdateInfo) => Promise<void>;
   onFormCanceling: () => void;
 
   className?: string;

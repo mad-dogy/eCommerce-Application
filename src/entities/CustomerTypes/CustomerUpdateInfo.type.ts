@@ -2,7 +2,7 @@ import { CustomerExtendInfo } from './CustomerExtendInfo.type';
 
 export type CustomerUpdateInfo = {email: string} & CustomerExtendInfo;
 
-export interface PasswordUpdateInfo {
+export interface CustomerPasswordUpdateInfo {
   currentPassword: string;
   newPassword: string;
 }

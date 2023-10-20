@@ -1,7 +1,7 @@
 import { Customer } from '@commercetools/platform-sdk';
 import { apiRoot } from '../server';
 import { getCustomerById } from './GetCustomerInfoActions';
-import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
+import { CustomerUpdateInfo, CustomerPasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 
 export const updateCustomerInfo = async (
   customerId: string,
@@ -60,7 +60,7 @@ export const deleteCustomer = async (customer: Customer): Promise<void> => {
 
 export const changeCustomerPassword = async (
   customer: Customer,
-  passwordInfo: PasswordUpdateInfo,
+  passwordInfo: CustomerPasswordUpdateInfo,
 ): Promise<void> => {
   const customerId = customer.id;
   const customerVersion = customer.version;

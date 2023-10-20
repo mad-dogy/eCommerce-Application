@@ -55,54 +55,6 @@
       flex-direction: column;
       align-items: center;
 
-      & .imgs-container {
-        max-width: 600px;
-        width: 100%;
-        margin-bottom: 6px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        row-gap: 8px;
-  
-        & .img-container {
-          width: 100%;
-          display: flex;
-          flex-flow: row nowrap;
-          justify-content: space-between;
-          align-items: center;
-          column-gap: 12px;
-  
-          & .img {
-            max-width: 500px;
-            width: 100%;
-            border-radius: 6px;
-          }
-  
-          & .forward_back {
-            transform: rotate(180deg);
-          }
-        }
-  
-        & .img {
-          max-width: 500px;
-          width: 100%;
-          border-radius: 6px;
-        }
-      }
-  
-      & .slider-item {
-        max-width: 20px;
-        max-height: 20px;
-        color: $primaryColor;
-
-        &_active {
-          max-width: 20px;
-          max-height: 20px;
-          color: $transparentPrimaryColor;
-        }
-      }
-
       & .info {
         width: 100%;
         padding: 5px 32px;
