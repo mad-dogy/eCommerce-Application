@@ -31,8 +31,9 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAvailableCountries(setAvailableCountries)
-      .then(() => {
+    getAvailableCountries()
+      .then((availableCountries) => {
+        setAvailableCountries(availableCountries);
         setLoading(false);
       })
       .catch(() => {});

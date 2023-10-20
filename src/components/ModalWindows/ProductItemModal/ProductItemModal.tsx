@@ -15,7 +15,6 @@ interface ProductItemModalProps {
 
 export const ProductItemModal = (props: ProductItemModalProps) => {
   const { productId, onCloseBtnClick } = props;
-  if (productId === undefined) return;
 
   const [isLoading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product>();
@@ -40,6 +39,8 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
   const productPriceInCents: number = productInfo?.masterVariant.prices[0]?.value.centAmount || 0;
   const productPrice: number = productPriceInCents / 100;
   const productPriceCurrency: string = productInfo?.masterVariant.prices[0]?.value.currencyCode || 'USD';
+
+  if (productId === undefined) return;
 
   let productContent;
   if (!isLoading) {

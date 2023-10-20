@@ -28,9 +28,11 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
             <Link to={ROUTES.Cart}>
               <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
             </Link>
+
             <Link to={ROUTES.Profile}>
               <PersonIcon className={styles.nav__icon} fontSize="large" />
             </Link>
+
             <Link
               to={ROUTES.Base}
               className={styles.nav__btn}
@@ -45,7 +47,9 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
             <Link to={ROUTES.Cart}>
               <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
             </Link>
+
             <Link to={ROUTES.BaseRegisterPage} className={styles.nav__btn}>Sign up</Link>
+
             <Link to={ROUTES.LoginPage} className={styles.nav__btn}>Log in</Link>
           </nav>
         )}

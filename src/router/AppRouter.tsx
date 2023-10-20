@@ -40,7 +40,11 @@ export const router = createHashRouter([
           },
           {
             path: ROUTES.ExtendRegisterPage,
-            element: <ExtendRegisterRoute children={<ExtendRegisterPage />} />,
+            element: (
+              <ExtendRegisterRoute>
+                <ExtendRegisterPage />
+              </ExtendRegisterRoute>
+            ),
             errorElement: <ErrorPage />,
           },
         ],
@@ -71,7 +75,11 @@ export const router = createHashRouter([
           },
           {
             path: ROUTES.Profile,
-            element: <PrivateRoute children={<ProfilePage />} />,
+            element: (
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            ),
             errorElement: <ErrorPage />,
           },
           {

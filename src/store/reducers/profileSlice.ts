@@ -2,8 +2,8 @@ import { Customer } from '@commercetools/platform-sdk';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ProfileState {
-  customerId: string | undefined;
-  customer: Customer | undefined;
+  customerId?: string;
+  customer?: Customer;
 
   isInfoEdit: boolean;
   isPasswordEdit: boolean;
@@ -13,9 +13,6 @@ interface ProfileState {
 }
 
 const initialState: ProfileState = {
-  customerId: undefined,
-  customer: undefined,
-
   isInfoEdit: false,
   isPasswordEdit: false,
 

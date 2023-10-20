@@ -11,13 +11,14 @@ export const fetchSignIn = (data: SignInProps) => async (dispatch: AppDispatch) 
     fetchingSignInSuccess,
     fetchingSignInError,
   } = authSlice.actions;
+
   try {
     dispatch(fetchingSignIn());
     const customerId = await signIn(data);
     dispatch(fetchingSignInSuccess(customerId));
   } catch (error) {
     dispatch(fetchingSignInError(error.message));
-    throw error
+    throw error;
   }
 };
 
@@ -32,7 +33,7 @@ export const fetchSignUp = (data: SignUpProps) => async (dispatch: AppDispatch) 
     dispatch(fetchingSignUp());
 
     const customerId = await signUp(data);
-    
+
     dispatch(fetchingSignUpSuccess(customerId));
   } catch (error) {
     dispatch(fetchingSignUpError(error.message));

@@ -2,16 +2,16 @@ import { ProductProjection } from '@commercetools/platform-sdk';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CartState {
-  products: ProductProjection[];
+  productsIds: string[];
   isLoading: boolean;
   error: string;
 }
 
 const initialState: CartState = {
-  products: [],
+  productsIds: [],
   isLoading: false,
   error: '',
-}
+};
 
 export const cartSlice = createSlice({
   name: 'cart',

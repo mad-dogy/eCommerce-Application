@@ -1,7 +1,7 @@
 import { getProjectDetails } from '../api/Project';
 import { type SelectItem } from '../components/UI/Select/Select';
 
-export const getAvailableCountries = async (setCountries: any): Promise<void> => {
+export const getAvailableCountries = async (): Promise<Array<SelectItem>> => {
   const projectDetails = await getProjectDetails();
   const availableCountriesFromServer = projectDetails.countries;
   const availableCountries: SelectItem[] = [];
@@ -31,5 +31,6 @@ export const getAvailableCountries = async (setCountries: any): Promise<void> =>
       default: break;
     }
   });
-  setCountries(availableCountries);
+
+  return availableCountries;
 };

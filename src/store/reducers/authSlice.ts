@@ -4,15 +4,13 @@ import { SignUpResponseType } from '../../api/Customers/Authorization';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 
 export interface AuthState {
-  isAuth: boolean | undefined;
-  isLoading: boolean;
-  error: string;
+  isAuth?: boolean;
+  isLoading?: boolean;
+  error?: string;
 }
 
 const initialState: AuthState = {
-  isAuth: undefined,
-  isLoading: false,
-  error: '',
+
 };
 
 export const authSlice = createSlice({
@@ -29,7 +27,7 @@ export const authSlice = createSlice({
     fetchingSignInSuccess(state, action: PayloadAction<SignInResponseType>) {
       state.isAuth = true;
       state.isLoading = false;
-      state.error = '';
+      state.error = undefined;
 
       localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, action.payload);
     },
@@ -46,7 +44,7 @@ export const authSlice = createSlice({
     fetchingSignUpSuccess(state, action: PayloadAction<SignUpResponseType>) {
       state.isAuth = true;
       state.isLoading = false;
-      state.error = '';
+      state.error = undefined;
 
       localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, action.payload);
     },
@@ -63,7 +61,7 @@ export const authSlice = createSlice({
     fetchingDeleteAccountSuccess(state) {
       state.isAuth = false;
       state.isLoading = false;
-      state.error = '';
+      state.error = undefined;
 
       localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
     },

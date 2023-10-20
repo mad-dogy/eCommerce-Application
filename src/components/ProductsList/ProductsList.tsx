@@ -23,7 +23,7 @@ const {
 
 export const ProductsList = () => {
   const dispatch = useAppDispatch();
-  
+
   const products = useAppSelector(getCatalogProducts);
   const limit = useAppSelector(getCatalogLimit);
   const pagesAmount = useAppSelector(getCatalogPagesAmount);
@@ -52,13 +52,15 @@ export const ProductsList = () => {
 
   useEffect(() => {
     dispatchFetchProducts();
-  }, [querySortOption, querySortOrder, limit, currentPageNumber]);
+  }, [querySortOption, querySortOrder]);
 
   const onLimitChange = (value: number) => {
     dispatch(setLimit(value));
+    dispatchFetchProducts();
   };
   const onCurrentPageNumberChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setCurrentPageNumber(value));
+    dispatchFetchProducts();
   };
 
   const [currentProductId, setCurrentProductId] = useState<string | undefined>(undefined);
@@ -91,6 +93,7 @@ export const ProductsList = () => {
         : <div>{productsItemsContent}</div>}
 
       <ProductItemModal productId={currentProductId} onCloseBtnClick={onCloseModal} />
+
       <Pagination
         pagesCount={pagesAmount}
         currentPage={currentPageNumber}

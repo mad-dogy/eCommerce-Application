@@ -20,14 +20,20 @@
     background: $backgroundPrimaryColor;
     border-radius: 20px;
 
+
+
     & h4 {
-      max-width: 100%;
-      width: 100%;
-      position: relative;
       text-align: center;
       font-size: 24px;
       font-weight: normal;
     }
+  }
+
+  &__a {
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+
   }
 
   &__content {

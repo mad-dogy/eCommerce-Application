@@ -13,6 +13,7 @@ const {
 
 export const CatalogPage = () => {
   const dispatch = useAppDispatch();
+
   const queryString = useAppSelector(getCatalogQueryString);
   const querySortOption = useAppSelector(getCatalogSortOption);
   const querySortOrder = useAppSelector(getCatalogSortOrder);
@@ -20,9 +21,11 @@ export const CatalogPage = () => {
   const onQuerySortOrderChange = (value: QuerySortOrderType) => {
     dispatch(setQuerySortOrder(value));
   };
+
   const onQueryStringChange = (value: string) => {
     dispatch(setQueryString(value));
   };
+
   const onQuerySortOptionChange = (value: QuerySortOptionType) => {
     dispatch(setQuerySortOption(value));
   };
@@ -37,6 +40,7 @@ export const CatalogPage = () => {
         sortOrder={querySortOrder}
         onSortOrderChange={onQuerySortOrderChange}
       />
+
       <ProductsList />
     </div>
   );

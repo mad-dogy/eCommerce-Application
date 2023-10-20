@@ -52,16 +52,20 @@ export const ProfilePage = (): JSX.Element => {
   const onChangePasswordBtnClick = () => {
     dispatch(setPasswordEdit(true));
   };
+
   const onPasswordCancelBtnClick = () => {
     dispatch(setPasswordEdit(false));
   };
+
   const onPasswordSaveBtnClick = async (data: CustomerPasswordUpdateInfo) => {
     dispatch(fetchChangeCustomerPassword(customer, data));
   };
 
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
-    data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
-    dispatch(fetchUpdateCustomer(customerId, data));
+    dispatch(fetchUpdateCustomer(customerId, {
+      ...data,
+      dateOfBirth: modifyToCorrectDate(data.dateOfBirth),
+    }));
   };
 
   const onDeleteAccount = async (): Promise<void> => {
@@ -79,12 +83,13 @@ export const ProfilePage = (): JSX.Element => {
   if (!isLoading) {
     content = (
       <div className={styles.profile__inner}>
-        <h4>
-          PERSONAL ACCOUNT
+        <div className={styles.profile__a}>
+          <h4>PERSONAL ACCOUNT</h4>
+
           {isInfoEdit
             ? <span />
             : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
-        </h4>
+        </div>
 
         {isInfoEdit
           ? (
@@ -94,13 +99,15 @@ export const ProfilePage = (): JSX.Element => {
               customer={customer}
             />
           )
-          : (
-            <ProfileInfoContent
-              customer={customer}
-              onChangePasswordBtnClick={onChangePasswordBtnClick}
-              onDeleteBtnClick={onDeleteAccount}
-            />
-          )}
+          : customer
+            ? (
+              <ProfileInfoContent
+                customer={customer}
+                onChangePasswordBtnClick={onChangePasswordBtnClick}
+                onDeleteBtnClick={onDeleteAccount}
+              />
+            )
+            : null}
 
         <ChangePasswordModal
           onPasswordCancelSave={onPasswordCancelBtnClick}

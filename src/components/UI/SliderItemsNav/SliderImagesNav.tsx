@@ -9,18 +9,20 @@ interface SliderItemsNavProps {
 
 export const SliderItemsNav = (props: SliderItemsNavProps) => {
   const { productImages, activeItemIndex } = props;
+
   const itemsCount = productImages.length;
+
   return (
     <div>
       {itemsCount > 1
         ? (
           <div className={styles['img-slider-items']}>
-            {productImages.map((item, index) => {
-              if (index === activeItemIndex) {
-                return <CircleIcon className={`${styles['slider-item_active']}`} />;
+            {productImages.map((item, index) => (
+              <CircleIcon className={
+                index === activeItemIndex ? `${styles['slider-item_active']}` : styles['slider-item']
               }
-              return <CircleIcon className={styles['slider-item']} />;
-            })}
+              />
+            ))}
           </div>
         )
         : <div />}

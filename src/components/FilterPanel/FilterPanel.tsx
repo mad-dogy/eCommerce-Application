@@ -18,9 +18,12 @@ interface FilterPanelProps {
 
 export const FilterPanel = (props: FilterPanelProps) => {
   const {
-    searchValue, onSearchValueChange,
-    sortOption, onSortOptionChange,
-    sortOrder, onSortOrderChange,
+    searchValue,
+    onSearchValueChange,
+    sortOption,
+    onSortOptionChange,
+    sortOrder,
+    onSortOrderChange,
   } = props;
 
   const sortOptionSelectItems: SelectItem[] = useMemo(() => [
@@ -28,6 +31,7 @@ export const FilterPanel = (props: FilterPanelProps) => {
     { name: 'Name', value: 'name' },
     { name: 'Date of creation', value: 'createdAt' },
   ], []);
+
   const onChangeSortOptionSelectValue = (event: SelectChangeEvent<unknown>) => {
     onSortOptionChange(event.target.value as QuerySortOptionType);
   };
@@ -36,6 +40,7 @@ export const FilterPanel = (props: FilterPanelProps) => {
     { name: 'ASC', value: 'asc' },
     { name: 'DESC', value: 'desc' },
   ], []);
+
   const onChangeSortOrderSelectValue = (event: SelectChangeEvent<unknown>) => {
     onSortOrderChange(event.target.value as QuerySortOrderType);
   };
@@ -43,6 +48,7 @@ export const FilterPanel = (props: FilterPanelProps) => {
   return (
     <div className={styles['filter-panel']}>
       <SearchInput searchValue={searchValue} onSearchValueChange={onSearchValueChange} />
+
       <div className={styles['order-panel']}>
         <div className={styles['order-item']}>
           <span>order by</span>
@@ -52,6 +58,7 @@ export const FilterPanel = (props: FilterPanelProps) => {
             selectItems={sortOptionSelectItems}
           />
         </div>
+
         <div className={styles['order-item']}>
           <span>order by</span>
           <Select

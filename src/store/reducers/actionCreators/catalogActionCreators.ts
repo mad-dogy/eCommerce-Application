@@ -11,6 +11,7 @@ export const fetchProducts = (
 ) => async (dispatch: AppDispatch) => {
   try {
     dispatch(catalogSlice.actions.productsFetchingWithSearch());
+
     const productsProjectionSearchResponse = await productsProjectionSearch(
       productsRequestLimit,
       productsRequestOffset,
@@ -18,6 +19,7 @@ export const fetchProducts = (
       option,
       order,
     );
+
     dispatch(catalogSlice.actions.productsFetchingWithSearchSuccess(
       productsProjectionSearchResponse,
     ));

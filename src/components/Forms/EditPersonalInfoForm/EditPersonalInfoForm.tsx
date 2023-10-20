@@ -75,8 +75,9 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
 
   useEffect(() => {
     setLoading(true);
-    getAvailableCountries(setAvailableCountries)
-      .then(() => {
+    getAvailableCountries()
+      .then((availableCountries) => {
+        setAvailableCountries(availableCountries);
         setLoading(false);
       })
       .catch(() => {});
@@ -400,67 +401,67 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <div />
+    );
+  }
+
   return (
-    <div>
-      {isLoading
-        ? <div />
-        : (
-          <div className={styles['edit-account-form']}>
-            <form className={styles.content}>
-              <div className={styles['info-block']}>
-                <h6>
-                  <AssignmentIndIcon />
-                  Personal info
-                </h6>
-                {personalInfoCard}
-              </div>
+    <div className={styles['edit-account-form']}>
+      <form className={styles.content}>
+        <div className={styles['info-block']}>
+          <h6>
+            <AssignmentIndIcon />
+            Personal info
+          </h6>
+          {personalInfoCard}
+        </div>
 
-              <div className={styles['info-block']}>
-                <h6>
-                  <LockIcon />
-                  Account info
-                </h6>
-                {accountInfoCard}
+        <div className={styles['info-block']}>
+          <h6>
+            <LockIcon />
+            Account info
+          </h6>
+          {accountInfoCard}
 
-              </div>
+        </div>
 
-              <div className={styles['info-block']}>
-                <h6>
-                  <LocalShippingIcon />
-                  Shipping address info
-                </h6>
-                {shippingAddressInfoCard}
-              </div>
+        <div className={styles['info-block']}>
+          <h6>
+            <LocalShippingIcon />
+            Shipping address info
+          </h6>
+          {shippingAddressInfoCard}
+        </div>
 
-              <div className={styles['info-block']}>
-                <h6>
-                  <PaymentsIcon />
-                  Billing address info
-                </h6>
-                {billingAddressInfoCard}
-              </div>
+        <div className={styles['info-block']}>
+          <h6>
+            <PaymentsIcon />
+            Billing address info
+          </h6>
+          {billingAddressInfoCard}
+        </div>
 
-            </form>
-            <div className={styles['confirm-edit-btns']}>
-              <Button
-                className="button_small"
-                variant="outlined"
-                type="submit"
-                onClick={handleSubmit(onSubmit)}
-              >
-                Save
-              </Button>
-              <Button
-                className="button_small"
-                variant="outlined"
-                color="warning"
-                onClick={onCancelBtnClick}
-              >
-                Cancel
-              </Button>
-            </div>
-          </div>
-        )}
+      </form>
+      <div className={styles['confirm-edit-btns']}>
+        <Button
+          className="button_small"
+          variant="outlined"
+          type="submit"
+          onClick={handleSubmit(onSubmit)}
+        >
+          Save
+        </Button>
+        <Button
+          className="button_small"
+          variant="outlined"
+          color="warning"
+          onClick={onCancelBtnClick}
+        >
+          Cancel
+        </Button>
+      </div>
     </div>
   );
 };

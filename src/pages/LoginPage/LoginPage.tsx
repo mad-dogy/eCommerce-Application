@@ -47,6 +47,7 @@ export const LoginPage = (): JSX.Element => {
     <div className={styles.login__inner}>
       <Logo />
       {content}
+      {error}
     </div>
   );
 };
