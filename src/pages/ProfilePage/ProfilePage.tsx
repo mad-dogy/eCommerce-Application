@@ -1,10 +1,6 @@
-import {
-  useCallback, useEffect, useState,
-} from 'react';
-import { type Customer } from '@commercetools/platform-sdk';
+import { useCallback, useEffect } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
-import { getCustomerById } from '../../api/Customers/GetCustomerInfoActions';
 import { Loader } from '../../components/UI/Loader/Loader';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
 import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
@@ -15,63 +11,57 @@ import { CustomerUpdateInfo, PasswordUpdateInfo } from '../../entities/CustomerT
 import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal/ChangePasswordModal';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchDeleteCustomerAccount } from '../../store/reducers/actionCreators/authActionCreators';
-import styles from './ProfilePage.module.scss';
-import { getAuthError } from '../../store/selectors/getAuthFields/getAuthError';
 import { ROUTES } from '../../constants/routes';
+import { getProfileCustomer } from '../../store/selectors/getProfileFields.ts/getProfileCustomer';
+import { getProfileLoading } from '../../store/selectors/getProfileFields.ts/getProfileLoading';
+import { getProfileError } from '../../store/selectors/getProfileFields.ts/getProfileError';
+import { getProfileInfoEdit } from '../../store/selectors/getProfileFields.ts/getProfileInfoEdit';
+import { getProfilePasswordEdit } from '../../store/selectors/getProfileFields.ts/getProfilePasswordEdit';
+import { profileSlice } from '../../store/reducers/profileSlice';
+import { fetchCustomer } from '../../store/reducers/actionCreators/profileActionCreators';
+import styles from './ProfilePage.module.scss';
+
+const { setInfoEdit, setPasswordEdit } = profileSlice.actions;
 
 export const ProfilePage = (): JSX.Element => {
-  const [customer, setCustomer] = useState<Customer>();
-  const [isLoading, setLoading] = useState(true);
-  const [isInfoEdit, setInfoEdit] = useState(false);
-  const [isPasswordEdit, setPasswordEdit] = useState(false);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const error = useAppSelector(getAuthError);
+  const customer = useAppSelector(getProfileCustomer);
+  const isInfoEdit = useAppSelector(getProfileInfoEdit);
+  const isPasswordEdit = useAppSelector(getProfilePasswordEdit);
+  const isLoading = useAppSelector(getProfileLoading);
+  const error = useAppSelector(getProfileError);
 
   useEffect(() => {
-    const getCustomerInfo = async () => {
-      setLoading(true);
-      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
-      const customerInfo = await getCustomerById(customerId);
-      setCustomer(customerInfo);
-      setLoading(false);
-    };
-
-    getCustomerInfo().catch((error) => { alert(error); });
+    const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
+    dispatch(fetchCustomer(customerId));
   }, []);
 
   useEffect(() => {
-    const getCustomerInfo = async () => {
-      setLoading(true);
-      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
-      const customerInfo = await getCustomerById(customerId);
-      setCustomer(customerInfo);
-      setLoading(false);
-    };
-
-    getCustomerInfo().catch(() => {});
+    const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
+    dispatch(fetchCustomer(customerId));
   }, [isInfoEdit]);
 
-  const onEditBtnClick = useCallback((): void => {
-    setInfoEdit(true);
-  }, [setInfoEdit]);
+  const onEditBtnClick = (): void => {
+    dispatch(setInfoEdit(true));
+  };
 
-  const onCancelBtnClick = useCallback((): void => {
-    setInfoEdit(false);
-  }, [setInfoEdit]);
+  const onCancelBtnClick = (): void => {
+    dispatch(setInfoEdit(false));
+  }
 
   const onChangePasswordBtnClick = () => {
-    setPasswordEdit(true);
+    dispatch(setPasswordEdit(true));
   };
   const onPasswordCancelBtnClick = () => {
-    setPasswordEdit(false);
+    dispatch(setPasswordEdit(false));
   };
   const onPasswordSaveBtnClick = async (data: PasswordUpdateInfo) => {
     try {
       await changeCustomerPassword(customer, data);
-      setPasswordEdit(false);
+      dispatch(setPasswordEdit(false));
     } catch (error) {
       alert(error);
     }
@@ -82,7 +72,7 @@ export const ProfilePage = (): JSX.Element => {
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
       await updateCustomerInfo(customerId, data);
-      setInfoEdit(false);
+      dispatch(setInfoEdit(false));
     } catch (error) {
       alert(error);
     }
@@ -102,42 +92,42 @@ export const ProfilePage = (): JSX.Element => {
   return (
     <div className={styles.profile}>
       {isLoading
-        ? <Loader />
-        : (
-          <div className={styles.profile__inner}>
-            <h4>
-              PERSONAL ACCOUNT
-              {isInfoEdit
-                ? <span />
-                : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
-            </h4>
-
+      ? <Loader />
+      : (
+        <div className={styles.profile__inner}>
+          <h4>
+            PERSONAL ACCOUNT
             {isInfoEdit
-              ? (
-                <EditPersonalInfoForm
-                  onSubmit={onSaveBtnClick}
-                  onCancelBtnClick={onCancelBtnClick}
-                  customer={customer}
-                />
-              )
-              : (
-                <ProfileInfoContent
-                  customer={customer}
-                  onChangePasswordBtnClick={onChangePasswordBtnClick}
-                  onDeleteBtnClick={onDeleteAccount}
-                />
-              ) }
+            ? <span />
+            : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
+          </h4>
 
-            {isPasswordEdit
-              ? (
-                <ChangePasswordModal
-                  onPasswordCancelSave={onPasswordCancelBtnClick}
-                  onPasswordSave={onPasswordSaveBtnClick}
-                />
-              )
-              : <div />}
-          </div>
-        )}
+          {isInfoEdit
+          ? (
+            <EditPersonalInfoForm
+              onSubmit={onSaveBtnClick}
+              onCancelBtnClick={onCancelBtnClick}
+              customer={customer}
+            />
+          )
+          : (
+            <ProfileInfoContent
+              customer={customer}
+              onChangePasswordBtnClick={onChangePasswordBtnClick}
+              onDeleteBtnClick={onDeleteAccount}
+            />
+          ) }
+
+          {isPasswordEdit
+          ? (
+            <ChangePasswordModal
+              onPasswordCancelSave={onPasswordCancelBtnClick}
+              onPasswordSave={onPasswordSaveBtnClick}
+            />
+          )
+          : <div />}
+        </div>
+      )}
     </div>
   );
 };

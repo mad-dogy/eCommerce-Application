@@ -12,6 +12,8 @@ export const App = (): JSX.Element => {
   useEffect(() => {
     if (localStorage.getItem(LOCAL_STORAGE_KEYS.customerId)) {
       dispatch(setAuth(true));
+    } else {
+      dispatch(setAuth(false));
     }
   }, []);
 

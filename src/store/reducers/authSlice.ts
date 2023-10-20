@@ -4,13 +4,13 @@ import { SignUpResponseType } from '../../api/Customers/Authorization';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 
 export interface AuthState {
-  isAuth: boolean;
+  isAuth: boolean | undefined;
   isLoading: boolean;
   error: string;
 }
 
 const initialState: AuthState = {
-  isAuth: false,
+  isAuth: undefined,
   isLoading: false,
   error: '',
 };

@@ -16,6 +16,8 @@ interface ProfileInfoContentProps {
 export const ProfileInfoContent = (props: ProfileInfoContentProps) => {
   const { customer, onChangePasswordBtnClick, onDeleteBtnClick } = props;
 
+  if(!customer) return <div>No user info</div>
+
   const shippingAddressInfo = selectShippingAddressInfo(customer);
   const billingAddressInfo = selectBillingAddressInfo(customer);
 

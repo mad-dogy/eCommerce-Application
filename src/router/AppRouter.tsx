@@ -16,6 +16,7 @@ import { useAppSelector } from '../hooks/redux';
 import { getAuthState } from '../store/selectors/getAuthFields/getAuthState';
 import { ROUTES } from '../constants/routes';
 import { PrivateRoute } from './decorators/PrivateRoute';
+import { ExtendRegisterRoute } from './decorators/ExtendRegisterRoute';
 
 export const router = createHashRouter([
   {
@@ -38,7 +39,7 @@ export const router = createHashRouter([
           },
           {
             path: ROUTES.ExtendRegisterPage,
-            element: <PrivateRoute children={<ExtendRegisterPage />} />,
+            element: <ExtendRegisterRoute children={<ExtendRegisterPage />} />,
             errorElement: <ErrorPage />,
           },
         ],
