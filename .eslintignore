@@ -1,2 +1,12 @@
 /config/**/*.ts
 /config/**/*.js
+
+**/src/**/*.test.ts
+**/src/**/*.test.tsx
+**/src/**/*.stories.ts
+**/src/**/*.stories.tsx
+/*.js
+/config/**/*
+/e2e/**/*
+/scripts/**/*
+/.storybook/**/*
