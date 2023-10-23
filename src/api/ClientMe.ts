@@ -1,4 +1,5 @@
 import { type MyCustomerSignin } from '@commercetools/platform-sdk';
+
 import { apiRoot } from './server';
 
 export interface SignInProps extends MyCustomerSignin {
@@ -12,7 +13,7 @@ export const signIn = async ({ email, password }: SignInProps): Promise<SignInRe
     .me()
     .login()
     .post({
-      body: { email, password },
+      body: { email, password }
     })
     .execute()
     .then(({ body }) => body.customer.id);

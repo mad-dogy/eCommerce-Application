@@ -1,14 +1,9 @@
 import { useEffect } from 'react';
+
 import styles from './CartPage.module.scss';
 
 export const CartPage = (): JSX.Element => {
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, []);
-
-  return (
-    <div className={styles.cart}>
-      Cart
-    </div>
-  );
+  return <div className={styles.cart}>Cart</div>;
 };

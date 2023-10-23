@@ -1,10 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
-import { validationSchema } from './validationSchema';
+
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
-import styles from './ChangePasswordForm.module.scss';
 import { CustomerPasswordUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
+
+import styles from './ChangePasswordForm.module.scss';
+import { validationSchema } from './validationSchema';
 
 interface ChangePasswordFormProps {
   onFormSubmit: (data: CustomerPasswordUpdateInfo) => Promise<void>;
@@ -17,15 +19,17 @@ export const ChangePasswordForm = (props: ChangePasswordFormProps): JSX.Element 
   const { onFormSubmit, onFormCanceling, className } = props;
 
   const {
-    control, register, formState: { errors }, handleSubmit,
+    control,
+    register,
+    formState: { errors },
+    handleSubmit
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'onBlur',
+    mode: 'onBlur'
   });
 
   return (
     <form className={`${styles.form} ${className}`} onSubmit={handleSubmit(onFormSubmit)}>
-
       <Controller
         name="currentPassword"
         control={control}
@@ -78,7 +82,6 @@ export const ChangePasswordForm = (props: ChangePasswordFormProps): JSX.Element 
           Save
         </Button>
       </div>
-
     </form>
   );
 };

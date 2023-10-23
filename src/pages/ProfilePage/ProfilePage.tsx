@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
+
 import { Loader } from '../../components/UI/Loader/Loader';
 import { EditPersonalInfoForm } from '../../components/Forms/EditPersonalInfoForm/EditPersonalInfoForm';
 import { modifyToCorrectDate } from '../../helpers/modifyToCorrectDate';
 import { ProfileInfoContent } from '../../components/ProfileInfoContent/ProfileInfoContent';
-import { CustomerPasswordUpdateInfo, CustomerUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
+import {
+  CustomerPasswordUpdateInfo,
+  CustomerUpdateInfo
+} from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 import { ChangePasswordModal } from '../../components/ModalWindows/ChangePasswordModal/ChangePasswordModal';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchDeleteCustomerAccount } from '../../store/reducers/actionCreators/authActionCreators';
@@ -16,8 +20,13 @@ import { getProfileError } from '../../store/selectors/getProfileFields.ts/getPr
 import { getProfileInfoEdit } from '../../store/selectors/getProfileFields.ts/getProfileInfoEdit';
 import { getProfilePasswordEdit } from '../../store/selectors/getProfileFields.ts/getProfilePasswordEdit';
 import { profileSlice } from '../../store/reducers/profileSlice';
-import { fetchChangeCustomerPassword, fetchCustomer, fetchUpdateCustomer } from '../../store/reducers/actionCreators/profileActionCreators';
+import {
+  fetchChangeCustomerPassword,
+  fetchCustomer,
+  fetchUpdateCustomer
+} from '../../store/reducers/actionCreators/profileActionCreators';
 import { getProfileCustomerId } from '../../store/selectors/getProfileFields.ts/getProfileCustomerId';
+
 import styles from './ProfilePage.module.scss';
 
 const { setInfoEdit, setPasswordEdit } = profileSlice.actions;
@@ -62,10 +71,12 @@ export const ProfilePage = (): JSX.Element => {
   };
 
   const onSaveBtnClick = async (data: CustomerUpdateInfo) => {
-    dispatch(fetchUpdateCustomer(customerId, {
-      ...data,
-      dateOfBirth: modifyToCorrectDate(data.dateOfBirth),
-    }));
+    dispatch(
+      fetchUpdateCustomer(customerId, {
+        ...data,
+        dateOfBirth: modifyToCorrectDate(data.dateOfBirth)
+      })
+    );
   };
 
   const onDeleteAccount = async (): Promise<void> => {
@@ -86,28 +97,26 @@ export const ProfilePage = (): JSX.Element => {
         <div className={styles.profile__a}>
           <h4>PERSONAL ACCOUNT</h4>
 
-          {isInfoEdit
-            ? <span />
-            : <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />}
+          {isInfoEdit ? (
+            <span />
+          ) : (
+            <EditIcon fontSize="medium" className={styles.edit_btn} onClick={onEditBtnClick} />
+          )}
         </div>
 
-        {isInfoEdit
-          ? (
-            <EditPersonalInfoForm
-              onSubmit={onSaveBtnClick}
-              onCancelBtnClick={onCancelBtnClick}
-              customer={customer}
-            />
-          )
-          : customer
-            ? (
-              <ProfileInfoContent
-                customer={customer}
-                onChangePasswordBtnClick={onChangePasswordBtnClick}
-                onDeleteBtnClick={onDeleteAccount}
-              />
-            )
-            : null}
+        {isInfoEdit ? (
+          <EditPersonalInfoForm
+            onSubmit={onSaveBtnClick}
+            onCancelBtnClick={onCancelBtnClick}
+            customer={customer}
+          />
+        ) : customer ? (
+          <ProfileInfoContent
+            customer={customer}
+            onChangePasswordBtnClick={onChangePasswordBtnClick}
+            onDeleteBtnClick={onDeleteAccount}
+          />
+        ) : null}
 
         <ChangePasswordModal
           onPasswordCancelSave={onPasswordCancelBtnClick}
@@ -118,11 +127,5 @@ export const ProfilePage = (): JSX.Element => {
     );
   }
 
-  return (
-    <div className={styles.profile}>
-      {isLoading
-        ? <Loader />
-        : content}
-    </div>
-  );
+  return <div className={styles.profile}>{isLoading ? <Loader /> : content}</div>;
 };

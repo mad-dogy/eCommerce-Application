@@ -1,4 +1,5 @@
 import { type Customer } from '@commercetools/platform-sdk';
+
 import { apiRoot } from '../server';
 
 export const getCustomerById = async (customerId: string): Promise<Customer> => {

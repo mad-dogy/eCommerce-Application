@@ -1,4 +1,5 @@
 import { Customer } from '@commercetools/platform-sdk';
+
 import { SignInProps, signIn } from '../../../api/ClientMe';
 import { SignUpProps, signUp } from '../../../api/Customers/Authorization';
 import { AppDispatch } from '../../store';
@@ -6,11 +7,7 @@ import { authSlice } from '../authSlice';
 import { deleteCustomer } from '../../../api/Customers/CustomerUpdateActions';
 
 export const fetchSignIn = (data: SignInProps) => async (dispatch: AppDispatch) => {
-  const {
-    fetchingSignIn,
-    fetchingSignInSuccess,
-    fetchingSignInError,
-  } = authSlice.actions;
+  const { fetchingSignIn, fetchingSignInSuccess, fetchingSignInError } = authSlice.actions;
 
   try {
     dispatch(fetchingSignIn());
@@ -23,11 +20,7 @@ export const fetchSignIn = (data: SignInProps) => async (dispatch: AppDispatch) 
 };
 
 export const fetchSignUp = (data: SignUpProps) => async (dispatch: AppDispatch) => {
-  const {
-    fetchingSignUp,
-    fetchingSignUpSuccess,
-    fetchingSignUpError,
-  } = authSlice.actions;
+  const { fetchingSignUp, fetchingSignUpSuccess, fetchingSignUpError } = authSlice.actions;
 
   try {
     dispatch(fetchingSignUp());
@@ -41,18 +34,13 @@ export const fetchSignUp = (data: SignUpProps) => async (dispatch: AppDispatch) 
   }
 };
 
-export const fetchDeleteCustomerAccount = (
-  customer: Customer,
-) => async (dispatch: AppDispatch) => {
-  const {
-    fetchingDeleteAccount,
-    fetchingDeleteAccountSuccess,
-    fetchingDeleteAccountError,
-  } = authSlice.actions;
+export const fetchDeleteCustomerAccount = (customer: Customer) => async (dispatch: AppDispatch) => {
+  const { fetchingDeleteAccount, fetchingDeleteAccountSuccess, fetchingDeleteAccountError } =
+    authSlice.actions;
 
   try {
     dispatch(fetchingDeleteAccount());
-    const response = await deleteCustomer(customer);
+    await deleteCustomer(customer);
     dispatch(fetchingDeleteAccountSuccess());
   } catch (error) {
     dispatch(fetchingDeleteAccountError(error.message));

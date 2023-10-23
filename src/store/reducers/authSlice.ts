@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { SignInResponseType } from '../../api/ClientMe';
 import { SignUpResponseType } from '../../api/Customers/Authorization';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
@@ -9,9 +10,7 @@ export interface AuthState {
   error?: string;
 }
 
-const initialState: AuthState = {
-
-};
+const initialState: AuthState = {};
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -70,8 +69,8 @@ export const authSlice = createSlice({
       state.isLoading = false;
 
       alert(state.error);
-    },
-  },
+    }
+  }
 });
 
 export const authReducer = authSlice.reducer;

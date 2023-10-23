@@ -1,10 +1,12 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
+
 import { Button } from '../UI/Button/Button';
+
 import styles from './ProductItem.module.scss';
 
 interface ProductItemProps {
   product: ProductProjection;
-  onClick: (productId: string) => void
+  onClick: (productId: string) => void;
 }
 
 export const ProductItem = (props: ProductItemProps) => {
@@ -18,18 +20,10 @@ export const ProductItem = (props: ProductItemProps) => {
 
   return (
     <div className={styles.product} onClick={() => onClick(productId)}>
-      <img
-        src={productImgUrl}
-        alt=""
-        className={styles.product__img}
-      />
+      <img src={productImgUrl} alt="" className={styles.product__img} />
       <div className={styles.product__characteristic}>
-        <div className={styles.name}>
-          {productName}
-        </div>
-        <div className={styles.price}>
-          {`${productPrice / 100} ${productPriceCurrency}`}
-        </div>
+        <div className={styles.name}>{productName}</div>
+        <div className={styles.price}>{`${productPrice / 100} ${productPriceCurrency}`}</div>
       </div>
 
       <Button className={styles.btn}>To cart</Button>

@@ -1,11 +1,9 @@
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import AppRoot from './AppRoot';
+
 import { LoginPage } from '../pages/LoginPage/LoginPage';
 import { BaseRegisterPage } from '../pages/RegisterPages/BaseRegisterPage/BaseRegisterPage';
 import { ExtendRegisterPage } from '../pages/RegisterPages/ExtendRegisterPage/ExtendRegisterPage';
-import AuthRoot from './AuthRoot/AuthRoot';
 import { MainPage } from '../pages/MainPage/MainPage';
-import { MainRoot } from './MainRoot/MainRoot';
 import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { CartPage } from '../pages/CartPage/CartPage';
@@ -15,9 +13,13 @@ import { AboutPage } from '../pages/AboutPage/AboutPage';
 import { useAppSelector } from '../hooks/redux';
 import { getAuthState } from '../store/selectors/getAuthFields/getAuthState';
 import { ROUTES } from '../constants/routes';
+import { Loader } from '../components/UI/Loader/Loader';
+
 import { PrivateRoute } from './decorators/PrivateRoute';
 import { ExtendRegisterRoute } from './decorators/ExtendRegisterRoute';
-import { Loader } from '../components/UI/Loader/Loader';
+import { MainRoot } from './MainRoot/MainRoot';
+import AuthRoot from './AuthRoot/AuthRoot';
+import AppRoot from './AppRoot';
 
 export const router = createHashRouter([
   {
@@ -31,12 +33,12 @@ export const router = createHashRouter([
           {
             path: ROUTES.LoginPage,
             element: <LoginPage />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.BaseRegisterPage,
             element: <BaseRegisterPage />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.ExtendRegisterPage,
@@ -45,9 +47,9 @@ export const router = createHashRouter([
                 <ExtendRegisterPage />
               </ExtendRegisterRoute>
             ),
-            errorElement: <ErrorPage />,
-          },
-        ],
+            errorElement: <ErrorPage />
+          }
+        ]
       },
       {
         path: ROUTES.Base,
@@ -56,22 +58,22 @@ export const router = createHashRouter([
           {
             path: ROUTES.Base,
             element: <MainPage />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.Cart,
             element: <CartPage />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.Catalog,
             element: <CatalogPage />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.About,
             element: <AboutPage />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.Profile,
@@ -80,17 +82,17 @@ export const router = createHashRouter([
                 <ProfilePage />
               </PrivateRoute>
             ),
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />
           },
           {
             path: ROUTES.Any,
             element: <NotFoundPage />,
-            errorElement: <ErrorPage />,
-          },
-        ],
-      },
-    ],
-  },
+            errorElement: <ErrorPage />
+          }
+        ]
+      }
+    ]
+  }
 ]);
 
 const AppRouter = (): JSX.Element => {
@@ -99,9 +101,7 @@ const AppRouter = (): JSX.Element => {
     return <Loader />;
   }
 
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default AppRouter;

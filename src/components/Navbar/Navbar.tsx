@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+
 import { ROUTES } from '../../constants/routes';
+
 import styles from './Navbar.module.scss';
 
 export const Navbar = () => (

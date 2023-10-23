@@ -12,5 +12,5 @@ export enum ROUTES {
   Base = '/',
   Any = '*',
 
-  NotFoundPage = '/404',
+  NotFoundPage = '/404'
 }

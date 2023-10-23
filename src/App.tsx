@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { LOCAL_STORAGE_KEYS } from './constants/constants';
 import AppRouter from './router/AppRouter';
 import { useAppDispatch } from './hooks/redux';
@@ -21,7 +22,5 @@ export const App = (): JSX.Element => {
     }
   }, []);
 
-  return (
-    <AppRouter />
-  );
+  return <AppRouter />;
 };

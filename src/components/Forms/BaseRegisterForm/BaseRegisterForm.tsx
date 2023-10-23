@@ -2,12 +2,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from 'react-router-dom';
-import { validationSchema } from './validationSchema';
-import styles from './BaseRegisterForm.module.scss';
+
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { PasswordInput } from '../../UI/inputs/PasswordInput/PasswordInput';
 import { Button } from '../../UI/Button/Button';
 import { ROUTES } from '../../../constants/routes';
+
+import styles from './BaseRegisterForm.module.scss';
+import { validationSchema } from './validationSchema';
 
 interface BaseRegisterFormProps {
   onFormSubmit: (props: any) => Promise<void>;
@@ -18,10 +20,13 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
   const { onFormSubmit, className } = props;
 
   const {
-    control, register, formState: { errors }, handleSubmit,
+    control,
+    register,
+    formState: { errors },
+    handleSubmit
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'onBlur',
+    mode: 'onBlur'
   });
 
   return (
@@ -86,9 +91,10 @@ export const BaseRegisterForm = (props: BaseRegisterFormProps): JSX.Element => {
             <ArrowForwardIosIcon fontSize="small" />
           </Link>
         </Button>
-        <Button variant="contained" type="submit">SIGN UP</Button>
+        <Button variant="contained" type="submit">
+          SIGN UP
+        </Button>
       </div>
-
     </form>
   );
 };

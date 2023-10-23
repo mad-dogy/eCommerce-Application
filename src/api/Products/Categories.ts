@@ -1,4 +1,5 @@
-import { Category, CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
+import { CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
+
 import { apiRoot } from '../server';
 
 const defaultCategories: CategoryPagedQueryResponse = {
@@ -6,7 +7,7 @@ const defaultCategories: CategoryPagedQueryResponse = {
   offset: 0,
   count: 0,
   total: 0,
-  results: [],
+  results: []
 };
 
 export const getCategories = async (): Promise<CategoryPagedQueryResponse> => {
@@ -15,7 +16,7 @@ export const getCategories = async (): Promise<CategoryPagedQueryResponse> => {
     .get()
     .execute()
     .then(({ body }) => body)
-    .catch(error => alert(error));
+    .catch();
 
   if (categories) return categories;
   return defaultCategories;
@@ -28,7 +29,7 @@ export const getCategoryById = async (id: string) => {
     .get()
     .execute()
     .then(({ body }) => body)
-    .catch(error => alert(error));
+    .catch();
 
   return category;
 };

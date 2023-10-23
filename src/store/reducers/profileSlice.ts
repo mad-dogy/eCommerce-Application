@@ -17,7 +17,7 @@ const initialState: ProfileState = {
   isPasswordEdit: false,
 
   isLoading: false,
-  error: '',
+  error: ''
 };
 
 export const profileSlice = createSlice({
@@ -60,8 +60,8 @@ export const profileSlice = createSlice({
     fetchingCustomerUpdateError(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.isLoading = false;
-    },
-  },
+    }
+  }
 });
 
 export const profileReducer = profileSlice.reducer;

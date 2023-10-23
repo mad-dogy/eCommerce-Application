@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: [
     'plugin:react/recommended',
-    'airbnb',
+    "airbnb",
     'plugin:i18next/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
@@ -40,7 +40,7 @@ module.exports = {
       extensions: ['.jsx', '.tsx'],
     }],
     'react/function-component-definition': 'off',
-    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': "error",
     'camelcase': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
@@ -101,5 +101,6 @@ module.exports = {
     'no-useless-escape': 'off',
     'no-param-reassign': ["error", { "props": false }],
     '@typescript-eslint/no-empty-interface': 'warn',
+    'i18next/no-literal-string': 'off'
   },
 };

@@ -2,9 +2,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
+
 import { Logo } from '../Logo/Logo';
 import { ROUTES } from '../../constants/routes';
 import { Navbar } from '../Navbar/Navbar';
+
 import styles from './Header.module.scss';
 
 interface HeaderProps {
@@ -22,38 +24,41 @@ export const Header = memo((props: HeaderProps): JSX.Element => {
 
       <Navbar />
 
-      {isAuth
-        ? (
-          <nav className={styles.header__nav}>
-            <Link to={ROUTES.Cart}>
-              <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
-            </Link>
+      {isAuth ? (
+        <nav className={styles.header__nav}>
+          <Link to={ROUTES.Cart}>
+            <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
+          </Link>
 
-            <Link to={ROUTES.Profile}>
-              <PersonIcon className={styles.nav__icon} fontSize="large" />
-            </Link>
+          <Link to={ROUTES.Profile}>
+            <PersonIcon className={styles.nav__icon} fontSize="large" />
+          </Link>
 
-            <Link
-              to={ROUTES.Base}
-              className={styles.nav__btn}
-              onClick={() => { onLogout(); }}
-            >
-              Logout
-            </Link>
-          </nav>
-        )
-        : (
-          <nav className={styles.header__nav}>
-            <Link to={ROUTES.Cart}>
-              <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
-            </Link>
+          <Link
+            to={ROUTES.Base}
+            className={styles.nav__btn}
+            onClick={() => {
+              onLogout();
+            }}
+          >
+            Logout
+          </Link>
+        </nav>
+      ) : (
+        <nav className={styles.header__nav}>
+          <Link to={ROUTES.Cart}>
+            <ShoppingCartIcon className={styles.nav__icon} fontSize="large" />
+          </Link>
 
-            <Link to={ROUTES.BaseRegisterPage} className={styles.nav__btn}>Sign up</Link>
+          <Link to={ROUTES.BaseRegisterPage} className={styles.nav__btn}>
+            Sign up
+          </Link>
 
-            <Link to={ROUTES.LoginPage} className={styles.nav__btn}>Log in</Link>
-          </nav>
-        )}
-
+          <Link to={ROUTES.LoginPage} className={styles.nav__btn}>
+            Log in
+          </Link>
+        </nav>
+      )}
     </header>
   );
 });

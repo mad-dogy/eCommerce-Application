@@ -1,6 +1,8 @@
 import { type CustomerDraft } from '@commercetools/platform-sdk';
+
 import { type CustomerExtendInfo } from '../../entities/CustomerTypes/CustomerExtendInfo.type';
 import { apiRoot } from '../server';
+
 import { getCustomerById } from './GetCustomerInfoActions';
 
 export interface SignUpProps extends CustomerDraft {
@@ -9,13 +11,11 @@ export interface SignUpProps extends CustomerDraft {
 }
 export type SignUpResponseType = string;
 
-export const signUp = async ({
-  email, password,
-}: SignUpProps): Promise<SignUpResponseType> => {
+export const signUp = async ({ email, password }: SignUpProps): Promise<SignUpResponseType> => {
   const customerId = await apiRoot
     .customers()
     .post({
-      body: { email, password },
+      body: { email, password }
     })
     .execute()
     .then(({ body }) => body.customer.id);
@@ -25,7 +25,7 @@ export const signUp = async ({
 
 export const setCustomerExtendInfo = async (
   customerId: string,
-  customerInfo: CustomerExtendInfo,
+  customerInfo: CustomerExtendInfo
 ): Promise<void> => {
   const customer = await getCustomerById(customerId);
   const response = await apiRoot
@@ -40,28 +40,26 @@ export const setCustomerExtendInfo = async (
           { action: 'setDateOfBirth', dateOfBirth: customerInfo.dateOfBirth },
           {
             action: 'addAddress',
-            address:
-            {
+            address: {
               key: 'SHIPPING',
               country: customerInfo.shippingCountry,
               city: customerInfo.shippingCity,
               streetName: customerInfo.shippingStreet,
-              postalCode: customerInfo.shippingPostalCode,
-            },
+              postalCode: customerInfo.shippingPostalCode
+            }
           },
           {
             action: 'addAddress',
-            address:
-            {
+            address: {
               key: 'BILLING',
               country: customerInfo.billingCountry,
               city: customerInfo.billingCity,
               streetName: customerInfo.billingStreet,
-              postalCode: customerInfo.billingPostalCode,
-            },
-          },
-        ],
-      },
+              postalCode: customerInfo.billingPostalCode
+            }
+          }
+        ]
+      }
     })
     .execute()
     .then();
@@ -74,9 +72,9 @@ export const setCustomerExtendInfo = async (
         version: response.body.version,
         actions: [
           { action: 'addShippingAddressId', addressId: response.body.addresses[0].id },
-          { action: 'addBillingAddressId', addressId: response.body.addresses[1].id },
-        ],
-      },
+          { action: 'addBillingAddressId', addressId: response.body.addresses[1].id }
+        ]
+      }
     })
     .execute()
     .then();

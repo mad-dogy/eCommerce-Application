@@ -4,13 +4,15 @@ import { useForm, Controller } from 'react-hook-form';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { TextFieldsOutlined } from '@mui/icons-material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { Button } from '../../UI/Button/Button';
 import { getAvailableCountries } from '../../../helpers/setAvailableCountries';
 import { Loader } from '../../UI/Loader/Loader';
+import { Select } from '../../UI/Select/Select';
+
 import { validationSchema } from './validationSchema';
 import styles from './ExtendRegisterForm.module.scss';
-import { Select } from '../../UI/Select/Select';
 
 interface ExtendRegisterFormProps {
   onFormSubmit: (props: any) => Promise<void>;
@@ -21,10 +23,13 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
   const { onFormSubmit, className } = props;
 
   const {
-    control, register, formState: { errors }, handleSubmit,
+    control,
+    register,
+    formState: { errors },
+    handleSubmit
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: 'onBlur',
+    mode: 'onBlur'
   });
 
   const [availableCountries, setAvailableCountries] = useState(null);
@@ -40,10 +45,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
   }, []);
 
   const formContent = (
-    <form
-      className={`${styles.form} ${className}`}
-      onSubmit={handleSubmit(onFormSubmit)}
-    >
+    <form className={`${styles.form} ${className}`} onSubmit={handleSubmit(onFormSubmit)}>
       <div className={styles['form__personal-info']}>
         <h3 className={styles.label}>Personal info:</h3>
 
@@ -52,7 +54,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
           {...register('firstName')}
           render={({ field }) => (
             <TextInput
-              {...field as any}
+              {...(field as any)}
               placeholder="Enter first name"
               label="First name"
               size="small"
@@ -68,7 +70,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
           {...register('lastName')}
           render={({ field }) => (
             <TextInput
-              {...field as any}
+              {...(field as any)}
               placeholder="Enter last name"
               label="Last name"
               size="small"
@@ -87,23 +89,18 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
               control={control}
               render={({ field }) => (
                 <DatePicker
-                  {...field as any}
+                  {...(field as any)}
                   label="Date of birth"
                   className={styles.data}
                   renderInput={(params: any) => (
-                    <TextFieldsOutlined
-                      {...params}
-                      error={Boolean(errors?.dateOfBirth?.message)}
-                    />
+                    <TextFieldsOutlined {...params} error={Boolean(errors?.dateOfBirth?.message)} />
                   )}
                 />
               )}
             />
           </LocalizationProvider>
 
-          <p className={styles['error-message']}>
-            {errors?.dateOfBirth?.message ?? ''}
-          </p>
+          <p className={styles['error-message']}>{errors?.dateOfBirth?.message ?? ''}</p>
         </div>
       </div>
 
@@ -116,7 +113,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('shippingCountry')}
             render={({ field }) => (
               <Select
-                {...field as any}
+                {...(field as any)}
                 label="Country"
                 selectItems={availableCountries}
                 error={Boolean(errors?.shippingCountry?.message)}
@@ -130,7 +127,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('shippingCity')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder="Enter city"
                 label="City"
                 size="small"
@@ -148,7 +145,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('shippingStreet')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder="Enter street"
                 label="Street"
                 size="small"
@@ -164,7 +161,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('shippingPostalCode')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder="Enter postal code"
                 label="Postal code"
                 size="small"
@@ -186,7 +183,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('billingCountry')}
             render={({ field }) => (
               <Select
-                {...field as any}
+                {...(field as any)}
                 label="Country"
                 selectItems={availableCountries}
                 error={Boolean(errors?.billingCountry?.message)}
@@ -200,7 +197,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('billingCity')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder="Enter city"
                 label="City"
                 size="small"
@@ -218,7 +215,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('billingStreet')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder="Enter street"
                 label="Street"
                 size="small"
@@ -234,7 +231,7 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             {...register('billingPostalCode')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder="Enter postal code"
                 label="Postal code"
                 size="small"
@@ -245,18 +242,13 @@ export const ExtendRegisterForm = (props: ExtendRegisterFormProps) => {
             )}
           />
         </div>
-
       </div>
 
-      <Button variant="contained" type="submit">Confirm</Button>
+      <Button variant="contained" type="submit">
+        Confirm
+      </Button>
     </form>
   );
 
-  return (
-    <div className={styles.form_content}>
-      {isLoading
-        ? <Loader />
-        : formContent}
-    </div>
-  );
+  return <div className={styles.form_content}>{isLoading ? <Loader /> : formContent}</div>;
 };

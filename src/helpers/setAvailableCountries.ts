@@ -5,7 +5,7 @@ export const getAvailableCountries = async (): Promise<Array<SelectItem>> => {
   const projectDetails = await getProjectDetails();
   const availableCountriesFromServer = projectDetails.countries;
   const availableCountries: SelectItem[] = [];
-  availableCountriesFromServer.forEach(element => {
+  availableCountriesFromServer.forEach((element) => {
     switch (element) {
       case 'US':
         availableCountries.push({ value: element, name: 'United States (US)' });
@@ -28,7 +28,8 @@ export const getAvailableCountries = async (): Promise<Array<SelectItem>> => {
       case 'PL':
         availableCountries.push({ value: element, name: 'Poland (PL)' });
         break;
-      default: break;
+      default:
+        break;
     }
   });
 

@@ -1,5 +1,7 @@
 import { Pagination as MuiPagination, SelectChangeEvent } from '@mui/material';
+
 import { Select } from '../UI/Select/Select';
+
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -16,15 +18,12 @@ const selectItems = [
   { name: '8', value: 8 },
   { name: '12', value: 12 },
   { name: '16', value: 16 },
-  { name: '20', value: 20 },
+  { name: '20', value: 20 }
 ];
 
 export const Pagination = (props: PaginationProps) => {
-  const {
-    pagesCount,
-    currentPage, handleChangePage,
-    productsItemLimit, onChangeProductsLimit,
-  } = props;
+  const { pagesCount, currentPage, handleChangePage, productsItemLimit, onChangeProductsLimit } =
+    props;
 
   const onChangePaginationSelectValue = (event: SelectChangeEvent<unknown>) => {
     onChangeProductsLimit(event.target.value as number);
@@ -32,7 +31,12 @@ export const Pagination = (props: PaginationProps) => {
 
   return (
     <div className={styles.pagination}>
-      <MuiPagination count={pagesCount} page={currentPage} onChange={handleChangePage} color="primary" />
+      <MuiPagination
+        count={pagesCount}
+        page={currentPage}
+        onChange={handleChangePage}
+        color="primary"
+      />
       <Select
         defaultValue={productsItemLimit}
         selectItems={selectItems}

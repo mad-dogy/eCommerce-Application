@@ -12,7 +12,7 @@ export const SearchInput = (props: SearchInputProps) => {
   const { searchValue, onSearchValueChange } = props;
 
   const onChangeSearchInputValue = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     onSearchValueChange(event.target.value);
   };
@@ -21,7 +21,12 @@ export const SearchInput = (props: SearchInputProps) => {
     <Paper
       component="form"
       sx={{
-        p: '0 2px', display: 'flex', alignItems: 'center', maxWidth: 600, width: '100%', m: '0 auto',
+        p: '0 2px',
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: 600,
+        width: '100%',
+        m: '0 auto'
       }}
     >
       <InputBase

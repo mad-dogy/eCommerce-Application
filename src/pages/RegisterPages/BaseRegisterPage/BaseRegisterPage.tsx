@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+
 import { Logo } from '../../../components/Logo/Logo';
 import { SignUpProps } from '../../../api/Customers/Authorization';
 import { BaseRegisterForm } from '../../../components/Forms/BaseRegisterForm/BaseRegisterForm';

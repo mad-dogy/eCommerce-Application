@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
+
 import styles from './AuthRoot.module.scss';
 
 const AuthRoot = memo(() => (

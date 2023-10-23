@@ -10,13 +10,18 @@ import { TextFieldsOutlined } from '@mui/icons-material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
-import { validationSchema } from './validationSchema';
+
 import { TextInput } from '../../UI/inputs/TextInput/TextInput';
 import { getAvailableCountries } from '../../../helpers/setAvailableCountries';
-import { selectBillingAddressInfo, selectShippingAddressInfo } from '../../../helpers/getAddressesInfo';
+import {
+  selectBillingAddressInfo,
+  selectShippingAddressInfo
+} from '../../../helpers/getAddressesInfo';
 import { Select, SelectItem } from '../../UI/Select/Select';
 import { Button } from '../../UI/Button/Button';
 import { CustomerUpdateInfo } from '../../../entities/CustomerTypes/CustomerUpdateInfo.type';
+
+import { validationSchema } from './validationSchema';
 import styles from './EditPersonalInfoForm.module.scss';
 
 interface EditPersonalInfoFormProps {
@@ -25,19 +30,19 @@ interface EditPersonalInfoFormProps {
   onCancelBtnClick: () => void;
 }
 interface formDefaultValuesType {
-  firstName: string,
-  lastName: string,
-  email: string,
+  firstName: string;
+  lastName: string;
+  email: string;
 
-  shippingCountry: string
-  shippingCity: string,
-  shippingStreet: string,
-  shippingPostalCode: string,
+  shippingCountry: string;
+  shippingCity: string;
+  shippingStreet: string;
+  shippingPostalCode: string;
 
-  billingCountry: string,
-  billingCity: string,
-  billingStreet: string,
-  billingPostalCode: string,
+  billingCountry: string;
+  billingCity: string;
+  billingStreet: string;
+  billingPostalCode: string;
 }
 
 export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
@@ -59,15 +64,18 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
     billingCountry: billingAddressInfo.country,
     billingCity: billingAddressInfo.city,
     billingStreet: billingAddressInfo.streetName,
-    billingPostalCode: billingAddressInfo.postalCode,
+    billingPostalCode: billingAddressInfo.postalCode
   };
 
   const {
-    control, register, formState: { errors }, handleSubmit,
+    control,
+    register,
+    formState: { errors },
+    handleSubmit
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur',
-    defaultValues: { ...formDefaultValues },
+    defaultValues: { ...formDefaultValues }
   });
 
   const [availableCountries, setAvailableCountries] = useState<SelectItem[]>();
@@ -86,16 +94,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
   const personalInfoCard = (
     <div className={styles['info-card']}>
       <div className={styles.item}>
-        <span className={styles.item__name}>
-          First name
-        </span>
+        <span className={styles.item__name}>First name</span>
         <span>
           <Controller
             control={control}
             {...register('firstName')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder=""
                 label=""
                 size="small"
@@ -109,16 +115,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
       </div>
 
       <div className={styles.item}>
-        <span className={styles.item__name}>
-          Last name
-        </span>
+        <span className={styles.item__name}>Last name</span>
         <span>
           <Controller
             control={control}
             {...register('lastName')}
             render={({ field }) => (
               <TextInput
-                {...field as any}
+                {...(field as any)}
                 placeholder=""
                 label=""
                 size="small"
@@ -132,9 +136,7 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
       </div>
 
       <div className={styles.item}>
-        <span className={styles.item__name}>
-          Date of birth
-        </span>
+        <span className={styles.item__name}>Date of birth</span>
         <span>
           <div className={styles['datePicker-wrapper']}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -144,7 +146,7 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
                 control={control}
                 render={({ field }) => (
                   <DatePicker
-                    {...field as any}
+                    {...(field as any)}
                     label=""
                     className={styles.data}
                     defaultValue={dayjs(customer.dateOfBirth)}
@@ -159,23 +161,17 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
               />
             </LocalizationProvider>
 
-            <p className={styles['error-message']}>
-              {errors?.dateOfBirth?.message ?? ''}
-            </p>
+            <p className={styles['error-message']}>{errors?.dateOfBirth?.message ?? ''}</p>
           </div>
         </span>
       </div>
-
     </div>
   );
 
   const accountInfoCard = (
     <div className={styles['info-card']}>
-
       <div className={styles.item}>
-        <span className={styles.item__name}>
-          Email
-        </span>
+        <span className={styles.item__name}>Email</span>
         <span>
           <Controller
             name="email"
@@ -197,12 +193,8 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
       </div>
 
       <div className={styles.item}>
-        <span className={styles.item__name}>
-          Password
-        </span>
-        <span>
-          {customer.password}
-        </span>
+        <span className={styles.item__name}>Password</span>
+        <span>{customer.password}</span>
       </div>
     </div>
   );
@@ -214,16 +206,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
     shippingAddressInfoCard = (
       <div className={styles['info-card']}>
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            Country
-          </span>
+          <span className={styles.item__name}>Country</span>
           <span>
             <Controller
               control={control}
               {...register('shippingCountry')}
               render={({ field }) => (
                 <Select
-                  {...field as any}
+                  {...(field as any)}
                   placeholder=""
                   label=""
                   selectItems={availableCountries}
@@ -236,16 +226,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
         </div>
 
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            City
-          </span>
+          <span className={styles.item__name}>City</span>
           <span>
             <Controller
               control={control}
               {...register('shippingCity')}
               render={({ field }) => (
                 <TextInput
-                  {...field as any}
+                  {...(field as any)}
                   label=""
                   size="small"
                   className={styles.input_mini}
@@ -258,16 +246,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
         </div>
 
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            Street name
-          </span>
+          <span className={styles.item__name}>Street name</span>
           <span>
             <Controller
               control={control}
               {...register('shippingStreet')}
               render={({ field }) => (
                 <TextInput
-                  {...field as any}
+                  {...(field as any)}
                   placeholder=""
                   label=""
                   size="small"
@@ -281,16 +267,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
         </div>
 
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            PostalCode
-          </span>
+          <span className={styles.item__name}>PostalCode</span>
           <span>
             <Controller
               control={control}
               {...register('shippingPostalCode')}
               render={({ field }) => (
                 <TextInput
-                  {...field as any}
+                  {...(field as any)}
                   placeholder=""
                   label=""
                   size="small"
@@ -302,22 +286,19 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
             />
           </span>
         </div>
-
       </div>
     );
     billingAddressInfoCard = (
       <div className={styles['info-card']}>
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            Country
-          </span>
+          <span className={styles.item__name}>Country</span>
           <span>
             <Controller
               control={control}
               {...register('billingCountry')}
               render={({ field }) => (
                 <Select
-                  {...field as any}
+                  {...(field as any)}
                   label=""
                   selectItems={availableCountries}
                   error={Boolean(errors?.shippingCountry?.message)}
@@ -329,16 +310,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
         </div>
 
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            City
-          </span>
+          <span className={styles.item__name}>City</span>
           <span>
             <Controller
               control={control}
               {...register('billingCity')}
               render={({ field }) => (
                 <TextInput
-                  {...field as any}
+                  {...(field as any)}
                   placeholder=""
                   label=""
                   size="small"
@@ -352,16 +331,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
         </div>
 
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            Street name
-          </span>
+          <span className={styles.item__name}>Street name</span>
           <span>
             <Controller
               control={control}
               {...register('billingStreet')}
               render={({ field }) => (
                 <TextInput
-                  {...field as any}
+                  {...(field as any)}
                   placeholder=""
                   label=""
                   size="small"
@@ -375,16 +352,14 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
         </div>
 
         <div className={styles.item}>
-          <span className={styles.item__name}>
-            PostalCode
-          </span>
+          <span className={styles.item__name}>PostalCode</span>
           <span>
             <Controller
               control={control}
               {...register('billingPostalCode')}
               render={({ field }) => (
                 <TextInput
-                  {...field as any}
+                  {...(field as any)}
                   placeholder=""
                   label=""
                   size="small"
@@ -396,15 +371,12 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
             />
           </span>
         </div>
-
       </div>
     );
   }
 
   if (isLoading) {
-    return (
-      <div />
-    );
+    return <div />;
   }
 
   return (
@@ -424,7 +396,6 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
             Account info
           </h6>
           {accountInfoCard}
-
         </div>
 
         <div className={styles['info-block']}>
@@ -442,7 +413,6 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
           </h6>
           {billingAddressInfoCard}
         </div>
-
       </form>
       <div className={styles['confirm-edit-btns']}>
         <Button

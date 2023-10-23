@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductProjection, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
+import {
+  ProductProjection,
+  ProductProjectionPagedSearchResponse
+} from '@commercetools/platform-sdk';
+
 import { defaultProductsResponse } from '../../api/Products/Products';
 
 export type QuerySortOptionType = 'id' | 'name' | 'createdAt';
@@ -34,7 +38,7 @@ const initialState: ProductState = {
   querySortOrder: 'asc',
 
   isLoading: false,
-  error: '',
+  error: ''
 };
 
 export const catalogSlice = createSlice({
@@ -46,7 +50,7 @@ export const catalogSlice = createSlice({
     },
     productsFetchingWithSearchSuccess(
       state,
-      action: PayloadAction<ProductProjectionPagedSearchResponse>,
+      action: PayloadAction<ProductProjectionPagedSearchResponse>
     ) {
       state.products = action.payload.results;
 
@@ -79,8 +83,8 @@ export const catalogSlice = createSlice({
     },
     setCurrentPageNumber(state, action: PayloadAction<number>) {
       state.currentPageNumber = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const catalogReducer = catalogSlice.reducer;

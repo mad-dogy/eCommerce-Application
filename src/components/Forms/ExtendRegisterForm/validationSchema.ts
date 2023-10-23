@@ -3,7 +3,8 @@ import * as yup from 'yup';
 export const validationSchema = yup.object().shape({
   firstName: yup.string().required('Field is required').max(30),
   lastName: yup.string().required('Field is required').max(30),
-  dateOfBirth: yup.date()
+  dateOfBirth: yup
+    .date()
     .required('Date of birth is required')
     .max(new Date(), 'Date of birth cannot be in the future')
     .test('minAge', 'You must be at least 13 years old', (value) => {
@@ -11,10 +12,9 @@ export const validationSchema = yup.object().shape({
       const dateOfBirth = new Date(value);
       let age = today.getFullYear() - dateOfBirth.getFullYear();
 
-      if (today.getMonth() < dateOfBirth.getMonth()
-        || (today.getMonth() === dateOfBirth.getMonth()
-          && today.getDate() < dateOfBirth.getDate()
-        )
+      if (
+        today.getMonth() < dateOfBirth.getMonth() ||
+        (today.getMonth() === dateOfBirth.getMonth() && today.getDate() < dateOfBirth.getDate())
       ) {
         age -= 1;
       }
@@ -26,10 +26,9 @@ export const validationSchema = yup.object().shape({
       const dateOfBirth = new Date(value);
       let age = today.getFullYear() - dateOfBirth.getFullYear();
 
-      if (today.getMonth() < dateOfBirth.getMonth()
-        || (today.getMonth() === dateOfBirth.getMonth()
-          && today.getDate() < dateOfBirth.getDate()
-        )
+      if (
+        today.getMonth() < dateOfBirth.getMonth() ||
+        (today.getMonth() === dateOfBirth.getMonth() && today.getDate() < dateOfBirth.getDate())
       ) {
         age -= 1;
       }
@@ -44,5 +43,5 @@ export const validationSchema = yup.object().shape({
   billingCountry: yup.string().required('Field is required'),
   billingCity: yup.string().required('Field is required').max(30),
   billingStreet: yup.string().required('Field is required').max(30),
-  billingPostalCode: yup.string().required('Field is required').max(8),
+  billingPostalCode: yup.string().required('Field is required').max(8)
 });

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { ProductItem } from '../ProductItem/ProductItem';
 import { ProductItemModal } from '../ModalWindows/ProductItemModal/ProductItemModal';
 import { Pagination } from '../Pagination/Pagination';
@@ -7,19 +8,21 @@ import { catalogSlice } from '../../store/reducers/catalogSlice';
 import { useDebounce } from '../../hooks/useDebounce';
 import { Loader } from '../UI/Loader/Loader';
 import { fetchProducts } from '../../store/reducers/actionCreators/catalogActionCreators';
-import styles from './ProductsList.module.scss';
 import { getCatalogProducts } from '../../store/selectors/getCatalogFields/getCatalogProducts';
 import { getCatalogLimit } from '../../store/selectors/getCatalogFields/getCatalogProductsLimit';
 import { getCatalogPagesAmount } from '../../store/selectors/getCatalogFields/getCatalogPagesAmount';
 import { getCatalogCurrentPageNumber } from '../../store/selectors/getCatalogFields/getCatalogCurrentPageNumber';
-import { getCatalogQueryString, getCatalogSortOption, getCatalogSortOrder } from '../../store/selectors/getCatalogFields/getCatalogFilterOptions';
+import {
+  getCatalogQueryString,
+  getCatalogSortOption,
+  getCatalogSortOrder
+} from '../../store/selectors/getCatalogFields/getCatalogFilterOptions';
 import { getCatalogLoading } from '../../store/selectors/getCatalogFields/getCatalogLoading';
 import { getCatalogError } from '../../store/selectors/getCatalogFields/getCatalogError';
 
-const {
-  setLimit,
-  setCurrentPageNumber,
-} = catalogSlice.actions;
+import styles from './ProductsList.module.scss';
+
+const { setLimit, setCurrentPageNumber } = catalogSlice.actions;
 
 export const ProductsList = () => {
   const dispatch = useAppDispatch();
@@ -35,13 +38,15 @@ export const ProductsList = () => {
   const error = useAppSelector(getCatalogError);
 
   const dispatchFetchProducts = () => {
-    dispatch(fetchProducts(
-      limit,
-      (currentPageNumber - 1) * limit,
-      queryString,
-      querySortOption,
-      querySortOrder,
-    ));
+    dispatch(
+      fetchProducts(
+        limit,
+        (currentPageNumber - 1) * limit,
+        queryString,
+        querySortOption,
+        querySortOrder
+      )
+    );
   };
 
   const debauncedSearch = useDebounce(dispatchFetchProducts, 500);
@@ -77,7 +82,9 @@ export const ProductsList = () => {
   if (products.length) {
     productsItemsContent = (
       <div className={styles.list__container}>
-        {products.map(item => <ProductItem product={item} onClick={onProductItemClick} />)}
+        {products.map((item) => (
+          <ProductItem product={item} onClick={onProductItemClick} />
+        ))}
       </div>
     );
   } else if (error) {
@@ -88,9 +95,7 @@ export const ProductsList = () => {
 
   return (
     <div className={styles.list}>
-      {isLoading
-        ? <Loader />
-        : <div>{productsItemsContent}</div>}
+      {isLoading ? <Loader /> : <div>{productsItemsContent}</div>}
 
       <ProductItemModal productId={currentProductId} onCloseBtnClick={onCloseModal} />
 

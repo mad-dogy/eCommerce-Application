@@ -10,15 +10,13 @@ interface CartState {
 const initialState: CartState = {
   productsIds: [],
   isLoading: false,
-  error: '',
+  error: ''
 };
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: [],
-  reducers: {
-
-  },
+  reducers: {}
 });
 
 export const cartReducer = cartSlice.reducer;

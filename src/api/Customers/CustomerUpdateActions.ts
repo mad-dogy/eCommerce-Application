@@ -1,11 +1,16 @@
 import { Customer } from '@commercetools/platform-sdk';
+
 import { apiRoot } from '../server';
+import {
+  CustomerUpdateInfo,
+  CustomerPasswordUpdateInfo
+} from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
+
 import { getCustomerById } from './GetCustomerInfoActions';
-import { CustomerUpdateInfo, CustomerPasswordUpdateInfo } from '../../entities/CustomerTypes/CustomerUpdateInfo.type';
 
 export const updateCustomerInfo = async (
   customerId: string,
-  customerInfo: CustomerUpdateInfo,
+  customerInfo: CustomerUpdateInfo
 ): Promise<void> => {
   const customer = await getCustomerById(customerId);
   await apiRoot
@@ -26,8 +31,8 @@ export const updateCustomerInfo = async (
               country: customerInfo.shippingCountry,
               city: customerInfo.shippingCity,
               streetName: customerInfo.shippingStreet,
-              postalCode: customerInfo.shippingPostalCode,
-            },
+              postalCode: customerInfo.shippingPostalCode
+            }
           },
           {
             action: 'changeAddress',
@@ -36,11 +41,11 @@ export const updateCustomerInfo = async (
               country: customerInfo.billingCountry,
               city: customerInfo.billingCity,
               streetName: customerInfo.billingStreet,
-              postalCode: customerInfo.billingPostalCode,
-            },
-          },
-        ],
-      },
+              postalCode: customerInfo.billingPostalCode
+            }
+          }
+        ]
+      }
     })
     .execute()
     .then();
@@ -60,20 +65,21 @@ export const deleteCustomer = async (customer: Customer): Promise<void> => {
 
 export const changeCustomerPassword = async (
   customer: Customer,
-  passwordInfo: CustomerPasswordUpdateInfo,
+  passwordInfo: CustomerPasswordUpdateInfo
 ): Promise<void> => {
   const customerId = customer.id;
   const customerVersion = customer.version;
 
   await apiRoot
     .customers()
-    .password().post({
+    .password()
+    .post({
       body: {
         id: customerId,
         version: customerVersion,
         currentPassword: passwordInfo.currentPassword,
-        newPassword: passwordInfo.newPassword,
-      },
+        newPassword: passwordInfo.newPassword
+      }
     })
     .execute()
     .then();
