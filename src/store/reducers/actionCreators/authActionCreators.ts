@@ -11,7 +11,9 @@ export const fetchSignIn = (data: SignInProps) => async (dispatch: AppDispatch) 
 
   try {
     dispatch(fetchingSignIn());
+
     const customerId = await signIn(data);
+
     dispatch(fetchingSignInSuccess(customerId));
   } catch (error) {
     dispatch(fetchingSignInError(error.message));
@@ -40,7 +42,9 @@ export const fetchDeleteCustomerAccount = (customer: Customer) => async (dispatc
 
   try {
     dispatch(fetchingDeleteAccount());
+
     await deleteCustomer(customer);
+
     dispatch(fetchingDeleteAccountSuccess());
   } catch (error) {
     dispatch(fetchingDeleteAccountError(error.message));

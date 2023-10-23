@@ -23,8 +23,10 @@ export const LoginPage = (): JSX.Element => {
     try {
       await dispatch(fetchSignIn(data));
 
-      navigate(ROUTES.Base);
-    } catch (error) {}
+      navigate(ROUTES.main());
+    } catch (error) {
+      alert(error);
+    }
   };
 
   let content;
@@ -32,12 +34,12 @@ export const LoginPage = (): JSX.Element => {
     content = <Loader />;
   } else {
     content = (
-      <div className={styles.content}>
+      <div>
         <h3 className={styles.login__title}>Login</h3>
 
         <LoginForm onFormSubmit={onSignIn} />
 
-        <Link to={ROUTES.BaseRegisterPage} className={styles['login__to-register']}>
+        <Link to={ROUTES.baseRegister()} className={styles['login__to-register']}>
           Do not have an account?
           <span> Sign up</span>
         </Link>
@@ -48,7 +50,7 @@ export const LoginPage = (): JSX.Element => {
   return (
     <div className={styles.login__inner}>
       <Logo />
-      {content}
+      <div className={styles.content}>{content}</div>
       {error}
     </div>
   );

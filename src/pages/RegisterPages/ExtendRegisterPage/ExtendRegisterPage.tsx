@@ -16,7 +16,7 @@ export const ExtendRegisterPage = (): JSX.Element => {
     try {
       data.dateOfBirth = modifyToCorrectDate(data.dateOfBirth);
       await setCustomerExtendInfo(customerId, data);
-      navigate(ROUTES.Base);
+      navigate(ROUTES.main());
     } catch (error) {
       alert(error);
     }

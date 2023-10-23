@@ -33,8 +33,6 @@ export const authSlice = createSlice({
     fetchingSignInError(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.isLoading = false;
-
-      alert(state.error);
     },
 
     fetchingSignUp(state) {
@@ -50,8 +48,6 @@ export const authSlice = createSlice({
     fetchingSignUpError(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.isLoading = false;
-
-      alert(state.error);
     },
 
     fetchingDeleteAccount(state) {
@@ -67,8 +63,11 @@ export const authSlice = createSlice({
     fetchingDeleteAccountError(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.isLoading = false;
+    },
 
-      alert(state.error);
+    logout(state) {
+      state.isAuth = false;
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
     }
   }
 });

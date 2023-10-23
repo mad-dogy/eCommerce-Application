@@ -4,41 +4,37 @@ import {
   ProductProjectionPagedSearchResponse
 } from '@commercetools/platform-sdk';
 
-import { defaultProductsResponse } from '../../api/Products/Products';
+export type QuerySortOptionValueType = 'id' | 'name' | 'createdAt';
+export type QuerySortOptionNameType = 'ID' | 'Name' | 'Date of creation';
 
-export type QuerySortOptionType = 'id' | 'name' | 'createdAt';
-export type QuerySortOrderType = 'asc' | 'desc';
+export type QuerySortOrderValueType = 'asc' | 'desc';
+export type QuerySortOrderNameType = 'Ascending' | 'Descending';
 
 interface ProductState {
   products: ProductProjection[];
-  total: number;
+  total?: number;
   limit: number;
 
-  pagesAmount: number;
+  pagesAmount?: number;
   currentPageNumber: number;
 
   queryString: string;
-  querySortOption: QuerySortOptionType;
-  querySortOrder: QuerySortOrderType;
+  querySortOption: QuerySortOptionValueType;
+  querySortOrder: QuerySortOrderValueType;
 
-  isLoading: boolean;
-  error: string;
+  isLoading?: boolean;
+  error?: string;
 }
 
 const initialState: ProductState = {
-  products: defaultProductsResponse.results,
-  total: defaultProductsResponse.total,
-  limit: defaultProductsResponse.limit,
+  products: [],
 
-  pagesAmount: 1,
+  limit: 12,
   currentPageNumber: 1,
 
   queryString: '',
   querySortOption: 'id',
-  querySortOrder: 'asc',
-
-  isLoading: false,
-  error: ''
+  querySortOrder: 'asc'
 };
 
 export const catalogSlice = createSlice({
@@ -70,10 +66,10 @@ export const catalogSlice = createSlice({
     setQueryString(state, action: PayloadAction<string>) {
       state.queryString = action.payload;
     },
-    setQuerySortOption(state, action: PayloadAction<QuerySortOptionType>) {
+    setQuerySortOption(state, action: PayloadAction<QuerySortOptionValueType>) {
       state.querySortOption = action.payload;
     },
-    setQuerySortOrder(state, action: PayloadAction<QuerySortOrderType>) {
+    setQuerySortOrder(state, action: PayloadAction<QuerySortOrderValueType>) {
       state.querySortOrder = action.payload;
     },
     setLimit(state, action: PayloadAction<number>) {

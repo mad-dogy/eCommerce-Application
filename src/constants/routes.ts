@@ -1,16 +1,25 @@
-export enum ROUTES {
-  Auth = '/auth',
-  LoginPage = '/auth/login',
-  BaseRegisterPage = '/auth/register',
-  ExtendRegisterPage = '/auth/extend-register',
+const getRouteMain = () => '/';
+const getRouteAuth = () => '/auth';
+const getRouteLogin = () => '/auth/login';
+const getRouteBaseRegister = () => '/auth/register';
+const getRouteExtendRegister = () => '/auth/extend-register';
+const getRouteCart = () => '/cart';
+const getRouteAbout = () => '/about';
+const getRouteProfile = () => '/profile';
+const getRouteCatalog = () => '/catalog';
+const getRouteNotFound = () => '/404';
+const getRouteAny = () => '*';
 
-  Cart = '/cart',
-  About = '/about',
-  Profile = '/profile',
-  Catalog = '/catalog',
-
-  Base = '/',
-  Any = '*',
-
-  NotFoundPage = '/404'
-}
+export const ROUTES = {
+  main: getRouteMain,
+  auth: getRouteAuth,
+  login: getRouteLogin,
+  baseRegister: getRouteBaseRegister,
+  extendRegister: getRouteExtendRegister,
+  cart: getRouteCart,
+  about: getRouteAbout,
+  profile: getRouteProfile,
+  catalog: getRouteCatalog,
+  notFound: getRouteNotFound,
+  any: getRouteAny
+};

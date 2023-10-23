@@ -1,15 +1,7 @@
 import { Product, ProductProjectionPagedSearchResponse } from '@commercetools/platform-sdk';
 
 import { apiRoot } from '../server';
-
-export const defaultProductsResponse: ProductProjectionPagedSearchResponse = {
-  limit: 12,
-  offset: 0,
-  count: 0,
-  total: 0,
-  facets: {},
-  results: []
-};
+import { QuerySortOptionValueType } from '../../store/reducers/catalogSlice';
 
 export const getProductById = async (id: string): Promise<Product> => {
   const product = await apiRoot
@@ -22,12 +14,22 @@ export const getProductById = async (id: string): Promise<Product> => {
   return product;
 };
 
+export interface ProductProjectionSearchProps {
+  productsLimit: number;
+  productsOffset: number;
+  searchText: string;
+  sortOption: QuerySortOptionValueType;
+  sortOrder: string;
+}
+
+const sortOptionMap: Record<QuerySortOptionValueType, string> = {
+  createdAt: 'createdAt',
+  name: 'name.en-US',
+  id: 'id'
+};
+
 export const productsProjectionSearch = async (
-  productsLimit: number,
-  productsOffset: number,
-  searchText: string,
-  sortOption: string,
-  sortOrder: string
+  props: ProductProjectionSearchProps
 ): Promise<ProductProjectionPagedSearchResponse> => {
   const productsProjectionSearchResponse = await apiRoot
     .productProjections()
@@ -35,10 +37,10 @@ export const productsProjectionSearch = async (
     .get({
       queryArgs: {
         fuzzy: true,
-        limit: productsLimit,
-        offset: productsOffset,
-        sort: `${sortOption} ${sortOrder}`,
-        'text.en-US': searchText
+        limit: props.productsLimit,
+        offset: props.productsOffset,
+        sort: `${sortOptionMap[props.sortOption]} ${props.sortOrder}`,
+        'text.en-US': props.searchText
       }
     })
     .execute()

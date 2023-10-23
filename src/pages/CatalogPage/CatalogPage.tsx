@@ -2,8 +2,8 @@ import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { ProductsList } from '../../components/ProductsList/ProductsList';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  QuerySortOptionType,
-  QuerySortOrderType,
+  QuerySortOptionValueType,
+  QuerySortOrderValueType,
   catalogSlice
 } from '../../store/reducers/catalogSlice';
 import {
@@ -13,6 +13,7 @@ import {
 } from '../../store/selectors/getCatalogFields/getCatalogFilterOptions';
 
 import styles from './CatalogPage.module.scss';
+import { sortOptionSelectItems, sortOrderSelectItems } from './constants';
 
 const { setQueryString, setQuerySortOption, setQuerySortOrder } = catalogSlice.actions;
 
@@ -23,7 +24,7 @@ export const CatalogPage = () => {
   const querySortOption = useAppSelector(getCatalogSortOption);
   const querySortOrder = useAppSelector(getCatalogSortOrder);
 
-  const onQuerySortOrderChange = (value: QuerySortOrderType) => {
+  const onQuerySortOrderChange = (value: QuerySortOrderValueType) => {
     dispatch(setQuerySortOrder(value));
   };
 
@@ -31,7 +32,7 @@ export const CatalogPage = () => {
     dispatch(setQueryString(value));
   };
 
-  const onQuerySortOptionChange = (value: QuerySortOptionType) => {
+  const onQuerySortOptionChange = (value: QuerySortOptionValueType) => {
     dispatch(setQuerySortOption(value));
   };
 
@@ -44,6 +45,8 @@ export const CatalogPage = () => {
         onSortOptionChange={onQuerySortOptionChange}
         sortOrder={querySortOrder}
         onSortOrderChange={onQuerySortOrderChange}
+        sortOptionSelectItems={sortOptionSelectItems}
+        sortOrderSelectItems={sortOrderSelectItems}
       />
 
       <ProductsList />

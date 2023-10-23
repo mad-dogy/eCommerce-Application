@@ -6,8 +6,8 @@ import styles from './Navbar.module.scss';
 
 export const Navbar = () => (
   <nav className={styles.navbar}>
-    <Link to={ROUTES.Base}>Home</Link>
-    <Link to={ROUTES.Catalog}>Catalog</Link>
-    <Link to={ROUTES.About}>About us</Link>
+    <Link to={ROUTES.main()}>Home</Link>
+    <Link to={ROUTES.catalog()}>Catalog</Link>
+    <Link to={ROUTES.about()}>About us</Link>
   </nav>
 );

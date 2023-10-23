@@ -8,16 +8,13 @@ interface ProfileState {
   isInfoEdit: boolean;
   isPasswordEdit: boolean;
 
-  isLoading: boolean;
-  error: string;
+  isLoading?: boolean;
+  error?: string;
 }
 
 const initialState: ProfileState = {
   isInfoEdit: false,
-  isPasswordEdit: false,
-
-  isLoading: false,
-  error: ''
+  isPasswordEdit: false
 };
 
 export const profileSlice = createSlice({

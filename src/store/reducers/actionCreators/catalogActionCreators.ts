@@ -1,26 +1,24 @@
-import { productsProjectionSearch } from '../../../api/Products/Products';
+import {
+  ProductProjectionSearchProps,
+  productsProjectionSearch
+} from '../../../api/Products/Products';
 import { AppDispatch } from '../../store';
 import { catalogSlice } from '../catalogSlice';
 
 export const fetchProducts =
-  (
-    productsRequestLimit: number,
-    productsRequestOffset: number,
-    searchString: string,
-    option: string,
-    order: string
-  ) =>
-  async (dispatch: AppDispatch) => {
+  (props: ProductProjectionSearchProps) => async (dispatch: AppDispatch) => {
+    const { productsLimit, productsOffset, searchText, sortOption, sortOrder } = props;
+
     try {
       dispatch(catalogSlice.actions.productsFetchingWithSearch());
 
-      const productsProjectionSearchResponse = await productsProjectionSearch(
-        productsRequestLimit,
-        productsRequestOffset,
-        searchString,
-        option,
-        order
-      );
+      const productsProjectionSearchResponse = await productsProjectionSearch({
+        productsLimit,
+        productsOffset,
+        searchText,
+        sortOption,
+        sortOrder
+      });
 
       dispatch(
         catalogSlice.actions.productsFetchingWithSearchSuccess(productsProjectionSearchResponse)

@@ -83,9 +83,9 @@ export const ProfilePage = (): JSX.Element => {
     const isDelete = confirm('Are you sure that you want to delete an account?');
 
     if (isDelete) {
-      dispatch(fetchDeleteCustomerAccount(customer));
+      dispatch(fetchDeleteCustomerAccount(customer)).catch((error) => alert(error));
       if (!error) {
-        navigate(ROUTES.Base);
+        navigate(ROUTES.main());
       }
     }
   };

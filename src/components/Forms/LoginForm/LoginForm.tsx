@@ -72,7 +72,7 @@ export const LoginForm = (props: LoginFormProps): JSX.Element => {
 
       <div className={styles.btns}>
         <Button>
-          <Link to={ROUTES.Base}>
+          <Link to={ROUTES.main()}>
             <span>Go to shop</span>
             <ArrowForwardIosIcon fontSize="small" />
           </Link>

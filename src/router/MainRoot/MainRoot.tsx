@@ -2,27 +2,23 @@ import { memo, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Header } from '../../components/Header/Header';
-import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { authSlice } from '../../store/reducers/authSlice';
-import { getAuthState } from '../../store/selectors/getAuthFields/getAuthState';
 
 import styles from './MainRoot.module.scss';
 
-const { setAuth } = authSlice.actions;
+const { logout } = authSlice.actions;
 
 export const MainRoot = memo(() => {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(getAuthState);
 
   const onLogout = useCallback(() => {
-    dispatch(setAuth(false));
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
-  }, [setAuth]);
+    dispatch(logout());
+  }, [logout]);
 
   return (
     <div className={styles.mainRoot}>
-      <Header isAuth={isAuth} onLogout={onLogout} />
+      <Header onLogout={onLogout} />
 
       <div className={styles.content}>
         <Outlet />

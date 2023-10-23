@@ -19,7 +19,7 @@ export const BaseRegisterPage = (): JSX.Element => {
   const onSignUp = async (data: SignUpProps): Promise<void> => {
     try {
       await dispatch(fetchSignUp(data));
-      navigate(ROUTES.ExtendRegisterPage);
+      navigate(ROUTES.extendRegister());
     } catch (error) {}
   };
 
@@ -28,12 +28,12 @@ export const BaseRegisterPage = (): JSX.Element => {
     content = <Loader />;
   } else {
     content = (
-      <div className={styles.content}>
+      <div>
         <h3 className={styles['register__step-title']}>Registration</h3>
 
         <BaseRegisterForm className={styles.register__form} onFormSubmit={onSignUp} />
 
-        <Link to={ROUTES.LoginPage} className={styles['register__to-login']}>
+        <Link to={ROUTES.login()} className={styles['register__to-login']}>
           Already have account?
           <span> Log in</span>
         </Link>
@@ -44,7 +44,7 @@ export const BaseRegisterPage = (): JSX.Element => {
   return (
     <div className={styles.register__inner}>
       <Logo />
-      {content}
+      <div className={styles.content}>{content}</div>
     </div>
   );
 };

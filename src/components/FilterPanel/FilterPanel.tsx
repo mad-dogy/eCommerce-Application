@@ -1,21 +1,27 @@
-import { useMemo } from 'react';
 import { SelectChangeEvent } from '@mui/material';
 
-import { QuerySortOptionType, QuerySortOrderType } from '../../store/reducers/catalogSlice';
 import { SearchInput } from '../UI/inputs/SearchInput/SearchInput';
-import { Select, SelectItem } from '../UI/Select/Select';
+import { Select } from '../UI/Select/Select';
 
 import styles from './FilterPanel.module.scss';
+
+interface a {
+  name: string;
+  value: string;
+}
 
 interface FilterPanelProps {
   searchValue: string;
   onSearchValueChange: (value: string) => void;
 
-  sortOption: QuerySortOptionType;
-  onSortOptionChange: (value: QuerySortOptionType) => void;
+  sortOption: string;
+  onSortOptionChange: (value: string) => void;
 
-  sortOrder: QuerySortOrderType;
-  onSortOrderChange: (value: QuerySortOrderType) => void;
+  sortOrder: string;
+  onSortOrderChange: (value: string) => void;
+
+  sortOptionSelectItems: a[];
+  sortOrderSelectItems: a[];
 }
 
 export const FilterPanel = (props: FilterPanelProps) => {
@@ -25,32 +31,17 @@ export const FilterPanel = (props: FilterPanelProps) => {
     sortOption,
     onSortOptionChange,
     sortOrder,
-    onSortOrderChange
+    onSortOrderChange,
+    sortOptionSelectItems,
+    sortOrderSelectItems
   } = props;
 
-  const sortOptionSelectItems: SelectItem[] = useMemo(
-    () => [
-      { name: 'ID', value: 'id' },
-      { name: 'Name', value: 'name.en-US' },
-      { name: 'Date of creation', value: 'createdAt' }
-    ],
-    []
-  );
-
-  const onChangeSortOptionSelectValue = (event: SelectChangeEvent<unknown>) => {
-    onSortOptionChange(event.target.value as QuerySortOptionType);
+  const onChangeSortOptionSelectValue = (event: SelectChangeEvent) => {
+    onSortOptionChange(event.target.value);
   };
 
-  const sortOrderSelectItems: SelectItem[] = useMemo(
-    () => [
-      { name: 'ASC', value: 'asc' },
-      { name: 'DESC', value: 'desc' }
-    ],
-    []
-  );
-
-  const onChangeSortOrderSelectValue = (event: SelectChangeEvent<unknown>) => {
-    onSortOrderChange(event.target.value as QuerySortOrderType);
+  const onChangeSortOrderSelectValue = (event: SelectChangeEvent) => {
+    onSortOrderChange(event.target.value);
   };
 
   return (

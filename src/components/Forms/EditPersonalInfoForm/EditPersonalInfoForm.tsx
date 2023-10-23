@@ -51,21 +51,23 @@ export const EditPersonalInfoForm = (props: EditPersonalInfoFormProps) => {
   const shippingAddressInfo = useMemo(() => selectShippingAddressInfo(customer), [customer]);
   const billingAddressInfo = useMemo(() => selectBillingAddressInfo(customer), [customer]);
 
-  const formDefaultValues: formDefaultValuesType = {
-    firstName: customer.firstName,
-    lastName: customer.lastName,
-    email: customer.email,
+  const formDefaultValues: formDefaultValuesType = useMemo(() => {
+    return {
+      firstName: customer.firstName,
+      lastName: customer.lastName,
+      email: customer.email,
 
-    shippingCountry: shippingAddressInfo.country,
-    shippingCity: shippingAddressInfo.city,
-    shippingStreet: shippingAddressInfo.streetName,
-    shippingPostalCode: shippingAddressInfo.postalCode,
+      shippingCountry: shippingAddressInfo.country,
+      shippingCity: shippingAddressInfo.city,
+      shippingStreet: shippingAddressInfo.streetName,
+      shippingPostalCode: shippingAddressInfo.postalCode,
 
-    billingCountry: billingAddressInfo.country,
-    billingCity: billingAddressInfo.city,
-    billingStreet: billingAddressInfo.streetName,
-    billingPostalCode: billingAddressInfo.postalCode
-  };
+      billingCountry: billingAddressInfo.country,
+      billingCity: billingAddressInfo.city,
+      billingStreet: billingAddressInfo.streetName,
+      billingPostalCode: billingAddressInfo.postalCode
+    };
+  }, []);
 
   const {
     control,

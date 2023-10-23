@@ -1,9 +1,9 @@
 import { Image, Product, ProductData } from '@commercetools/platform-sdk';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import CloseBtn from '../../../assets/cross.svg';
-import { Button } from '../../UI/Button/Button';
 import { getProductById } from '../../../api/Products/Products';
+import { Button } from '../../UI/Button/Button';
 import { Loader } from '../../UI/Loader/Loader';
 import { SliderItemsNav } from '../../UI/SliderItemsNav/SliderImagesNav';
 import { SliderImgsContainer } from '../../UI/SliderImgsContainer/SliderImgsContainer';
@@ -22,6 +22,8 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
   const [product, setProduct] = useState<Product>();
 
   useEffect(() => {
+    if (!productId) return;
+
     const setProductById = async (id: string) => {
       setLoading(true);
       const receivedProduct = await getProductById(id);
@@ -29,10 +31,12 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
       setProduct(receivedProduct);
     };
 
-    setProductById(productId).catch((error) => alert(error));
+    setProductById(productId).catch();
   }, [productId]);
 
   const [imgNumber, setImgNumber] = useState(0);
+
+  if (!productId) return;
 
   const productInfo: ProductData = product?.masterData.current;
   const productName: string = productInfo?.name['en-US'] || '';
@@ -42,8 +46,6 @@ export const ProductItemModal = (props: ProductItemModalProps) => {
   const productPrice: number = productPriceInCents / 100;
   const productPriceCurrency: string =
     productInfo?.masterVariant.prices[0]?.value.currencyCode || 'USD';
-
-  if (productId === undefined) return;
 
   let productContent;
   if (!isLoading) {

@@ -23,25 +23,25 @@ import AppRoot from './AppRoot';
 
 export const router = createHashRouter([
   {
-    path: ROUTES.Base,
+    path: ROUTES.main(),
     element: <AppRoot />,
     children: [
       {
-        path: ROUTES.Auth,
+        path: ROUTES.auth(),
         element: <AuthRoot />,
         children: [
           {
-            path: ROUTES.LoginPage,
+            path: ROUTES.login(),
             element: <LoginPage />,
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.BaseRegisterPage,
+            path: ROUTES.baseRegister(),
             element: <BaseRegisterPage />,
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.ExtendRegisterPage,
+            path: ROUTES.extendRegister(),
             element: (
               <ExtendRegisterRoute>
                 <ExtendRegisterPage />
@@ -52,31 +52,31 @@ export const router = createHashRouter([
         ]
       },
       {
-        path: ROUTES.Base,
+        path: ROUTES.main(),
         element: <MainRoot />,
         children: [
           {
-            path: ROUTES.Base,
+            path: ROUTES.main(),
             element: <MainPage />,
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.Cart,
+            path: ROUTES.cart(),
             element: <CartPage />,
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.Catalog,
+            path: ROUTES.catalog(),
             element: <CatalogPage />,
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.About,
+            path: ROUTES.about(),
             element: <AboutPage />,
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.Profile,
+            path: ROUTES.profile(),
             element: (
               <PrivateRoute>
                 <ProfilePage />
@@ -85,7 +85,7 @@ export const router = createHashRouter([
             errorElement: <ErrorPage />
           },
           {
-            path: ROUTES.Any,
+            path: ROUTES.any(),
             element: <NotFoundPage />,
             errorElement: <ErrorPage />
           }

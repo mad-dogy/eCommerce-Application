@@ -17,7 +17,7 @@ export const NotFoundPage = (): JSX.Element => (
         can click on the button below to return to the main page.
       </div>
 
-      <Link to={ROUTES.Base}>
+      <Link to={ROUTES.main()}>
         <Button className={styles['go-home-btn']} variant="contained">
           Home
         </Button>

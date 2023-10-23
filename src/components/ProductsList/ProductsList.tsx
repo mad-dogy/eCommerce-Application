@@ -38,14 +38,16 @@ export const ProductsList = () => {
   const error = useAppSelector(getCatalogError);
 
   const dispatchFetchProducts = () => {
+    const offset = (currentPageNumber - 1) * limit;
+
     dispatch(
-      fetchProducts(
-        limit,
-        (currentPageNumber - 1) * limit,
-        queryString,
-        querySortOption,
-        querySortOrder
-      )
+      fetchProducts({
+        productsLimit: limit,
+        productsOffset: offset,
+        searchText: queryString,
+        sortOption: querySortOption,
+        sortOrder: querySortOrder
+      })
     );
   };
 
@@ -57,15 +59,13 @@ export const ProductsList = () => {
 
   useEffect(() => {
     dispatchFetchProducts();
-  }, [querySortOption, querySortOrder]);
+  }, [querySortOption, querySortOrder, currentPageNumber, limit]);
 
   const onLimitChange = (value: number) => {
     dispatch(setLimit(value));
-    dispatchFetchProducts();
   };
   const onCurrentPageNumberChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setCurrentPageNumber(value));
-    dispatchFetchProducts();
   };
 
   const [currentProductId, setCurrentProductId] = useState<string | undefined>(undefined);
@@ -73,10 +73,13 @@ export const ProductsList = () => {
   const onProductItemClick = (productId: string) => {
     setCurrentProductId(productId);
   };
+
   const onCloseModal = (event: React.MouseEvent) => {
     event.stopPropagation();
     setCurrentProductId(undefined);
   };
+
+  if (!products) return;
 
   let productsItemsContent;
   if (products.length) {

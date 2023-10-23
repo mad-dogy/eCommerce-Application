@@ -10,7 +10,9 @@ interface ChangePasswordModalProps {
 }
 export const ChangePasswordModal = (props: ChangePasswordModalProps): JSX.Element => {
   const { isPasswordEdit, onPasswordSave, onPasswordCancelSave } = props;
-  if (!isPasswordEdit) return <div />;
+
+  if (!isPasswordEdit) return;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.window}>
