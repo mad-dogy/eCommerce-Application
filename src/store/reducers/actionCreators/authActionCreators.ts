@@ -1,4 +1,5 @@
 import { Customer } from '@commercetools/platform-sdk';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { SignInProps, signIn } from '../../../api/ClientMe';
 import { SignUpProps, signUp } from '../../../api/Customers/Authorization';
@@ -6,20 +7,22 @@ import { AppDispatch } from '../../store';
 import { authSlice } from '../authSlice';
 import { deleteCustomer } from '../../../api/Customers/CustomerUpdateActions';
 
-export const fetchSignIn = (data: SignInProps) => async (dispatch: AppDispatch) => {
-  const { fetchingSignIn, fetchingSignInSuccess, fetchingSignInError } = authSlice.actions;
+export const fetchSignIn = createAsyncThunk<string, SignInProps, { rejectValue: string }>(
+  'auth/fetchSignIn',
+  async (data, thunkApi) => {
+    const { rejectWithValue } = thunkApi;
 
-  try {
-    dispatch(fetchingSignIn());
-
-    const customerId = await signIn(data);
-
-    dispatch(fetchingSignInSuccess(customerId));
-  } catch (error) {
-    dispatch(fetchingSignInError(error.message));
-    throw error;
+    try {
+      const customerId = await signIn(data);
+      return customerId;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Smth went wrong with sign in response');
+    }
   }
-};
+);
 
 export const fetchSignUp = (data: SignUpProps) => async (dispatch: AppDispatch) => {
   const { fetchingSignUp, fetchingSignUpSuccess, fetchingSignUpError } = authSlice.actions;
@@ -36,17 +39,18 @@ export const fetchSignUp = (data: SignUpProps) => async (dispatch: AppDispatch) 
   }
 };
 
-export const fetchDeleteCustomerAccount = (customer: Customer) => async (dispatch: AppDispatch) => {
-  const { fetchingDeleteAccount, fetchingDeleteAccountSuccess, fetchingDeleteAccountError } =
-    authSlice.actions;
-
-  try {
-    dispatch(fetchingDeleteAccount());
-
-    await deleteCustomer(customer);
-
-    dispatch(fetchingDeleteAccountSuccess());
-  } catch (error) {
-    dispatch(fetchingDeleteAccountError(error.message));
+export const fetchDeleteCustomerAccount = createAsyncThunk<void, Customer, { rejectValue: string }>(
+  'auth/fetchDeleteAccount',
+  async (customer, thunkApi) => {
+    const { rejectWithValue } = thunkApi;
+    try {
+      await deleteCustomer(customer);
+      return;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Smth went wrong with deleting account response');
+    }
   }
-};
+);
