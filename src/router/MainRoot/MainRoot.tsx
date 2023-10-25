@@ -1,20 +1,25 @@
-import { memo, useContext } from 'react';
+import { memo, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
-import styles from './MainRoot.module.scss';
+
 import { Header } from '../../components/Header/Header';
-import { AuthContext } from '../../context';
+import { useAppDispatch } from '../../hooks/redux';
+import { authSlice } from '../../store/reducers/authSlice';
+
+import styles from './MainRoot.module.scss';
+
+const { logout } = authSlice.actions;
 
 export const MainRoot = memo(() => {
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const dispatch = useAppDispatch();
 
-  const onLogout = (): void => {
-    setIsAuth(false);
-    localStorage.removeItem('customerId');
-  };
+  const onLogout = useCallback(() => {
+    dispatch(logout());
+  }, [logout]);
 
   return (
     <div className={styles.mainRoot}>
-      <Header isAuth={isAuth} onLogout={onLogout} />
+      <Header onLogout={onLogout} />
+
       <div className={styles.content}>
         <Outlet />
       </div>

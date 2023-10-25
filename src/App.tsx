@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react';
-import './index.scss';
+import { useEffect } from 'react';
+
 import AppRouter from './router/AppRouter';
-import { AuthContext } from './context';
+import { useAppDispatch } from './hooks/redux';
+import { authSlice } from './store/reducers/authSlice';
+import { profileSlice } from './store/reducers/profileSlice';
+
+const { initAuth } = authSlice.actions;
+const { initProfile } = profileSlice.actions;
 
 export const App = (): JSX.Element => {
-  const [isAuth, setIsAuth] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem('customerId')) {
-      setIsAuth(true);
-    }
-  });
+    dispatch(initAuth());
+    dispatch(initProfile());
+  }, []);
 
-  return (
-    <AuthContext.Provider value={{
-      isAuth,
-      setIsAuth,
-    }}
-    >
-      <AppRouter isAuth={isAuth} />
-    </AuthContext.Provider>
-  );
+  return <AppRouter />;
 };

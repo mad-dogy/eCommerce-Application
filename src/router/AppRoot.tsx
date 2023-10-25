@@ -1,8 +1,10 @@
 import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import styles from './AppRoot.module.scss';
+
 const AppRoot = memo(() => (
-  <div className="app">
+  <div className={styles.app}>
     <Outlet />
   </div>
 ));

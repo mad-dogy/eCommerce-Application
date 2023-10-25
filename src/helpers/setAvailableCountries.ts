@@ -1,11 +1,11 @@
-import { getProjectDetails } from '../api/Customers';
+import { getProjectDetails } from '../api/Project';
 import { type SelectItem } from '../components/UI/Select/Select';
 
-export const getAvailableCountries = async (): Promise<SelectItem[]> => {
+export const getAvailableCountries = async (): Promise<Array<SelectItem>> => {
   const projectDetails = await getProjectDetails();
   const availableCountriesFromServer = projectDetails.countries;
   const availableCountries: SelectItem[] = [];
-  availableCountriesFromServer.forEach(element => {
+  availableCountriesFromServer.forEach((element) => {
     switch (element) {
       case 'US':
         availableCountries.push({ value: element, name: 'United States (US)' });
@@ -19,8 +19,19 @@ export const getAvailableCountries = async (): Promise<SelectItem[]> => {
       case 'AU':
         availableCountries.push({ value: element, name: 'Australia (AU)' });
         break;
-      default: break;
+      case 'RU':
+        availableCountries.push({ value: element, name: 'Russia (RU)' });
+        break;
+      case 'FR':
+        availableCountries.push({ value: element, name: 'France (FR)' });
+        break;
+      case 'PL':
+        availableCountries.push({ value: element, name: 'Poland (PL)' });
+        break;
+      default:
+        break;
     }
   });
+
   return availableCountries;
 };

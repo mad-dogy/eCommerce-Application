@@ -1,11 +1,74 @@
+@import '../../constants/global';
+
 .profile {
-  height: 70vh;
+  background: $primaryColor;
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  padding: 30px 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 120px;
-  color: #6A1F11;
-  font-family: 'Roboto', sans-serif;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
   font-weight: bold;
-  text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
+
+  &__inner {
+    max-width: 1200px;
+    width: 100%;
+    min-height: 685px;
+    height: 100%;
+    padding: 30px 25px;
+    background: $backgroundPrimaryColor;
+    border-radius: 20px;
+
+    & h4 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: normal;
+    }
+  }
+
+  &__a {
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  &__content {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px 20px;
+  }
+
+  &__info-block {
+    margin: 0 auto;
+    max-width: 450px;
+    width: 100%;
+
+    & h6 {
+      font-size: 20px;
+      margin-left: 6px;
+      color: $primaryColor;
+    }
+  }
+
+  & h6 {
+    margin-bottom: 6px;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+  }
+}
+
+.edit_btn {
+  cursor: pointer;
+  color: #616161;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

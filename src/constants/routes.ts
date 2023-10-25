@@ -1,22 +1,27 @@
-export enum PUBLIC_ROUTES {
-  Auth = '/auth',
-  LoginPage = '/auth/login',
-  BaseRegisterPage = '/auth/register',
+const getRouteMain = () => '/';
+const getRouteAuth = () => '/auth';
+const getRouteLogin = () => '/auth/login';
+const getRouteBaseRegister = () => '/auth/register';
+const getRouteExtendRegister = () => '/auth/extend-register';
+const getRouteCart = () => '/cart';
+const getRouteAbout = () => '/about';
+const getRouteProfile = () => '/profile';
+const getRouteCatalog = () => '/catalog';
+const getRouteCatalogProduct = (id: string) => `/catalog/${id}`;
+const getRouteNotFound = () => '/404';
+const getRouteAny = () => '*';
 
-  Cart = '/cart',
-  Base = '/',
-  Any = '*',
-
-  NotFoundPage = '/404',
-}
-
-export enum PRIVATE_ROUTES {
-  Auth = '/auth',
-  ExtendRegisterPage = '/auth/extend-register',
-  Cart = '/cart',
-  Profile = '/profile',
-  Base = '/',
-  Any = '*',
-
-  NotFoundPage = '/404',
-}
+export const ROUTES = {
+  main: getRouteMain,
+  auth: getRouteAuth,
+  login: getRouteLogin,
+  baseRegister: getRouteBaseRegister,
+  extendRegister: getRouteExtendRegister,
+  cart: getRouteCart,
+  about: getRouteAbout,
+  profile: getRouteProfile,
+  catalog: getRouteCatalog,
+  catalogProduct: getRouteCatalogProduct,
+  notFound: getRouteNotFound,
+  any: getRouteAny
+};

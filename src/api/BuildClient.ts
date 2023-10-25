@@ -1,13 +1,11 @@
 import fetch from 'node-fetch';
 import {
   ClientBuilder,
-
   type AuthMiddlewareOptions, // Required for auth
-  type HttpMiddlewareOptions, // Required for sending HTTP requests
+  type HttpMiddlewareOptions // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
-import {
-  baseUri, credentials, oauthUri, projectKey, scopes,
-} from './server';
+
+import { baseUri, credentials, oauthUri, projectKey, scopes } from './server';
 
 // Configure authMiddlewareOptions
 const authMiddlewareOptions: AuthMiddlewareOptions = {
@@ -15,16 +13,16 @@ const authMiddlewareOptions: AuthMiddlewareOptions = {
   projectKey,
   credentials: {
     clientId: credentials.clientId,
-    clientSecret: credentials.clientSecret,
+    clientSecret: credentials.clientSecret
   },
   scopes,
-  fetch,
+  fetch
 };
 
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
   host: baseUri,
-  fetch,
+  fetch
 };
 
 // Export the ClientBuilder

@@ -12,3 +12,9 @@ declare module '*.svg' {
 declare module '*.png';
 declare module '*.jpg';
 declare module '*.jpeg';
+
+declare type IsPromise<D> = D extends Promise<any>
+  ? D extends Promise<Awaited<D>>
+    ? Awaited<D>
+    : D
+  : D;

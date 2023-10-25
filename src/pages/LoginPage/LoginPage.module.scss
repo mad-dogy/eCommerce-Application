@@ -1,3 +1,5 @@
+@import '../../constants/global';
+
 .login {
   &__inner {
     max-width: 500px;
@@ -6,10 +8,10 @@
     border-radius: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     row-gap: 16px;
-    background: #f9f9f9;
+    background: $backgroundPrimaryColor;
   }
 
   &__title {
@@ -21,58 +23,29 @@
   &__form {
     display: flex;
     flex-direction: column;
-    row-gap: 18px;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-  }
-
-  &__btns {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 30px;
-
-    & * {
-      min-height: 25px;
-      
-      & * {
-        color: #fff;
-        text-decoration: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 5px;
-      }
-    }
+    row-gap: 18px;
   }
 
   &__to-register {
     font-size: 14px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    color: #273641;
+    font-family: Roboto, sans-serif;
+    color:  $primaryColor;
 
     & span {
-      color: #6A1F11;
+      color:  $secondaryColor;
       font-weight: bold;
     }
   }
+
   &__to-register:hover {
     cursor: pointer;
   }
 
 }
 
-.input_default {
-  max-width: 350px;
-  width: 100%;
-}
-.input_mini {
-  max-width: 170px;
-  width: 100%;
-}
-
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .login {
     &__inner {
       max-width: 390px;

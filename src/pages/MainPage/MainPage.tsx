@@ -1,7 +1,3 @@
 import styles from './MainPage.module.scss';
 
-export const MainPage = (): JSX.Element => (
-  <div className={styles.main}>
-    Main page
-  </div>
-);
+export const MainPage = (): JSX.Element => <div className={styles.main}>Main page</div>;

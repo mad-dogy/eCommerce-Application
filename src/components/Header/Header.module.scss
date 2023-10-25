@@ -1,3 +1,5 @@
+@import '../../constants/global';
+
 .header {
   margin: 0 auto;
   padding: 0 20px;
@@ -5,34 +7,50 @@
   width: 100%;
   min-height: 100px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background: $backgroundPrimaryColor;
 
   & a {
     text-decoration: none;
     color: #000;
   }
 
-  &__nav {
+  & .nav__content {
     max-width: 250px;
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     column-gap: 30px;
   }
 }
 
 .nav__btn {
   padding: 8px 10px;
-  border: 2px solid #273036;
+  border: 2px solid $primaryColor;
   border-radius: 10px;
   font-size: 14px;
   text-decoration: none;
   color: #000;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: Roboto, sans-serif;
+  transition: all .2s linear;
+
+  &:hover {
+    color: $backgroundPrimaryColor;
+    background: $primaryColor;
+  }
 }
 
 .nav__icon {
-  color: #000;
+  color: $primaryColor;
+  transition: all .2s linear !important;
+
+  &:hover {
+    color: $backgroundPrimaryColor;
+    border-radius: 50%;
+    padding: 10px;
+    background: $primaryColor;
+  }
 }

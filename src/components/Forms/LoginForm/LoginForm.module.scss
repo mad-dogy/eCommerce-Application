@@ -1,0 +1,40 @@
+@import '../../../constants/global';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 18px;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 30px;
+
+  & * {
+    min-height: 25px;
+    
+    & * {
+      color:  #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 5px;
+    }
+  }
+}
+
+.input_default {
+  max-width: 350px;
+  width: 100%;
+}
+
+.input_mini {
+  max-width: 170px;
+  width: 100%;
+}

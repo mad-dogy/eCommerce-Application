@@ -1,21 +1,27 @@
+@import '../../../constants/global';
+
 .input-label {
   top: -8px !important;
 }
-.input-label[data-shrink=true] {
+
+.input-label[data-shrink="true"] {
   top: 0 !important;
 }
 
 .select {
   border-radius: 10px !important;
   padding: 0 4px;
-  background: #F9F9F9;
+  background: $backgroundPrimaryColor;
   font-size: 14px;
   letter-spacing: .06rem;
-  color: #110C07;
+  color: $textColor;
   max-width: 170px;
+  min-width: 160px;
+  width: 100%;
   position: relative;
 }
+
 .select div {
-  padding: 8px;
+  padding: 6px;
   height: 0;
 }

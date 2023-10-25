@@ -1,67 +1,106 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "jest": true
+  root: true,
+  extends: [
+    'plugin:react/recommended',
+    "airbnb",
+    'plugin:i18next/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  "extends": [
-    "standard-with-typescript",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/recommended",
-    "plugin:react/jsx-runtime",
-    "prettier",
-    "plugin:i18next/recommended",
-    "airbnb"
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'i18next',
+    'react-hooks',
+    'prettier'
   ],
-  "parser": '@typescript-eslint/parser',
-    "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true,
-      },
-      "ecmaVersion": 'latest',
-      "sourceType": 'module',
-      "project": "./tsconfig.json"
-    },
-  "overrides": [
-    {
-      "env": {
-        "node": true
-      },
-      "files": [
-        ".eslintrc.{js,cjs}"
-      ],
-      "parserOptions": {
-        "sourceType": "script"
+  rules: {
+    "prettier/prettier": [
+      "warn",
+      {
+        trailingComma: "none",
+        tabWidth: 2,
+        semi: true,
+        singleQuote: true,
+        bracketSpacing: true,
+        bracketSameLine: false,
+        jsxBracketSameLine: false,
+        printWidth: 100,
       }
-    }
-  ],
-  "plugins": [
-    "react",
-    "i18next"
-  ],
-  "rules": {
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
-    'import/no-unresolved': 'off',
+    ],
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    'no-tabs': 'off',
+    'react/jsx-filename-extension': [1, {
+      extensions: ['.jsx', '.tsx'],
+    }],
+    'react/function-component-definition': 'off',
+    '@typescript-eslint/no-unused-vars': "error",
+    'camelcase': 'off',
     'import/prefer-default-export': 'off',
-    'no-unused-vars': 'warn',
+    'import/no-unresolved': 'off',
+    'no-empty': 'warn',
+    "import/order": [
+      "warn",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "unknown",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ]
+      }
+    ],
+    'no-empty-pattern': 'warn',
+    'max-classes-per-file': 'off',
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/no-empty-function': 'warn',
+    'pace-infix-ops': 'off',
+    'consistent-return': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-useless-return': 'off',
+    'react/no-array-index-key': 'off',
+    'no-undef': 'off',
+    'object-shorthand': 'off',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-props-no-spreading': 'warn',
-    'react/function-component-definition': 'off',
-    'no-shadow': 'off',
-    "no-undef": "off",
-    'import/extensions': 'off',
+    'react/prop-types': 'off',
+    'no-plusplus': 'off',
+    'prefer-destructuring': 'warn',
+    'react/destructuring-assignment': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-shadow': 'off',
     'no-underscore-dangle': 'off',
-    "@typescript-eslint/prefer-nullish-coalescing": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "react/no-deprecated": "off",
-    "i18next/no-literal-string": ["warn", {markupOnly: true}],
-    "react/jsx-props-no-spreading": "off",
-    "jsx-a11y/label-has-associated-control": "off",
-    "arrow-parens": "off",
-    "@typescript-eslint/no-misused-promises": "off"
-  }
-}
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'eqeqeq': 'warn',
+    'react/no-unused-prop-types': 'warn',
+    'import/extensions': 'off',
+    'no-restricted-syntax': 'off',
+    'no-continue': 'off',
+    'no-useless-escape': 'off',
+    'no-param-reassign': ["error", { "props": false }],
+    '@typescript-eslint/no-empty-interface': 'warn',
+    'i18next/no-literal-string': 'off'
+  },
+};
