@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  ProductProjection,
-  ProductProjectionPagedSearchResponse
-} from '@commercetools/platform-sdk';
+import { ProductProjection } from '@commercetools/platform-sdk';
 
 import { fetchProducts } from './actionCreators/catalogActionCreators';
 
@@ -61,28 +58,26 @@ export const catalogSlice = createSlice({
       state.currentPageNumber = action.payload;
     }
   },
-  extraReducers: {
-    [fetchProducts.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [fetchProducts.fulfilled.type]: (
-      state,
-      action: PayloadAction<ProductProjectionPagedSearchResponse>
-    ) => {
-      state.products = action.payload.results;
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.products = action.payload.results;
 
-      state.total = action.payload.total;
-      state.limit = action.payload.limit;
+        state.total = action.payload.total;
+        state.limit = action.payload.limit;
 
-      state.pagesAmount = Math.ceil(state.total / state.limit);
+        state.pagesAmount = Math.ceil(state.total / state.limit);
 
-      state.isLoading = false;
-      state.error = '';
-    },
-    [fetchProducts.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    }
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 

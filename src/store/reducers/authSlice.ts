@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { SignInResponseType } from '../../api/ClientMe';
 import { SignUpResponseType } from '../../api/Customers/Authorization';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 
@@ -51,35 +50,37 @@ export const authSlice = createSlice({
       localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
     }
   },
-  extraReducers: {
-    [fetchSignIn.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [fetchSignIn.fulfilled.type]: (state, action: PayloadAction<SignInResponseType>) => {
-      state.isAuth = true;
-      state.isLoading = false;
-      state.error = undefined;
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSignIn.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchSignIn.fulfilled, (state, action) => {
+        state.isAuth = true;
+        state.isLoading = false;
+        state.error = undefined;
 
-      localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, action.payload);
-    },
-    [fetchSignIn.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.error = action.payload;
-      state.isLoading = false;
-    },
-    [fetchDeleteCustomerAccount.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [fetchDeleteCustomerAccount.fulfilled.type]: (state) => {
-      state.isAuth = false;
-      state.isLoading = false;
-      state.error = undefined;
+        localStorage.setItem(LOCAL_STORAGE_KEYS.customerId, action.payload);
+      })
+      .addCase(fetchSignIn.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
 
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
-    },
-    [fetchDeleteCustomerAccount.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.error = action.payload;
-      state.isLoading = false;
-    }
+      .addCase(fetchDeleteCustomerAccount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchDeleteCustomerAccount.fulfilled, (state) => {
+        state.isAuth = false;
+        state.isLoading = false;
+        state.error = undefined;
+
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.customerId);
+      })
+      .addCase(fetchDeleteCustomerAccount.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      });
   }
 });
 

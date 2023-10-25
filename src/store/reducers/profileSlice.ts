@@ -47,7 +47,7 @@ export const profileSlice = createSlice({
       state.customer = action.payload;
 
       state.isLoading = false;
-      state.error = '';
+      state.error = undefined;
     },
     fetchingCustomerError(state, action: PayloadAction<string>) {
       state.error = action.payload;
@@ -61,7 +61,7 @@ export const profileSlice = createSlice({
       state.isInfoEdit = false;
       state.isPasswordEdit = false;
       state.isLoading = false;
-      state.error = '';
+      state.error = undefined;
     },
     fetchingCustomerUpdateError(state, action: PayloadAction<string>) {
       state.error = action.payload;
