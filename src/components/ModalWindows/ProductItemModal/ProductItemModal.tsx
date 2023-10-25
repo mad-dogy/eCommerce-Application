@@ -1,0 +1,83 @@
+import { Image, Product, ProductData } from '@commercetools/platform-sdk';
+import { useEffect, useState } from 'react';
+
+import CloseBtn from '../../../assets/cross.svg';
+import { getProductById } from '../../../api/Products/Products';
+import { Button } from '../../UI/Button/Button';
+import { Loader } from '../../UI/Loader/Loader';
+import { SliderItemsNav } from '../../UI/SliderItemsNav/SliderImagesNav';
+import { SliderImgsContainer } from '../../UI/SliderImgsContainer/SliderImgsContainer';
+
+import styles from './ProductItemModal.module.scss';
+
+interface ProductItemModalProps {
+  productId: string | undefined;
+  onCloseBtnClick: (event: React.MouseEvent) => void;
+}
+
+export const ProductItemModal = (props: ProductItemModalProps) => {
+  const { productId, onCloseBtnClick } = props;
+
+  const [isLoading, setLoading] = useState(true);
+  const [product, setProduct] = useState<Product>();
+
+  useEffect(() => {
+    if (!productId) return;
+
+    const setProductById = async (id: string) => {
+      setLoading(true);
+      const receivedProduct = await getProductById(id);
+      setLoading(false);
+      setProduct(receivedProduct);
+    };
+
+    setProductById(productId).catch();
+  }, [productId]);
+
+  const [imgNumber, setImgNumber] = useState(0);
+
+  if (!productId) return;
+
+  const productInfo: ProductData = product?.masterData.current;
+  const productName: string = productInfo?.name['en-US'] || '';
+  const productDescription: string = productInfo?.description['en-US'] || '';
+  const productImages: Image[] = productInfo?.masterVariant.images || [];
+  const productPriceInCents: number = productInfo?.masterVariant.prices[0]?.value.centAmount || 0;
+  const productPrice: number = productPriceInCents / 100;
+  const productPriceCurrency: string =
+    productInfo?.masterVariant.prices[0]?.value.currencyCode || 'USD';
+
+  let productContent;
+  if (!isLoading) {
+    productContent = (
+      <div className={styles.window__inner}>
+        <SliderImgsContainer images={productImages} currentImg={imgNumber} />
+
+        <SliderItemsNav productImages={productImages} activeItemIndex={imgNumber} />
+
+        <div className={styles.info}>
+          <div className={styles.info__name}>{productName}</div>
+          <div className={styles.info__description}>{productDescription}</div>
+
+          <div className={styles.info__block}>
+            <span className={styles.info__price}>{`${productPrice} ${productPriceCurrency}`}</span>
+            <Button className={styles['add-btn']}>Add to cart</Button>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    productContent = <Loader />;
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.window}>
+        <div className={styles['close-btn']} onClick={onCloseBtnClick}>
+          <CloseBtn />
+        </div>
+        {productContent}
+      </div>
+    </div>
+  );
+};

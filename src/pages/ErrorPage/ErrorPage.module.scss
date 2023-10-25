@@ -1,0 +1,37 @@
+@import '../../constants/global';
+
+.page {
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 1360px;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  border-radius: 20px;
+  background: $backgroundPrimaryColor;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.message {
+  max-width: 600px;
+  width: 100%;
+  padding-top: 25px;
+  font-size: 24px;
+  color: $textColor;
+}
+
+.page h5 {
+  padding-top: 25px;
+  padding-bottom: 20px;
+  font-size: 32px;
+  color: $textColor;
+}
+
+.img {
+  max-width: 480px;
+  width: 100%;
+}

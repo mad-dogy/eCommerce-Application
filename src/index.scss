@@ -1,0 +1,30 @@
+@import './constants/global';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #9c9c9c $backgroundPrimaryColor;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $backgroundPrimaryColor;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #9c9c9c;
+  border-radius: 10px;
+  border: 3px solid #fff;
+}
