@@ -16,6 +16,15 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    initAuth(state) {
+      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
+      if (customerId) {
+        state.isAuth = true;
+      } else {
+        state.isAuth = false;
+      }
+    },
+
     setAuth(state, action: PayloadAction<boolean>) {
       state.isAuth = action.payload;
     },

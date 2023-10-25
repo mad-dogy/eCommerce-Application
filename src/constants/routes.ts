@@ -7,6 +7,7 @@ const getRouteCart = () => '/cart';
 const getRouteAbout = () => '/about';
 const getRouteProfile = () => '/profile';
 const getRouteCatalog = () => '/catalog';
+const getRouteCatalogProduct = (id: string) => `/catalog/${id}`;
 const getRouteNotFound = () => '/404';
 const getRouteAny = () => '*';
 
@@ -20,6 +21,7 @@ export const ROUTES = {
   about: getRouteAbout,
   profile: getRouteProfile,
   catalog: getRouteCatalog,
+  catalogProduct: getRouteCatalogProduct,
   notFound: getRouteNotFound,
   any: getRouteAny
 };

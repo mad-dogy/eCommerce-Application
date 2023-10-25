@@ -1,29 +1,34 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ProductProjectionPagedQueryResponse } from '@commercetools/platform-sdk';
+
 import {
   ProductProjectionSearchProps,
   productsProjectionSearch
 } from '../../../api/Products/Products';
-import { AppDispatch } from '../../store';
-import { catalogSlice } from '../catalogSlice';
 
-export const fetchProducts =
-  (props: ProductProjectionSearchProps) => async (dispatch: AppDispatch) => {
-    const { productsLimit, productsOffset, searchText, sortOption, sortOrder } = props;
+export const fetchProducts = createAsyncThunk<
+  ProductProjectionPagedQueryResponse,
+  ProductProjectionSearchProps,
+  { rejectValue: string }
+>('catalog/fetchAll', async (props, thunkApi) => {
+  const { rejectWithValue } = thunkApi;
 
-    try {
-      dispatch(catalogSlice.actions.productsFetchingWithSearch());
+  const { productsLimit, productsOffset, searchText, sortOption, sortOrder } = props;
 
-      const productsProjectionSearchResponse = await productsProjectionSearch({
-        productsLimit,
-        productsOffset,
-        searchText,
-        sortOption,
-        sortOrder
-      });
+  try {
+    const productsProjectionSearchResponse = await productsProjectionSearch({
+      productsLimit,
+      productsOffset,
+      searchText,
+      sortOption,
+      sortOrder
+    });
 
-      dispatch(
-        catalogSlice.actions.productsFetchingWithSearchSuccess(productsProjectionSearchResponse)
-      );
-    } catch (error) {
-      dispatch(catalogSlice.actions.productsFetchingWithSearchError(error.message));
+    return productsProjectionSearchResponse;
+  } catch (error) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
     }
-  };
+    return rejectWithValue('Something went wrong on products projection search response');
+  }
+});

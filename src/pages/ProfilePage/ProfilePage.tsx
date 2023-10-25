@@ -90,6 +90,14 @@ export const ProfilePage = (): JSX.Element => {
     }
   };
 
+  const profileInfoContent = customer ? (
+    <ProfileInfoContent
+      customer={customer}
+      onChangePasswordBtnClick={onChangePasswordBtnClick}
+      onDeleteBtnClick={onDeleteAccount}
+    />
+  ) : null;
+
   let content;
   if (!isLoading) {
     content = (
@@ -110,13 +118,9 @@ export const ProfilePage = (): JSX.Element => {
             onCancelBtnClick={onCancelBtnClick}
             customer={customer}
           />
-        ) : customer ? (
-          <ProfileInfoContent
-            customer={customer}
-            onChangePasswordBtnClick={onChangePasswordBtnClick}
-            onDeleteBtnClick={onDeleteAccount}
-          />
-        ) : null}
+        ) : (
+          profileInfoContent
+        )}
 
         <ChangePasswordModal
           onPasswordCancelSave={onPasswordCancelBtnClick}

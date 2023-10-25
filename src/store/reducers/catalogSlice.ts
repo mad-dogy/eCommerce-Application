@@ -4,6 +4,8 @@ import {
   ProductProjectionPagedSearchResponse
 } from '@commercetools/platform-sdk';
 
+import { fetchProducts } from './actionCreators/catalogActionCreators';
+
 export type QuerySortOptionValueType = 'id' | 'name' | 'createdAt';
 export type QuerySortOptionNameType = 'ID' | 'Name' | 'Date of creation';
 
@@ -41,28 +43,6 @@ export const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
-    productsFetchingWithSearch(state) {
-      state.isLoading = true;
-    },
-    productsFetchingWithSearchSuccess(
-      state,
-      action: PayloadAction<ProductProjectionPagedSearchResponse>
-    ) {
-      state.products = action.payload.results;
-
-      state.total = action.payload.total;
-      state.limit = action.payload.limit;
-
-      state.pagesAmount = Math.ceil(state.total / state.limit);
-
-      state.isLoading = false;
-      state.error = '';
-    },
-    productsFetchingWithSearchError(state, action: PayloadAction<string>) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-
     setQueryString(state, action: PayloadAction<string>) {
       state.queryString = action.payload;
     },
@@ -79,6 +59,29 @@ export const catalogSlice = createSlice({
     },
     setCurrentPageNumber(state, action: PayloadAction<number>) {
       state.currentPageNumber = action.payload;
+    }
+  },
+  extraReducers: {
+    [fetchProducts.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchProducts.fulfilled.type]: (
+      state,
+      action: PayloadAction<ProductProjectionPagedSearchResponse>
+    ) => {
+      state.products = action.payload.results;
+
+      state.total = action.payload.total;
+      state.limit = action.payload.limit;
+
+      state.pagesAmount = Math.ceil(state.total / state.limit);
+
+      state.isLoading = false;
+      state.error = '';
+    },
+    [fetchProducts.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
     }
   }
 });

@@ -1,6 +1,8 @@
 import { Customer } from '@commercetools/platform-sdk';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
+
 interface ProfileState {
   customerId?: string;
   customer?: Customer;
@@ -21,6 +23,13 @@ export const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
+    initProfile(state) {
+      const customerId = localStorage.getItem(LOCAL_STORAGE_KEYS.customerId);
+      if (customerId) {
+        state.customerId = customerId;
+      }
+    },
+
     setCustomerId(state, action: PayloadAction<string>) {
       state.customerId = action.payload;
     },

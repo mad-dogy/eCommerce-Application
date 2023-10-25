@@ -97,6 +97,7 @@ export const router = createHashRouter([
 
 const AppRouter = (): JSX.Element => {
   const isAuth = useAppSelector(getAuthState);
+
   if (isAuth === undefined) {
     return <Loader />;
   }
