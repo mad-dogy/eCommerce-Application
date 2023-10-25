@@ -1,0 +1,74 @@
+@import '../../constants/global';
+
+.register {
+  &__inner {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px 30px 15px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 14px;
+    background: $backgroundPrimaryColor;
+  }
+  
+  &__step-title {
+    font-size: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+  }
+
+  &__form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 16px;
+
+    & p {
+      margin-top: 0;
+    }
+  }
+
+  &__to-login {
+    font-size: 14px;
+    font-family: Roboto, sans-serif;
+    color: $primaryColor;
+
+    & span {
+      color: $secondaryColor;
+      font-weight: bold;
+    }
+  }
+
+  &__to-login:hover {
+    cursor: pointer;
+  }
+}
+
+@media (width <= 500px) {
+  .register {
+    &__inner {
+      max-width: 390px;
+      padding: 15px;
+      row-gap: 90px;
+    }
+    
+    &__step-title {
+      font-size: 30px;
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
+  }
+}

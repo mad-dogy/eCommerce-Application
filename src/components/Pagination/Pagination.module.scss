@@ -1,0 +1,21 @@
+@import '../../constants/global';
+
+.pagination {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & *:nth-child(1) {
+    max-width: 400px;
+  }
+
+  & *:nth-child(2) {
+    max-width: 80px;
+  }
+
+  &__select {
+    max-width: 70px;
+  }
+}

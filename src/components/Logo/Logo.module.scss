@@ -1,0 +1,21 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: Supernatural;
+  src: url('../../assets/Supernatural_Knight.ttf') format('truetype');
+}
+
+.logo * {
+  display: block;
+  height: 60px;
+  font-family: Supernatural;
+  text-transform: uppercase;
+}
+
+.logo div {
+  padding-top: 13px;
+}
